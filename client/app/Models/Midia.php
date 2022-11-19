@@ -14,7 +14,7 @@ class Midia extends Model
   protected $connection = 'mysql';
 
   protected $fillable = [
-    'imagem', 'video', 'pdf'
+    'image', 'video', 'pdf'
   ];
 
   public function patente()
