@@ -21,4 +21,14 @@ class Midia extends Model
   {
     return $this->belongsTo(Patente::class);
   }
+
+  public function servico()
+  {
+    return $this->belongsTo(Servico::class);
+  }
+
+  public function software()
+  {
+    return $this->belongsTo(Software::class);
+  }
 }
