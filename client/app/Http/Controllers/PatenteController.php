@@ -112,10 +112,10 @@ class PatenteController extends Controller
   public function destroy($id)
   {
     try {
-      $patente = Patente::find($id);
-      $patente->delete();
       $midia = Midia::find($id);
       $midia->delete();
+      $patente = Patente::find($id);
+      $patente->delete();
     } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao deletar patente',
