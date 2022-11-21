@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PatenteController;
+use App\Http\Controllers\SoftwareController;
+use App\Http\Controllers\ServicoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
