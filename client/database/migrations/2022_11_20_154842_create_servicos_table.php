@@ -14,8 +14,20 @@ return new class extends Migration
     public function up()
     {
         Schema::create('servicos', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+          $table->id()->unique();
+          $table->timestamps();
+          $table->string('nome');
+          $table->longText('sinopse');
+          $table->longText('resumo');
+          $table->longText('problema');
+          $table->longText('aplicacao');
+          $table->bigInteger('telefone');
+          $table->string('email');
+          $table->string('links')->nullable(true);
+          $table->string('criadores');
+          $table->string('palavra_chave');
+          $table->string('area_cientifica');
+          $table->string('area_economica');
         });
     }
 
