@@ -25,8 +25,6 @@ class PatenteRequest extends FormRequest
   {
     return [
       'nome'        => 'required|string|max:255',
-      'area_economica' => 'required|string|max:255',
-      'area_cientifica' => 'required|string|max:255',
       'sinopse'     => 'required|string|min:125|max:255',
       'pct'         => 'nullable|string|max:255',
       'inpi'        => 'required|string|max:255|unique:patentes',
@@ -41,6 +39,9 @@ class PatenteRequest extends FormRequest
       'data_criacao' => 'required|string|max:255',
       'links'       => 'nullable|string|max:255',
       'criadores'   => 'required|string|max:255',
+      'area_economica' => 'required|string|max:255',
+      'area_cientifica' => 'required|string|max:255',
+      'palavra_chave' => 'required|string|max:255',
       'image'       => 'required|mimes:png,jpg,svg|max:2048',
       'video'       => 'required|mimes:mp4,mov,ogg|max: 20000',
       'pdf'         => 'required|max:4096',

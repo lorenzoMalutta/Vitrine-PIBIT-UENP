@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Midia;
 use App\Models\Software;
+use Ramsey\Uuid\Uuid;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -38,11 +39,29 @@ class SoftwareController extends Controller
    */
   public function store(Request $request)
   {
-    try{
-      $midia = Midia::create($request->all());
+    try {
+      $midia = new Midia;
       $software = Software::create($request->all());
+      $midia->idSoftware = $software->id;
+      $midia->save();
+      if ($request->hasFile('image')) {
+        $destinationPath = "public/images/software";
+        $extension = $request->image->getClientOriginalExtension();
+        $name = Uuid::uuid1();
+        $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
+        $midia->image = $name . "." . $extension;
+        $midia->save();
+      }
+      if ($request->hasFile('video')) {
+        $destinationPath = "public/videos/software";
+        $extension = $request->video->getClientOriginalExtension();
+        $name = Uuid::uuid1();
+        $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
+        $midia->video = $name . "." . $extension;
+        $midia->save();
+      }
       $merged = array_merge($software, $midia);
-    }catch(Exception $e){
+    } catch (Exception $e) {
       return response()->json([
         'message' => 'Erro ao cadastrar software',
         'error' => $e->getMessage()
@@ -85,13 +104,28 @@ class SoftwareController extends Controller
    */
   public function update(Request $request, $id)
   {
-    try{
-      $midia = Midia::findOrFail($id);
+    try {
       $software = Software::findOrFail($id);
-      $midia->update($request->all());
       $software->update($request->all());
+      $midia = Midia::findOrFail($request->idSoftware);
+      if ($midia->image) {
+        $destinationPath = "public/images/software";
+        $extension = $request->image->getClientOriginalExtension();
+        $name = Uuid::uuid1();
+        $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
+        $midia->image = $name . "." . $extension;
+        $midia->update();
+      }
+      if ($midia->video) {
+        $destinationPath = "public/videos/software";
+        $extension = $request->image->getClientOriginalExtension();
+        $name = Uuid::uuid1();
+        $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
+        $midia->video = $name . "." . $extension;
+        $midia->update();
+      }
       $merged = array_merge($software, $midia);
-    }catch(Exception $e){
+    } catch (Exception $e) {
       return response()->json([
         'message' => 'Erro ao atualizar software',
         'error' => $e->getMessage()
@@ -112,7 +146,7 @@ class SoftwareController extends Controller
    */
   public function destroy($id)
   {
-    try{
+    try {
       $midia = Midia::findOrFail($id);
       $software = Software::findOrFail($id);
       $midia->delete();
