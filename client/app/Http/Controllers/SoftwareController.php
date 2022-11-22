@@ -21,7 +21,7 @@ class SoftwareController extends Controller
       $software = Software::all()->toArray();
       $midia = Midia::all()->toArray();
       $merged = array_merge($software, $midia);
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao listar softwares',
         'error' => $e->getMessage()
@@ -61,7 +61,7 @@ class SoftwareController extends Controller
         $midia->save();
       }
       $merged = array_merge($software, $midia);
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao cadastrar software',
         'error' => $e->getMessage()
@@ -86,7 +86,7 @@ class SoftwareController extends Controller
       $midia = Midia::findOrFail($id)->toArray();
       $software = Software::findOrFail($id)->toArray();
       $merged = array_merge($software, $midia);
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao listar software',
         'error' => $e->getMessage()
@@ -125,7 +125,7 @@ class SoftwareController extends Controller
         $midia->update();
       }
       $merged = array_merge($software, $midia);
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao atualizar software',
         'error' => $e->getMessage()
@@ -151,7 +151,7 @@ class SoftwareController extends Controller
       $software = Software::findOrFail($id);
       $midia->delete();
       $software->delete();
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao deletar software',
         'error' => $e->getMessage()

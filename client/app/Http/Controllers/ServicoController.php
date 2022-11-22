@@ -21,7 +21,7 @@ class ServicoController extends Controller
       $servico = Servico::all()->toArray();
       $midia = Midia::all()->toArray();
       $merged = array_merge($servico, $midia);
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao cadastrar serviço',
         'error' => $e->getMessage()
@@ -51,7 +51,7 @@ class ServicoController extends Controller
         $midia->image = $name . "." . $extension;
         $midia->save();
       }
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao cadastrar serviço',
         'error' => $e->getMessage()
@@ -76,7 +76,7 @@ class ServicoController extends Controller
       $midia = Midia::findOrFail($id)->toArray();
       $servico = Servico::findOrFail($id)->toArray();
       $merged = array_merge($servico, $midia);
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao cadastrar serviço',
         'error' => $e->getMessage()
@@ -107,7 +107,7 @@ class ServicoController extends Controller
         $midia->image = $name . "." . $extension;
         $midia->update();
       }
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao atualizar serviço',
         'error' => $e->getMessage()
@@ -133,7 +133,7 @@ class ServicoController extends Controller
       $servico->delete();
       $midia = Midia::find($id);
       $midia->delete();
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao deletar serviço',
         'error' => $e->getMessage()
