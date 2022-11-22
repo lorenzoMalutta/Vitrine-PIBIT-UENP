@@ -15,7 +15,20 @@ class Servico extends Model
 
   protected $guarded = [];
 
-  protected $fillLabel = [];
+  protected $fillLabel = [
+    'nome',
+    'sinopse',
+    'resumo',
+    'problema',
+    'aplicacao',
+    'telefone',
+    'email',
+    'links',
+    'criadores',
+    'palavra_chave',
+    'area_cientifica',
+    'area_economica',
+  ];
 
   public function midia()
   {

@@ -15,7 +15,23 @@ class Software extends Model
 
   protected $guarded = [];
 
-  protected $fillLabel = [];
+  protected $fillLabel = [
+    'nome',
+    'sinopse',
+    'tecnologia',
+    'resumo',
+    'problema',
+    'vantagem',
+    'telefone',
+    'email',
+    'colaborador',
+    'data_criacao',
+    'links',
+    'criadores',
+    'area_cientifica',
+    'area_economica',
+    'palavra_chave',
+  ];
 
   public function midia()
   {
