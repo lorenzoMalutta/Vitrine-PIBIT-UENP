@@ -41,16 +41,16 @@ class ServicoController extends Controller
     try {
       $servico = Servico::create($request->all());
       $midia = new Midia;
-      $midia->idServico = $servico->id;
-      $midia->save();
-      if ($request->hasFile('image')) {
-        $destinationPath = "public/images/servicos";
-        $extension = $request->image->getClientOriginalExtension();
-        $name = Uuid::uuid1();
-        $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-        $midia->image = $name . "." . $extension;
-        $midia->save();
-      }
+      // $midia->idServico = $servico->id;
+      // $midia->save();
+      // if ($request->hasFile('image')) {
+      //   $destinationPath = "public/images/servicos";
+      //   $extension = $request->image->getClientOriginalExtension();
+      //   $name = Uuid::uuid1();
+      //   $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
+      //   $midia->image = $name . "." . $extension;
+      //   $midia->save();
+      // }
     } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao cadastrar serviço',
