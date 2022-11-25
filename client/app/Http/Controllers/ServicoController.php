@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ServicoRequest;
 use App\Models\Midia;
 use App\Models\Servico;
 use Ramsey\Uuid\Uuid;
@@ -36,21 +37,21 @@ class ServicoController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
+  public function store(ServicoRequest $request)
   {
     try {
       $servico = Servico::create($request->all());
       $midia = new Midia;
-      // $midia->idServico = $servico->id;
-      // $midia->save();
-      // if ($request->hasFile('image')) {
-      //   $destinationPath = "public/images/servicos";
-      //   $extension = $request->image->getClientOriginalExtension();
-      //   $name = Uuid::uuid1();
-      //   $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-      //   $midia->image = $name . "." . $extension;
-      //   $midia->save();
-      // }
+      $midia->idServico = $servico->id;
+      $midia->save();
+      if ($request->hasFile('image')) {
+        $destinationPath = "public/images/servicos";
+        $extension = $request->image->getClientOriginalExtension();
+        $name = Uuid::uuid1();
+        $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
+        $midia->image = $name . "." . $extension;
+        $midia->save();
+      }
     } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao cadastrar serviço',
@@ -93,7 +94,7 @@ class ServicoController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id)
+  public function update(ServicoRequest $request, $id)
   {
     try {
       $servico = Servico::findOrFail($id);

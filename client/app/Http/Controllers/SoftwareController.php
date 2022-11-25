@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SoftwareRequest;
 use App\Models\Midia;
 use App\Models\Software;
 use Ramsey\Uuid\Uuid;
 use Exception;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 class SoftwareController extends Controller
 {
@@ -37,29 +38,29 @@ class SoftwareController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
+  public function store(SoftwareRequest $request)
   {
     try {
       $midia = new Midia;
       $software = Software::create($request->all());
       $midia->idSoftware = $software->id;
       $midia->save();
-      // if ($request->hasFile('image')) {
-      //   $destinationPath = "public/images/software";
-      //   $extension = $request->image->getClientOriginalExtension();
-      //   $name = Uuid::uuid1();
-      //   $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-      //   $midia->image = $name . "." . $extension;
-      //   $midia->save();
-      // }
-      // if ($request->hasFile('video')) {
-      //   $destinationPath = "public/videos/software";
-      //   $extension = $request->video->getClientOriginalExtension();
-      //   $name = Uuid::uuid1();
-      //   $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
-      //   $midia->video = $name . "." . $extension;
-      //   $midia->save();
-      // }
+      if ($request->hasFile('image')) {
+        $destinationPath = "public/images/software";
+        $extension = $request->image->getClientOriginalExtension();
+        $name = Uuid::uuid1();
+        $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
+        $midia->image = $name . "." . $extension;
+        $midia->save();
+      }
+      if ($request->hasFile('video')) {
+        $destinationPath = "public/videos/software";
+        $extension = $request->video->getClientOriginalExtension();
+        $name = Uuid::uuid1();
+        $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
+        $midia->video = $name . "." . $extension;
+        $midia->save();
+      }
     } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao cadastrar software',
@@ -101,7 +102,7 @@ class SoftwareController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id)
+  public function update(SoftwareRequest $request, $id)
   {
     try {
       $software = Software::findOrFail($id);
