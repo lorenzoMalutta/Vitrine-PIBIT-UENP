@@ -44,23 +44,22 @@ class SoftwareController extends Controller
       $software = Software::create($request->all());
       $midia->idSoftware = $software->id;
       $midia->save();
-      if ($request->hasFile('image')) {
-        $destinationPath = "public/images/software";
-        $extension = $request->image->getClientOriginalExtension();
-        $name = Uuid::uuid1();
-        $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-        $midia->image = $name . "." . $extension;
-        $midia->save();
-      }
-      if ($request->hasFile('video')) {
-        $destinationPath = "public/videos/software";
-        $extension = $request->video->getClientOriginalExtension();
-        $name = Uuid::uuid1();
-        $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
-        $midia->video = $name . "." . $extension;
-        $midia->save();
-      }
-      $merged = array_merge($software, $midia);
+      // if ($request->hasFile('image')) {
+      //   $destinationPath = "public/images/software";
+      //   $extension = $request->image->getClientOriginalExtension();
+      //   $name = Uuid::uuid1();
+      //   $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
+      //   $midia->image = $name . "." . $extension;
+      //   $midia->save();
+      // }
+      // if ($request->hasFile('video')) {
+      //   $destinationPath = "public/videos/software";
+      //   $extension = $request->video->getClientOriginalExtension();
+      //   $name = Uuid::uuid1();
+      //   $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
+      //   $midia->video = $name . "." . $extension;
+      //   $midia->save();
+      // }
     } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao cadastrar software',
@@ -70,7 +69,7 @@ class SoftwareController extends Controller
 
     return response()->json([
       'message' => 'Software cadastrado com sucesso',
-      'software' => $merged,
+      'software' => $software,
     ], 201);
   }
 
