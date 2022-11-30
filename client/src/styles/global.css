@@ -5,6 +5,8 @@
 
 body{
   @apply bg-white text-black font-montserrat;
+  height: 100vh;
+  background: #F0F0F3;
 }
 
 button {

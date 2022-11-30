@@ -11,6 +11,16 @@ module.exports = {
         blue: '#18A0FB',
       }
     },
+    button: {
+      primary: {
+        backgroundColor: '#18A0FB',
+        color: '#fff',
+        '&:hover': {
+          backgroundColor: '#18A0FB',
+          color: '#fff',
+        },
+      },
+    },
   },
   plugins: [],
 }
