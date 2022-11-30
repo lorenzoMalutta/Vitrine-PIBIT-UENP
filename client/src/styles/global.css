@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+  @apply bg-white text-black font-montserrat;
+}
+
+button {
+  @apply border-blue border-[1px] bg-white text-blue p-1 rounded;
+  font-weight: 400;
+}
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block;
+  vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: black;
+  font-size: inherit;
+  font-weight: inherit;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  @apply font-bold text-4xl my-4;
+}
+
+h2 {
+  @apply font-bold text-3xl my-4;
+}
+
+h3 {
+  @apply font-bold text-2xl my-4;
+}
+
+h4 {
+  @apply font-bold text-xl my-4;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+input[type="text"], input[type="email"], input[type="number"] {
+  border: 2px solid #808080;
+}
