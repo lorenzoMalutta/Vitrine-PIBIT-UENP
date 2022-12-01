@@ -10,8 +10,9 @@ interface CardProps {
 
 export function Cards( { title, description, link, img, tags }: CardProps ) {
   return (
-    <Link to={link}>
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+    
+    <div className="max-w-xs rounded overflow-hidden shadow-lg bg-white">
+      <Link to={link}>
       <img className="w-full" src={img} alt="Sunset in the mountains" />
       <div className="px-6 py-4">
         <div className="font-bold text-gray-700 text-xl mb-2">{title}</div>
@@ -25,7 +26,8 @@ export function Cards( { title, description, link, img, tags }: CardProps ) {
           <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{tag}</span>
         ))}
       </div>
+      </Link>
     </div>
-    </Link>
+    
   )
 }
