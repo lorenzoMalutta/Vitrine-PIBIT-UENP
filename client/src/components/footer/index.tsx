@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import logo from "../../assets/logo-aitec.png";
 
 export function Footer() {
   return (
     <footer>
       <div className="grid grid-cols-2 w-full gap-4 p-4 bg-[#26448B] shadow">
         <div className="flex flex-col justify-center">
-          <img className="max-w-xs" src="src\assets\logo-aitec.png" alt="" />
+          <img className="max-w-xs" src={logo} alt="" />
           <div className="mt-4">
             <p className="text-sm text-white">
               BR-369, s/n - Bandeirantes, PR, 86360-000, Paraná - PR

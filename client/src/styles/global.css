@@ -10,8 +10,7 @@ body{
 }
 
 button {
-  @apply border-blue border-[1px] bg-white text-blue p-1 rounded;
-  font-weight: 400;
+  @apply bg-gray-300 hover:bg-gray-400 text-gray-600 font-bold py-2 px-4 rounded inline-flex items-center;
 }
 
 blockquote,
@@ -82,5 +81,5 @@ p {
 }
 
 input[type="text"], input[type="email"], input[type="number"] {
-  border: 2px solid #808080;
+  @apply border-gray-300 border-[1px] rounded p-1 bg-slate-50;
 }

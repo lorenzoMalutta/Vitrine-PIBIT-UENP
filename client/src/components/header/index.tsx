@@ -7,12 +7,13 @@ import { AiOutlineFileSearch } from "react-icons/ai";
 import { AiOutlineUser } from "react-icons/ai";
 import { IoLogInOutline } from "react-icons/io5";
 import { AiOutlineHome } from "react-icons/ai";
+import logo from "../../assets/logo-aitec.png";
 
 export function Header() {
   return (
     <header className="grid h-max">
       <div className="grid grid-cols-2 p-2 bg-[#26448B]">
-        <img className="max-w-xs" src="src\assets\logo-aitec.png" alt="" />
+        <img className="max-w-xs" src={logo} alt="" />
         <ul className="inline-flex items-center justify-end gap-2 text-2xl text-white ">
           <li>
             <Link to="/"> <AiOutlineUser /> </Link>
