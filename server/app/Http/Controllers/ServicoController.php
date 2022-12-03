@@ -79,12 +79,12 @@ class ServicoController extends Controller
       $merged = array_merge($servico, $midia);
     } catch (\Exception $e) {
       return response()->json([
-        'message' => 'Erro ao cadastrar serviço',
+        'message' => 'Erro ao mostrar serviço',
         'error' => $e->getMessage()
-      ], 500);
+      ], 404);
     }
 
-    return response()->json($merged);
+    return response()->json($merged, 201);
   }
 
   /**
@@ -142,8 +142,6 @@ class ServicoController extends Controller
     }
     return response()->json([
       'message' => 'Serviço deletado com sucesso',
-      'servico' => $servico,
-      'midia' => $midia,
     ], 201);
   }
 }

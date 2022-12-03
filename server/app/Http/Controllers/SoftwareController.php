@@ -90,9 +90,9 @@ class SoftwareController extends Controller
       return response()->json([
         'message' => 'Erro ao listar software',
         'error' => $e->getMessage()
-      ], 500);
+      ], 404);
     }
-    return response()->json($merged);
+    return response()->json($merged, 201);
   }
 
   /**
@@ -135,6 +135,7 @@ class SoftwareController extends Controller
     return response()->json([
       'message' => 'Software atualizado com sucesso',
       'software' => $merged,
+      'midia' => $midia,
     ], 201);
   }
 

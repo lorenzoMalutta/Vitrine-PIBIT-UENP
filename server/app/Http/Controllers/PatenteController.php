@@ -73,6 +73,7 @@ class PatenteController extends Controller
     }
 
     return response()->json([
+      'message' => 'Patente cadastrada com sucesso',
       'patente' => $patente,
       'midia' => $midia,
     ], 201);
@@ -145,7 +146,11 @@ class PatenteController extends Controller
         'error' => $e->getMessage()
       ], 500);
     }
-    return response()->json($merged);
+    return response()->json([
+      'message' => 'Patente atualizado com sucesso',
+      'patente' => $patente,
+      'midia' => $midia,
+    ], 201);
   }
 
   /**
@@ -170,6 +175,6 @@ class PatenteController extends Controller
 
     return response()->json([
       'message' => 'Patente deletada com sucesso'
-    ], 200);
+    ], 201);
   }
 }
