@@ -32,7 +32,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/patentes', [PatenteController::class, 'index']);
 Route::get('/patentes/{id}', [PatenteController::class, 'show']);
 Route::middleware('auth:sanctum')->group(function () {
-  Route::post('/patentes', [PatenteController::class, 'store']);
+  Route::post('/patentes/cadastrar', [PatenteController::class, 'store']);
   Route::put('/patentes/{id}', [PatenteController::class, 'update']);
   Route::delete('/patentes/{id}', [PatenteController::class, 'destroy']);
 });
