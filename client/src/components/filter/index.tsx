@@ -15,7 +15,7 @@ export function Filter({ filter, catergorias, setFilter }: PropsFilter) {
           <label>{categoria}</label>
         </div>
       ))}
-      <button className="flex justify-center">Filtrar</button>
+      <button type="submit" className="flex justify-center">Filtrar</button>
     </div>
   )
 }

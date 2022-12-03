@@ -19,7 +19,7 @@ export function Header() {
             <Link to="/"> <AiOutlineUser /> </Link>
           </li>
           <li>
-            <Link to="/"> <IoLogInOutline /> </Link>
+            <Link to="/login"> <IoLogInOutline /> </Link>
           </li>
           <li>
             <Link to="/"> <AiOutlineHome /> </Link>
