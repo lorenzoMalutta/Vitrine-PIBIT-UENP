@@ -6,9 +6,6 @@ module.exports = {
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
       },
-      colors: {
-        blue: '#18A0FB',
-      }
     },
     button: {
       primary: {

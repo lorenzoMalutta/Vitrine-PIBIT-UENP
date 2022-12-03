@@ -9,8 +9,8 @@ body{
   background: #F0F0F3;
 }
 
-button {
-  @apply bg-gray-300 hover:bg-gray-400 text-gray-600 font-bold py-2 px-4 rounded inline-flex items-center;
+button[type="submit"]{
+  @apply bg-[#2563EB] hover:bg-[#225cd7] text-white font-bold py-2 px-4 rounded-lg shadow-sm;
 }
 
 blockquote,
@@ -80,6 +80,6 @@ p {
   margin-bottom: 1rem;
 }
 
-input[type="text"], input[type="email"], input[type="number"] {
+input[type="text"], input[type="email"], input[type="number"], input[type="password"] {
   @apply border-gray-300 border-[1px] rounded p-1 bg-slate-50;
 }
