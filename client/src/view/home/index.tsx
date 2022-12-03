@@ -5,8 +5,51 @@ import { BsBox } from "react-icons/bs";
 import { BiRocket } from "react-icons/bi";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { Cards } from "../../components/cards";
+import { useEffect, useState } from "react";
+import api from "../../services/api";
+
+interface IHome {
+  nome: string;
+  sinopse: string;
+  palavra_chave: any[];
+  id: number;
+  tipo: string;
+  area_cientifica: string;
+  area_economica: string;
+}
 
 export function Home() {
+  const [servico, setservico] = useState<IHome[]>([]);
+  const [pesquisa, setPesquisa] = useState<IHome[]>([]);
+  const [software, setSoftware] = useState<IHome[]>([]);
+  const [patente, setPatente] = useState<IHome[]>([]);
+  const [startups, setStartups] = useState<IHome[]>([]);
+  useEffect(() => {
+    api.get('/patentes').then(response => {
+      setPatente(response.data);
+    })
+  }, [])
+  useEffect(() => {
+    api.get('/pesquisas').then(response => {
+      setPesquisa(response.data);
+    })
+  }, [])
+  useEffect(() => {
+    api.get('/startups').then(response => {
+      setStartups(response.data);
+    })
+  }, [])
+  useEffect(() => {
+    api.get('/servicos').then((response) => {
+      setservico(response.data);
+    })
+  }, [])
+  useEffect(() => {
+    api.get('/softwares').then((response) => {
+      setSoftware(response.data);
+    })
+  }, [])
+
   return (
     <section className="grid">
       <div className="grid grid-cols-5 m-5 gap-5 p-4 ">
@@ -70,50 +113,16 @@ export function Home() {
       </div>
       <div className="grid justify-center">
         <div className="grid grid-cols-4 max-w-fit gap-14 ">
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
+          {patente.map((patente) => (
+            <Cards
+              nome={patente.nome}
+              sinopse={patente.sinopse}
+              palavraChave={patente.palavra_chave}
+              id={patente.id}
+              areaCientifica={patente.area_cientifica}
+              areaEconomica={patente.area_economica}
+            />
+          ))}
         </div>
       </div>
       <div className="grid items-center grid-cols-1 m-9 shadow-lg">
@@ -130,50 +139,16 @@ export function Home() {
       </div>
       <div className="grid justify-center">
         <div className="grid grid-cols-4 max-w-fit gap-14 ">
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
+          {servico.map((servico) => (
+            <Cards
+              nome={servico.nome}
+              sinopse={servico.sinopse}
+              palavraChave={servico.palavra_chave}
+              id={servico.id}
+              areaCientifica={servico.area_cientifica}
+              areaEconomica={servico.area_economica}
+            />
+          ))}
         </div>
       </div>
       <div className="grid items-center grid-cols-1 m-9 shadow-lg">
@@ -190,50 +165,16 @@ export function Home() {
       </div>
       <div className="grid justify-center">
         <div className="grid grid-cols-4 max-w-fit gap-14 ">
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
+          {startups.map((startups) => (
+            <Cards
+              nome={startups.nome}
+              sinopse={startups.sinopse}
+              palavraChave={startups.palavra_chave}
+              id={startups.id}
+              areaCientifica={startups.area_cientifica}
+              areaEconomica={startups.area_economica}
+            />
+          ))}
         </div>
       </div>
       <div className="grid items-center grid-cols-1 m-9 shadow-lg">
@@ -250,52 +191,19 @@ export function Home() {
       </div>
       <div className="grid justify-center pb-20">
         <div className="grid grid-cols-4 max-w-fit gap-14 ">
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
+          {software.map((software) => (
+            <Cards
+              nome={software.nome}
+              sinopse={software.sinopse}
+              palavraChave={software.palavra_chave}
+              id={software.id}
+              areaCientifica={software.area_cientifica}
+              areaEconomica={software.area_economica}
+            />
+          ))}
         </div>
       </div>
     </section >
   )
 }
+
