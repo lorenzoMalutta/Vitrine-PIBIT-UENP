@@ -80,6 +80,6 @@ p {
   margin-bottom: 1rem;
 }
 
-input[type="text"], input[type="email"], input[type="number"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="number"], input[type="password"]{
   @apply border-gray-300 border-[1px] rounded p-1 bg-slate-50;
 }

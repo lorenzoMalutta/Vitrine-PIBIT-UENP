@@ -1,6 +1,34 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/api/login")
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, []);
+
+  const handleSubmit = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    const data = {
+      email,
+      password,
+    };
+
+    fetch("http://127.0.0.1:8000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
   return (
     <section className="h-screen">
       <div className="px-6 h-full text-gray-800">
@@ -17,7 +45,7 @@ export function Login() {
             />
           </div>
           <div className="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="flex flex-row items-center justify-center lg:justify-start">
                 <p className="text-lg mb-0 mr-4">Login</p>
                 <button
@@ -83,6 +111,8 @@ export function Login() {
                   id="email"
                   name="email"
                   placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
 
@@ -94,6 +124,8 @@ export function Login() {
                   id="password"
                   name="password"
                   placeholder="Senha"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
 
@@ -115,7 +147,7 @@ export function Login() {
                   type="button"
                   className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                 >
-                  Login
+                  <input type="submit" />
                 </button>
                 <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                   Não possue uma conta?

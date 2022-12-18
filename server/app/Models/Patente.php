@@ -36,8 +36,8 @@ class Patente extends Model
     'palavra_chave',
   ];
 
-  public function midia()
-  {
-    return $this->hasMany(Midia::class);
-  }
+  // public function midia()
+  // {
+  //   return $this->hasMany(Midia::class);
+  // }
 }

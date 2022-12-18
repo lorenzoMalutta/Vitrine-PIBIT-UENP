@@ -16,6 +16,7 @@ interface IHome {
   tipo: string;
   area_cientifica: string;
   area_economica: string;
+  image: string;
 }
 
 export function Home() {
@@ -115,6 +116,8 @@ export function Home() {
         <div className="grid grid-cols-4 max-w-fit gap-14 ">
           {patente.map((patente) => (
             <Cards
+              type="patentes"
+              image={patente.image}
               nome={patente.nome}
               sinopse={patente.sinopse}
               palavraChave={patente.palavra_chave}
@@ -141,6 +144,8 @@ export function Home() {
         <div className="grid grid-cols-4 max-w-fit gap-14 ">
           {servico.map((servico) => (
             <Cards
+              type="servicos"
+              image={servico.image}
               nome={servico.nome}
               sinopse={servico.sinopse}
               palavraChave={servico.palavra_chave}
@@ -167,6 +172,8 @@ export function Home() {
         <div className="grid grid-cols-4 max-w-fit gap-14 ">
           {startups.map((startups) => (
             <Cards
+              type="startups"
+              image={startups.image}
               nome={startups.nome}
               sinopse={startups.sinopse}
               palavraChave={startups.palavra_chave}
@@ -193,6 +200,8 @@ export function Home() {
         <div className="grid grid-cols-4 max-w-fit gap-14 ">
           {software.map((software) => (
             <Cards
+              type="softwares"
+              image={software.image}
               nome={software.nome}
               sinopse={software.sinopse}
               palavraChave={software.palavra_chave}

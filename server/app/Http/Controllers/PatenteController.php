@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Http\Requests\PatenteRequest;
 use App\Models\Patente;
-use App\Models\Midia;
+// use App\Models\Midia;
 use Ramsey\Uuid\Uuid;
 
 class PatenteController extends Controller
@@ -18,12 +18,10 @@ class PatenteController extends Controller
   {
     try {
       $patente = Patente::all()->toArray();
-      $midia = Midia::all()->toArray();
-      $merged = array_merge($patente, $midia);
     } catch (\Exception $e) {
       return response()->json(['error' => $e->getMessage()], 500);
     }
-    return response()->json($merged);
+    return response()->json($patente);
   }
 
   /**
@@ -32,38 +30,52 @@ class PatenteController extends Controller
    * @param  App\Http\Requests\PatenteRequest;  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(PatenteRequest $request)
+  public function store(Request $request)
   {
     try {
-      $patente = Patente::create($request->all());
-      $midia = new Midia;
-
-      $midia->idPatente = $patente->id;
-      $midia->save();
-
+      $patente = Patente::create([
+        'nome' => $request->nome,
+        'area_economica' => $request->area_economica,
+        'area_cientifica' => $request->area_cientifica,
+        'sinopse' => $request->sinopse,
+        'pct' => $request->pct,
+        'inpi' => $request->inpi,
+        'resumo' => $request->resumo,
+        'problema' => $request->problema,
+        'vantagem' => $request->vantagem,
+        'aplicacao' => $request->aplicacao,
+        'trl' => $request->trl,
+        'telefone' => $request->telefone,
+        'email' => $request->email,
+        'colaborador' => $request->colaborador,
+        'data_criacao' => $request->data_criacao,
+        'links' => $request->links,
+        'criadores' => $request->criadores,
+        'palavra_chave' => $request->palavra_chave,
+      ]); 
       if ($request->hasFile('image')) {
         $destinationPath = "public/images/patente";
         $extension = $request->image->getClientOriginalExtension();
         $name = Uuid::uuid1();
         $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-        $midia->image = $name . "." . $extension;
-        $midia->save();
+        $patente->image = $name . "." . $extension;
+        $patente->save();
       }
-      if ($request->hasFile('video')) {
-        $destinationPath = "public/videos/patente";
-        $extension = $request->video->getClientOriginalExtension();
-        $name = Uuid::uuid1();
-        $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
-        $midia->video = $name . "." . $extension;
-        $midia->save();
-      }
-      if ($request->hasFile('pdf')) {
+      if($request->hasFile('pdf')) {
         $destinationPath = "public/pdf/patente";
         $extension = $request->pdf->getClientOriginalExtension();
         $name = Uuid::uuid1();
         $path['pdf'] = $request->file('pdf')->storeAs($destinationPath, $name . ".{$extension}");
-        $midia->pdf = $name . "." . $extension;
-        $midia->save();
+        $patente->pdf = $name . "." . $extension;
+        $patente->save();
+      }
+      if($request->hasFile('video')) {
+        $destinationPath = "public/video/patente";
+        $extension = $request->video->getClientOriginalExtension();
+        $name = Uuid::uuid1();
+        $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
+        $patente->video = $name . "." . $extension;
+        $patente->save();
       }
     } catch (\Exception $e) {
       return response()->json([
@@ -75,7 +87,7 @@ class PatenteController extends Controller
     return response()->json([
       'message' => 'Patente cadastrada com sucesso',
       'patente' => $patente,
-      'midia' => $midia,
+      'dd' => dd($patente),
     ], 201);
   }
 
@@ -89,8 +101,6 @@ class PatenteController extends Controller
   {
     try {
       $patente = Patente::findOrFail($id)->toArray();
-      $midia = Midia::findOrFail($id)->toArray();
-      $merged = array_merge($patente, $midia);
     } catch (\Exception $e) {
       return response()->json([
         'message' => 'Patente não encontrada',
@@ -98,7 +108,7 @@ class PatenteController extends Controller
       ], 404);
     }
 
-    return response()->json($merged, 201);
+    return response()->json($patente, 201);
   }
 
   /**
@@ -108,38 +118,36 @@ class PatenteController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(PatenteRequest $request, $id)
+  public function update(Request $request, $id)
   {
     try {
       $patente = Patente::findOrFail($request->$id);
       $patente->update($request->all());
-      $midia = Midia::find($request->idPatente);
 
-      if ($midia->image) {
+      if ($patente->image) {
         $destinationPath = "public/images/patente";
         $extension = $request->image->getClientOriginalExtension();
         $name = Uuid::uuid1();
         $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-        $midia->image = $name . "." . $extension;
-        $midia->update();
+        $patente->image = $name . "." . $extension;
+        $patente->update();
       }
-      if ($midia->video) {
+      if ($patente->video) {
         $destinationPath = "public/videos/patente";
         $extension = $request->video->getClientOriginalExtension();
         $name = Uuid::uuid1();
         $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
-        $midia->video = $name . "." . $extension;
-        $midia->update();
+        $patente->video = $name . "." . $extension;
+        $patente->update();
       }
-      if ($midia->pdf) {
+      if ($patente->pdf) {
         $destinationPath = "public/pdf/patente";
         $extension = $request->pdf->getClientOriginalExtension();
         $name = Uuid::uuid1();
         $path['pdf'] = $request->file('pdf')->storeAs($destinationPath, $name . ".{$extension}");
-        $midia->pdf = $name . "." . $extension;
-        $midia->update();
+        $patente->pdf = $name . "." . $extension;
+        $patente->update();
       }
-      $merged = array_merge($patente, $midia);
     } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao atualizar patente',
@@ -149,7 +157,6 @@ class PatenteController extends Controller
     return response()->json([
       'message' => 'Patente atualizado com sucesso',
       'patente' => $patente,
-      'midia' => $midia,
     ], 201);
   }
 
@@ -162,8 +169,6 @@ class PatenteController extends Controller
   public function destroy($id)
   {
     try {
-      $midia = Midia::find($id);
-      $midia->delete();
       $patente = Patente::find($id);
       $patente->delete();
     } catch (\Exception $e) {

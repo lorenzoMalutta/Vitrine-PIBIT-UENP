@@ -32,6 +32,8 @@ return new class extends Migration
           $table->string('palavra_chave');
           $table->string('area_cientifica');
           $table->string('area_economica');
+          $table->string('image')->nullable(true);
+          $table->string('video')->nullable(true);
         });
     }
 

@@ -1,96 +1,204 @@
+import { useEffect, useState } from "react";
+import api from "../../../../services/api";
+import axios from "axios";
+
 export function AdminPatenteCadastrar() {
+  const [nome, setNome] = useState('');
+  const [sinopse, setSinopse] = useState('');
+  const [pct, setPct] = useState('');
+  const [resumo, setResumo] = useState('');
+  const [problema, setProblema] = useState('');
+  const [vantagem, setVantagem] = useState('');
+  const [aplicacao, setAplicacao] = useState('');
+  const [trl, setTrl] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [email, setEmail] = useState('');
+  const [colaborador, setColaborador] = useState('');
+  const [data_criacao, setData_criacao] = useState('');
+  const [links, setLinks] = useState('');
+  const [criadores, setCriadores] = useState('');
+  const [area_cientifica, setArea_cientifica] = useState('');
+  const [area_economica, setArea_economica] = useState('');
+  const [palavra_chave, setPalavra_chave] = useState('');
+  const [image, setImage] = useState('');
+  const [video, setVideo] = useState('');
+  const [pdf, setPdf] = useState('');
+  const [inpi, setInpi] = useState('');
+
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    const data = {
+      nome,
+      sinopse,
+      pct,
+      inpi,
+      resumo,
+      problema,
+      vantagem,
+      aplicacao,
+      trl,
+      telefone,
+      email,
+      colaborador,
+      data_criacao,
+      links,
+      criadores,
+      area_cientifica,
+      area_economica,
+      palavra_chave,
+      image,
+      video,
+      pdf,
+    };
+    const form = new FormData();
+    form.append('nome', nome);
+    form.append('sinopse', sinopse);
+    form.append('pct', pct);
+    form.append('inpi', inpi);
+    form.append('resumo', resumo);
+    form.append('problema', problema);
+    form.append('vantagem', vantagem);
+    form.append('aplicacao', aplicacao);
+    form.append('trl', trl);
+    form.append('telefone', telefone);
+    form.append('email', email);
+    form.append('colaborador', colaborador);
+    form.append('data_criacao', data_criacao);
+    form.append('links', links);
+    form.append('criadores', criadores);
+    form.append('area_cientifica', area_cientifica);
+    form.append('area_economica', area_economica);
+    form.append('palavra_chave', palavra_chave);
+    form.append('image', image);
+    form.append('video', video);
+    form.append('pdf', pdf);
+    console.log(data);
+    try {
+      const res = await axios.post('http://127.0.0.1:8000/api/patentes/cadastrar', form, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+    }
+    catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleImage = (e: { target: { files: any; }; }) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+    setImage(e.target.files[0]);
+  };
+
+  const handleVideo = (e: { target: { files: any; }; }) => {
+    if (e.target.files[0]) {
+      setVideo(e.target.files[0]);
+    }
+  };
+
+  const handlePdf = (e: { target: { files: any; }; }) => {
+    if (e.target.files[0]) {
+      setPdf(e.target.files[0]);
+    }
+  };
+
+
   return (
-    <section>
-      <div>
-        <div>
-          <form action="" method="post">
-            <div>
-              <label htmlFor="nome">Nome</label>
-              <input type="text" name="nome" id="nome" />
-            </div>
-            <div>
-              <label htmlFor="sinopse">Sinopse</label>
-              <input type="text" name="sinopse" id="sinopse" />
-            </div>
-            <div>
-              <label htmlFor="resumo">Resumo</label>
-              <input type="text" name="resumo" id="resumo" />
-            </div>
-            <div>
-              <label htmlFor="problema">Problema</label>
-              <input type="text" name="problema" id="problema" />
-            </div>
-            <div>
-              <label htmlFor="aplicacao">Aplicação</label>
-              <input type="text" name="aplicacao" id="aplicacao" />
-            </div>
-            <div>
-              <label htmlFor="vantagem">Vantagem</label>
-              <input type="text" name="vantagem" id="vantagem" />
-            </div>
-            <div>
-              <label htmlFor="area_cientifica">Área Científica</label>
-              <input type="text" name="area_cientifica" id="area_cientifica" />
-            </div>
-            <div>
-              <label htmlFor="area_economica">Área Econômica</label>
-              <input type="text" name="area_economica" id="area_economica" />
-            </div>
-            <div>
-              <label htmlFor="palavra_chave">Palavra Chave</label>
-              <input type="text" name="palavra_chave" id="palavra_chave" />
-            </div>
-            <div>
-              <label htmlFor="trl">TRL</label>
-              <input type="text" name="trl" id="trl" />
-            </div>
-            <div>
-              <label htmlFor="pct">PCT</label>
-              <input type="text" name="pct" id="pct" />
-            </div>
-            <div>
-              <label htmlFor="inpi">INPI</label>
-              <input type="text" name="inpi" id="inpi" />
-            </div>
-            <div>
-              <label htmlFor="criadores">Criadores</label>
-              <input type="text" name="criadores" id="criadores" />
-            </div>
-            <div>
-              <label htmlFor="colaborador">Colaboradores</label>
-              <input type="text" name="colaborador" id="colaborador" />
-            </div>
-            <div>
-              <label htmlFor="data_criacao">Data de Criação</label>
-              <input type="date" name="data_criacao" id="data_criacao" />
-            </div>
-            <div>
-              <label htmlFor="email">Email</label>
-              <input type="email" name="email" id="email" />
-            </div>
-            <div>
-              <label htmlFor="telefone">Telefone</label>
-              <input type="number" name="telefone" id="telefone" />
-            </div>
-            <div>
-              <label htmlFor="links">Links</label>
-              <input type="text" name="links" id="links" />
-            </div>
-            <div>
-              <label htmlFor="image">Imagem</label>
-              <input type="text" name="image" id="image" />
-            </div>
-            <div>
-              <label htmlFor="pdf">PDF</label>
-              <input type="text" name="pdf" id="pdf" />
-            </div>
-            <div>
-              <label htmlFor="video">Video</label>
-              <input type="text" name="video" id="video" />
-            </div>
-            <input type="submit" value="Enviar" />
-          </form>
-        </div>
+    <section className="grid p-10">
+      <h1 className="text-[#374151]">Cadastro de Patente</h1>
+      <div className="bg-white rounded-md shadow-md w-full">
+        <form className="grid grid-cols-2 p-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit}>
+          <div>
+            <p>Nome:</p>
+            <textarea className="shadow-md bg-[#F8FAFC]" cols={55} rows={5} name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+          </div>
+          <div>
+            <p>Sinopse:</p>
+            <textarea className="shadow-md bg-[#F8FAFC]" name="sinopse" id="sinopse" cols={55} rows={5} value={sinopse} onChange={(e) => setSinopse(e.target.value)} />
+          </div>
+          <div>
+            <p>Resumo:</p>
+            <textarea className="shadow-md bg-[#F8FAFC]" name="resumo" id="resumo" cols={55} rows={5} value={resumo} onChange={(e) => setResumo(e.target.value)} />
+          </div>
+          <div>
+            <p>Problema:</p>
+            <textarea className="shadow-md bg-[#F8FAFC]" name="problema" id="problema" cols={55} rows={5} value={problema} onChange={(e) => setProblema(e.target.value)} />
+          </div>
+          <div>
+            <p>Aplicação:</p>
+            <textarea className="shadow-md bg-[#F8FAFC]" name="aplicacao" id="aplicacao" cols={55} rows={5} value={aplicacao} onChange={(e) => setAplicacao(e.target.value)} />
+          </div>
+          <div>
+            <p>Vantagem:</p>
+            <textarea className="shadow-md bg-[#F8FAFC]" name="vantagem" id="vantagem" cols={55} rows={5} value={vantagem} onChange={(e) => setVantagem(e.target.value)} />
+          </div>
+          <div>
+            <p>Área Científica:</p>
+            <input type="text" name="area_cientifica" id="area_cientifica" value={area_cientifica} onChange={(e) => setArea_cientifica(e.target.value)} />
+          </div>
+          <div>
+            <p>Área Econômica:</p>
+            <input type="text" name="area_economica" id="area_economica" value={area_economica} onChange={(e) => setArea_economica(e.target.value)} />
+          </div>
+          <div>
+            <p>Palavra Chave:</p>
+            <input type="text" name="palavra_chave" id="palavra_chave" value={palavra_chave} onChange={(e) => setPalavra_chave(e.target.value)} />
+          </div>
+          <div>
+            <p>TRL:</p>
+            <input type="text" name="trl" id="trl" value={trl} onChange={(e) => setTrl(e.target.value)} />
+          </div>
+          <div>
+            <p>PCT:</p>
+            <input type="text" name="pct" id="pct" value={pct} onChange={(e) => setPct(e.target.value)} />
+          </div>
+          <div>
+            <p>INPI:</p>
+            <input type="text" name="inpi" id="inpi" value={inpi} onChange={(e) => setInpi(e.target.value)} />
+          </div>
+          <div>
+            <p>Criadores:</p>
+            <input type="text" name="criadores" id="criadores" value={criadores} onChange={(e) => setCriadores(e.target.value)} />
+          </div>
+          <div>
+            <p>Colaborador:</p>
+            <input type="text" name="colaborador" id="colaborador" value={colaborador} onChange={(e) => setColaborador(e.target.value)} />
+          </div>
+          <div>
+            <p>Data de Criação:</p>
+            <input type="date" name="data_criacao" id="data_criacao" value={data_criacao} onChange={(e) => setData_criacao(e.target.value)} />
+          </div>
+          <div>
+            <p>Email:</p>
+            <input type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          </div>
+          <div>
+            <p>Telefone:</p>
+            <input type="number" name="telefone" id="telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
+          </div>
+          <div>
+            <p>Links:</p>
+            <input type="text" name="links" id="links" value={links} onChange={(e) => setLinks(e.target.value)} />
+          </div>
+          <div>
+            <p>Imagem:</p>
+            <input type="file" name="image" id="image" onChange={handleImage} />
+          </div>
+          <div>
+            <p>PDF:</p>
+            <input type="file" name="pdf" id="pdf" onChange={handlePdf} />
+          </div>
+          <div>
+            <p>Video:</p>
+            <input type="file" name="video" id="video" onChange={handleVideo} />
+          </div>
+          <div className="flex mt-8">
+            <button className="w-fit h-fit" type="submit"> Cadastrar </button>
+          </div>
+
+        </form>
       </div>
     </section>
   )

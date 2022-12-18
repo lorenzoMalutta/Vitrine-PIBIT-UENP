@@ -31,8 +31,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Patente routes
 Route::get('/patentes', [PatenteController::class, 'index']);
 Route::get('/patentes/{id}', [PatenteController::class, 'show']);
+Route::post('/patentes/cadastrar', [PatenteController::class, 'store']);
 Route::middleware('auth:sanctum')->group(function () {
-  Route::post('/patentes/cadastrar', [PatenteController::class, 'store']);
   Route::put('/patentes/{id}', [PatenteController::class, 'update']);
   Route::delete('/patentes/{id}', [PatenteController::class, 'destroy']);
 });

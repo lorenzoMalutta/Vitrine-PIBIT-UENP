@@ -20,8 +20,6 @@ class SoftwareController extends Controller
   {
     try {
       $software = Software::all()->toArray();
-      $midia = Midia::all()->toArray();
-      $merged = array_merge($software, $midia);
     } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao listar softwares',
@@ -29,7 +27,7 @@ class SoftwareController extends Controller
       ], 500);
     }
 
-    return response()->json([$merged]);
+    return response()->json($software);
   }
 
   /**
@@ -41,25 +39,22 @@ class SoftwareController extends Controller
   public function store(SoftwareRequest $request)
   {
     try {
-      $midia = new Midia;
       $software = Software::create($request->all());
-      $midia->idSoftware = $software->id;
-      $midia->save();
       if ($request->hasFile('image')) {
         $destinationPath = "public/images/software";
         $extension = $request->image->getClientOriginalExtension();
         $name = Uuid::uuid1();
         $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-        $midia->image = $name . "." . $extension;
-        $midia->save();
+        $software->image = $name . "." . $extension;
+        $software->save();
       }
       if ($request->hasFile('video')) {
         $destinationPath = "public/videos/software";
         $extension = $request->video->getClientOriginalExtension();
         $name = Uuid::uuid1();
         $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
-        $midia->video = $name . "." . $extension;
-        $midia->save();
+        $software->video = $name . "." . $extension;
+        $software->save();
       }
     } catch (\Exception $e) {
       return response()->json([
@@ -83,16 +78,14 @@ class SoftwareController extends Controller
   public function show($id)
   {
     try {
-      $midia = Midia::findOrFail($id)->toArray();
       $software = Software::findOrFail($id)->toArray();
-      $merged = array_merge($software, $midia);
     } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao listar software',
         'error' => $e->getMessage()
       ], 404);
     }
-    return response()->json($merged, 201);
+    return response()->json($software, 201);
   }
 
   /**
@@ -107,24 +100,22 @@ class SoftwareController extends Controller
     try {
       $software = Software::findOrFail($id);
       $software->update($request->all());
-      $midia = Midia::findOrFail($request->idSoftware);
-      if ($midia->image) {
+      if ($software->image) {
         $destinationPath = "public/images/software";
         $extension = $request->image->getClientOriginalExtension();
         $name = Uuid::uuid1();
         $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-        $midia->image = $name . "." . $extension;
-        $midia->update();
+        $software->image = $name . "." . $extension;
+        $software->update();
       }
-      if ($midia->video) {
+      if ($software->video) {
         $destinationPath = "public/videos/software";
         $extension = $request->image->getClientOriginalExtension();
         $name = Uuid::uuid1();
         $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
-        $midia->video = $name . "." . $extension;
-        $midia->update();
+        $software->video = $name . "." . $extension;
+        $software->update();
       }
-      $merged = array_merge($software, $midia);
     } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao atualizar software',
@@ -134,8 +125,7 @@ class SoftwareController extends Controller
 
     return response()->json([
       'message' => 'Software atualizado com sucesso',
-      'software' => $merged,
-      'midia' => $midia,
+      'software' => $software,
     ], 201);
   }
 
@@ -148,9 +138,7 @@ class SoftwareController extends Controller
   public function destroy($id)
   {
     try {
-      $midia = Midia::findOrFail($id);
       $software = Software::findOrFail($id);
-      $midia->delete();
       $software->delete();
     } catch (\Exception $e) {
       return response()->json([

@@ -6,16 +6,17 @@ interface CardProps {
   img?: string;
   palavraChave: any[];
   id: number;
+  type: string;
   areaCientifica: string;
   areaEconomica: string;
+  image: string;
 }
 
-export function Cards({ palavraChave, nome, sinopse, img, areaCientifica, areaEconomica, id }: CardProps) {
+export function Cards({ type, palavraChave, nome, sinopse, image, areaCientifica, areaEconomica, id }: CardProps) {
   return (
-
-    <div className="max-w-xs rounded overflow-hidden shadow-lg bg-white">
-      <Link to="/">
-      <img className="w-full" src={img} alt="Sunset in the mountains" />
+    <div className="w-80 rounded overflow-hidden shadow-lg bg-white">
+      <Link to={type+"/"+id}>
+      <img className="w-full" src={image} alt="Sunset in the mountains" />
       <div className="px-6 py-4">
         <div className="font-bold text-gray-700 text-xl mb-2">{nome}</div>
         <p className="text-gray-700 text-base">

@@ -20,15 +20,13 @@ class ServicoController extends Controller
   {
     try {
       $servico = Servico::all()->toArray();
-      $midia = Midia::all()->toArray();
-      $merged = array_merge($servico, $midia);
     } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao cadastrar serviço',
         'error' => $e->getMessage()
       ], 500);
     }
-    return response()->json($merged);
+    return response()->json($servico);
   }
 
   /**
@@ -41,16 +39,13 @@ class ServicoController extends Controller
   {
     try {
       $servico = Servico::create($request->all());
-      $midia = new Midia;
-      $midia->idServico = $servico->id;
-      $midia->save();
       if ($request->hasFile('image')) {
         $destinationPath = "public/images/servicos";
         $extension = $request->image->getClientOriginalExtension();
         $name = Uuid::uuid1();
         $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-        $midia->image = $name . "." . $extension;
-        $midia->save();
+        $servico->image = $name . "." . $extension;
+        $servico->save();
       }
     } catch (\Exception $e) {
       return response()->json([
@@ -61,7 +56,6 @@ class ServicoController extends Controller
     return response()->json([
       'message' => 'Serviço cadastrado com sucesso',
       'servico' => $servico,
-      'midia' => $midia,
     ], 201);
   }
 
@@ -74,9 +68,7 @@ class ServicoController extends Controller
   public function show($id)
   {
     try {
-      $midia = Midia::findOrFail($id)->toArray();
       $servico = Servico::findOrFail($id)->toArray();
-      $merged = array_merge($servico, $midia);
     } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao mostrar serviço',
@@ -84,7 +76,7 @@ class ServicoController extends Controller
       ], 404);
     }
 
-    return response()->json($merged, 201);
+    return response()->json($servico, 201);
   }
 
   /**
@@ -99,14 +91,13 @@ class ServicoController extends Controller
     try {
       $servico = Servico::findOrFail($id);
       $servico->update($request->all());
-      $midia = Midia::findOrFail($request->idServicos);
       if ($request->image) {
         $destinationPath = "public/images/servicos";
         $extension = $request->image->getClientOriginalExtension();
         $name = Uuid::uuid1();
         $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-        $midia->image = $name . "." . $extension;
-        $midia->update();
+        $servico->image = $name . "." . $extension;
+        $servico->update();
       }
     } catch (\Exception $e) {
       return response()->json([
@@ -117,7 +108,6 @@ class ServicoController extends Controller
     return response()->json([
       'message' => 'Serviço atualizado com sucesso',
       'servico' => $servico,
-      'midia' => $midia,
     ], 201);
   }
 
@@ -132,8 +122,6 @@ class ServicoController extends Controller
     try {
       $servico = Servico::find($id);
       $servico->delete();
-      $midia = Midia::find($id);
-      $midia->delete();
     } catch (\Exception $e) {
       return response()->json([
         'message' => 'Erro ao deletar serviço',

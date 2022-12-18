@@ -30,8 +30,8 @@ class Servico extends Model
     'area_economica',
   ];
 
-  public function midia()
-  {
-    return $this->hasMany(Midia::class);
-  }
+  // public function midia()
+  // {
+  //   return $this->hasMany(Midia::class);
+  // }
 }
