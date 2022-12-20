@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { useParams } from "react-router-dom";
+import api from "../../../../services/api";
 
-export function AdminPatenteCadastrar() {
+export function AdminPatenteUpdate() {
+  const [image, setImage] = useState('');
+  const [video, setVideo] = useState('');
+  const [pdf, setPdf] = useState('');
+  const [inpi, setInpi] = useState('');
   const [nome, setNome] = useState('');
   const [sinopse, setSinopse] = useState('');
   const [pct, setPct] = useState('');
@@ -19,12 +24,35 @@ export function AdminPatenteCadastrar() {
   const [area_cientifica, setArea_cientifica] = useState('');
   const [area_economica, setArea_economica] = useState('');
   const [palavra_chave, setPalavra_chave] = useState('');
-  const [image, setImage] = useState('');
-  const [video, setVideo] = useState('');
-  const [pdf, setPdf] = useState('');
-  const [inpi, setInpi] = useState('');
+  const { id } = useParams<{ id: string }>();
+  
+  useEffect(() => {
+    api.get(`patentes/${id}`).then((response) => {
+      setNome(response.data.nome);
+      setSinopse(response.data.sinopse);
+      setPct(response.data.pct);
+      setInpi(response.data.inpi);
+      setResumo(response.data.resumo);
+      setProblema(response.data.problema);
+      setVantagem(response.data.vantagem);
+      setAplicacao(response.data.aplicacao);
+      setTrl(response.data.trl);
+      setTelefone(response.data.telefone);
+      setEmail(response.data.email);
+      setColaborador(response.data.colaborador);
+      setData_criacao(response.data.data_criacao);
+      setLinks(response.data.links);
+      setCriadores(response.data.criadores);
+      setArea_cientifica(response.data.area_cientifica);
+      setArea_economica(response.data.area_economica);
+      setPalavra_chave(response.data.palavra_chave);
+    });
+  }, [id]);
+
+
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
+
     e.preventDefault();
     const form = new FormData();
     form.append('nome', nome);
@@ -48,13 +76,11 @@ export function AdminPatenteCadastrar() {
     form.append('image', image);
     form.append('video', video);
     form.append('pdf', pdf);
-    // console.log(data);
+    console.log(form.get('nome'));
+    console.log(api.put(`patentes/edit/${id}`, form));
     try {
-      const res = await axios.post('http://127.0.0.1:8000/api/patentes/cadastrar', form, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const res = await api.put(`patentes/edit/${id}`, form)
+      console.log(res);
     }
     catch (err) {
       console.log(err);
@@ -66,24 +92,25 @@ export function AdminPatenteCadastrar() {
       setImage(e.target.files[0]);
     }
     setImage(e.target.files[0]);
-  };
+  }
 
   const handleVideo = (e: { target: { files: any; }; }) => {
     if (e.target.files[0]) {
       setVideo(e.target.files[0]);
     }
-  };
+    setVideo(e.target.files[0]);
+  }
 
   const handlePdf = (e: { target: { files: any; }; }) => {
     if (e.target.files[0]) {
       setPdf(e.target.files[0]);
     }
-  };
-
+    setPdf(e.target.files[0]);
+  }
 
   return (
     <section className="grid p-10">
-      <h1 className="text-[#374151]">Cadastro de Patente</h1>
+      <h1 className="text-[#374151]">Update de Patentes</h1>
       <div className="bg-white rounded-md shadow-md w-full">
         <form className="grid grid-cols-2 p-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit}>
           <div>
@@ -171,7 +198,7 @@ export function AdminPatenteCadastrar() {
             <input type="file" name="video" id="video" onChange={handleVideo} />
           </div>
           <div className="flex mt-8">
-            <button className="w-fit h-fit" type="submit"> Cadastrar </button>
+            <button className="w-fit h-fit" type="submit"> Update </button>
           </div>
 
         </form>

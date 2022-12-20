@@ -34,6 +34,9 @@ class Patente extends Model
     'area_cientifica',
     'area_economica',
     'palavra_chave',
+    'image',
+    'pdf',
+    'video'
   ];
 
   // public function midia()

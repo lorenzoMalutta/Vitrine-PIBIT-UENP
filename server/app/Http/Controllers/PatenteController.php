@@ -1,11 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\PatenteRequest;
 use App\Models\Patente;
+use Illuminate\Support\Facades\Storage;
 // use App\Models\Midia;
 use Ramsey\Uuid\Uuid;
+use Termwind\Components\Dd;
+
+use function GuzzleHttp\Promise\all;
 
 class PatenteController extends Controller
 {
@@ -52,7 +57,7 @@ class PatenteController extends Controller
         'links' => $request->links,
         'criadores' => $request->criadores,
         'palavra_chave' => $request->palavra_chave,
-      ]); 
+      ]);
       if ($request->hasFile('image')) {
         $destinationPath = "public/images/patente";
         $extension = $request->image->getClientOriginalExtension();
@@ -61,7 +66,7 @@ class PatenteController extends Controller
         $patente->image = $name . "." . $extension;
         $patente->save();
       }
-      if($request->hasFile('pdf')) {
+      if ($request->hasFile('pdf')) {
         $destinationPath = "public/pdf/patente";
         $extension = $request->pdf->getClientOriginalExtension();
         $name = Uuid::uuid1();
@@ -69,7 +74,7 @@ class PatenteController extends Controller
         $patente->pdf = $name . "." . $extension;
         $patente->save();
       }
-      if($request->hasFile('video')) {
+      if ($request->hasFile('video')) {
         $destinationPath = "public/video/patente";
         $extension = $request->video->getClientOriginalExtension();
         $name = Uuid::uuid1();
@@ -118,13 +123,12 @@ class PatenteController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id)
+  public function update(Request $request)
   {
     try {
-      $patente = Patente::findOrFail($request->$id);
-      $patente->update($request->all());
-
-      if ($patente->image) {
+      $patente = Patente::find($request->id);
+      $patente->update(($request->all()));
+      if ($request->hasFile('image')) {
         $destinationPath = "public/images/patente";
         $extension = $request->image->getClientOriginalExtension();
         $name = Uuid::uuid1();
@@ -132,20 +136,20 @@ class PatenteController extends Controller
         $patente->image = $name . "." . $extension;
         $patente->update();
       }
-      if ($patente->video) {
-        $destinationPath = "public/videos/patente";
-        $extension = $request->video->getClientOriginalExtension();
-        $name = Uuid::uuid1();
-        $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
-        $patente->video = $name . "." . $extension;
-        $patente->update();
-      }
-      if ($patente->pdf) {
+      if ($request->hasFile('pdf')) {
         $destinationPath = "public/pdf/patente";
         $extension = $request->pdf->getClientOriginalExtension();
         $name = Uuid::uuid1();
         $path['pdf'] = $request->file('pdf')->storeAs($destinationPath, $name . ".{$extension}");
         $patente->pdf = $name . "." . $extension;
+        $patente->update();
+      }
+      if ($request->hasFile('video')) {
+        $destinationPath = "public/video/patente";
+        $extension = $request->video->getClientOriginalExtension();
+        $name = Uuid::uuid1();
+        $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
+        $patente->video = $name . "." . $extension;
         $patente->update();
       }
     } catch (\Exception $e) {
@@ -157,7 +161,7 @@ class PatenteController extends Controller
     return response()->json([
       'message' => 'Patente atualizado com sucesso',
       'patente' => $patente,
-    ], 201);
+    ], 200);
   }
 
   /**
@@ -170,6 +174,27 @@ class PatenteController extends Controller
   {
     try {
       $patente = Patente::find($id);
+      //delete image from storage folder if exists 
+      if ($patente->image) {
+        $image_path = "public/images/patente/" . $patente->image;
+        if (Storage::exists($image_path)) {
+          Storage::delete($image_path);
+        }
+      }
+      //delete video from storage folder if exists
+      if ($patente->video) {
+        $video_path = "public/video/patente/" . $patente->video;
+        if (Storage::exists($video_path)) {
+          Storage::delete($video_path);
+        }
+      }
+      //delete pdf from storage folder if exists
+      if ($patente->pdf) {
+        $pdf_path = "public/pdf/patente/" . $patente->pdf;
+        if (Storage::exists($pdf_path)) {
+          Storage::delete($pdf_path);
+        }
+      }
       $patente->delete();
     } catch (\Exception $e) {
       return response()->json([

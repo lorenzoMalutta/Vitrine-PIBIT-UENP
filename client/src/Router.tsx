@@ -7,6 +7,8 @@ import { Home } from './view/home/index'
 import { Login } from './view/login'
 import { PatenteDetail } from './view/vitrine-detail/patente'
 import { Patente } from './view/vitrine/patente'
+import { AdminPatenteEditDelete } from './view/admin/patentes/edit-delete'
+import { AdminPatenteUpdate } from './view/admin/patentes/update'
 
 export function Router() {
   return (
@@ -23,6 +25,9 @@ export function Router() {
       <Route path="/menu-admin" element={<MenuAdmin/>} />
       <Route path="/admin/patentes" element={<AdminPatente/>} />
       <Route path="/admin/patentes/cadastrar" element={<AdminPatenteCadastrar/>} />
+      <Route path="/admin/patentes/editar-delete" element={< AdminPatenteEditDelete/>} />
+      <Route path="/admin/patentes/edit/:id" element={< AdminPatenteUpdate/>} />
+
     </Routes>
   )
 }

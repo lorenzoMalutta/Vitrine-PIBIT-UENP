@@ -60,6 +60,24 @@ h6 {
   -webkit-font-smoothing: antialiased;
 }
 
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #254287;
+  color: white;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
 h1 {
   @apply font-bold text-4xl my-4;
 }

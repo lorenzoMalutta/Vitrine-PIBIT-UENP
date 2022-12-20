@@ -12,7 +12,7 @@ export function AdminPatente() {
             </Link>
           </li>
           <li>
-            <Link to="/admin/patentes/deletar-editar">
+            <Link to="/admin/patentes/editar-delete">
               Deletar ou Editar Patente
             </Link>
           </li>
