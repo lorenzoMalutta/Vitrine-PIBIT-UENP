@@ -53,7 +53,7 @@ export function Home() {
 
   return (
     <section className="grid">
-      <div className="grid grid-cols-5 m-5 gap-5 p-4 ">
+      <div className="grid xl:grid-cols-5 md:grid-cols-2  m-5 gap-5 p-4 ">
         <Link to="/patentes">
           <div className="flex flex-col items-center pt-4  bg-white shadow-2xl hover:bg-[#ededed] duration-700 rounded-md">
             <div className="flex justify-center items-center bg-slate-300 rounded-full w-14 h-14">
@@ -101,8 +101,8 @@ export function Home() {
         </Link>
       </div>
       <div className="grid items-center grid-cols-1 m-9 shadow-lg">
-        <div className="flex justify-center rounded-md bg-white">
-          <img className="h-52" src="src\assets\pesquisas.svg" alt="" />
+        <div className="grid md:flex items-center justify-center rounded-md bg-white">
+          <img className="sm:h-52" src="src\assets\pesquisas.svg" alt="" />
           <div className="flex flex-wrap items-center p-4 text-left">
             <h2>Patentes e Pesquisa</h2>
             <p>
@@ -113,7 +113,7 @@ export function Home() {
         </div>
       </div>
       <div className="grid justify-center">
-        <div className="grid grid-cols-4 max-w-fit gap-14 ">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 max-w-fit gap-14 ">
           {patente.map((patente) => (
             <Cards
               type="patentes"
@@ -129,7 +129,7 @@ export function Home() {
         </div>
       </div>
       <div className="grid items-center grid-cols-1 m-9 shadow-lg">
-        <div className="flex justify-center rounded-md bg-white">
+        <div className="grid md:flex items-center justify-center rounded-md bg-white">
           <img className="h-52" src="src\assets\servicos.svg" alt="" />
           <div className="flex flex-wrap items-center p-4 text-left">
             <h2>Serviços</h2>
@@ -141,7 +141,7 @@ export function Home() {
         </div>
       </div>
       <div className="grid justify-center">
-        <div className="grid grid-cols-4 max-w-fit gap-14 ">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 max-w-fit gap-14 ">
           {servico.map((servico) => (
             <Cards
               type="servicos"
@@ -157,7 +157,7 @@ export function Home() {
         </div>
       </div>
       <div className="grid items-center grid-cols-1 m-9 shadow-lg">
-        <div className="flex justify-center rounded-md bg-white">
+        <div className="grid md:flex items-center justify-center rounded-md bg-white">
           <img className="h-52" src="src\assets\startups.svg" alt="" />
           <div className="flex flex-wrap items-center p-4 text-left">
             <h2>Startups</h2>
@@ -169,7 +169,7 @@ export function Home() {
         </div>
       </div>
       <div className="grid justify-center">
-        <div className="grid grid-cols-4 max-w-fit gap-14 ">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 max-w-fit gap-14 ">
           {startups.map((startups) => (
             <Cards
               type="startups"
@@ -185,7 +185,7 @@ export function Home() {
         </div>
       </div>
       <div className="grid items-center grid-cols-1 m-9 shadow-lg">
-        <div className="flex justify-center rounded-md bg-white">
+        <div className="grid md:flex items-center justify-center rounded-md bg-white">
           <img className="h-52" src="src\assets\software.svg" alt="" />
           <div className="flex flex-wrap items-center p-4 text-left ">
             <h2>Software</h2>
@@ -197,7 +197,7 @@ export function Home() {
         </div>
       </div>
       <div className="grid justify-center pb-20">
-        <div className="grid grid-cols-4 max-w-fit gap-14 ">
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 max-w-fit gap-14  ">
           {software.map((software) => (
             <Cards
               type="softwares"
