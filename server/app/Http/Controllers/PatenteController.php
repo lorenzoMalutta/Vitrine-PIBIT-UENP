@@ -127,7 +127,30 @@ class PatenteController extends Controller
   {
     try {
       $patente = Patente::find($request->id);
-      $patente->update(($request->all()));
+      $patente = $patente->update([
+        'nome' => $request->nome,
+        'area_economica' => $request->area_economica,
+        'area_cientifica' => $request->area_cientifica,
+        'sinopse' => $request->sinopse,
+        'pct' => $request->pct,
+        'inpi' => $request->inpi,
+        'resumo' => $request->resumo,
+        'problema' => $request->problema,
+        'vantagem' => $request->vantagem,
+        'aplicacao' => $request->aplicacao,
+        'trl' => $request->trl,
+        'telefone' => $request->telefone,
+        'email' => $request->email,
+        'colaborador' => $request->colaborador,
+        'data_criacao' => $request->data_criacao,
+        'links' => $request->links,
+        'criadores' => $request->criadores,
+        'palavra_chave' => $request->palavra_chave,
+        'image' => $request->image,
+        'pdf' => $request->pdf,
+        'video' => $request->video,
+      ]);
+      $patente->update();
       if ($request->hasFile('image')) {
         $destinationPath = "public/images/patente";
         $extension = $request->image->getClientOriginalExtension();
@@ -206,5 +229,11 @@ class PatenteController extends Controller
     return response()->json([
       'message' => 'Patente deletada com sucesso'
     ], 201);
+  }
+
+  public function search(Request $request)
+  {
+    $patente = Patente::where('palavra_chave', 'like', '%' . $request->palavra_chave . '%')->get();
+    return response()->json($patente, 201);
   }
 }

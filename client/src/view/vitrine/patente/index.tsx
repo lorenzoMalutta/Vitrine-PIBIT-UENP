@@ -1,7 +1,27 @@
+import { useEffect, useState } from "react";
 import { Cards } from "../../../components/cards";
 import { Filter } from "../../../components/filter";
+import api from "../../../services/api";
+
+interface IHome {
+  nome: string;
+  sinopse: string;
+  palavra_chave: any[];
+  id: number;
+  tipo: string;
+  area_cientifica: string;
+  area_economica: string;
+  image: string;
+}
+
 
 export function Patente() {
+  const [patente, setPatente] = useState<IHome[]>([]);
+  useEffect(() => {
+    api.get('/patentes').then(response => {
+      setPatente(response.data);
+    })
+  }, [])
   return (
     <>
       <div className="flex m-10">
@@ -14,39 +34,18 @@ export function Patente() {
             catergorias={["categoria1", "categoria2", "categoria3"]}
             setFilter={() => { }}
           />
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
-          <Cards
-            title="Patentes"
-            description="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-            link="/patentes"
-            img="src\assets\card-top.jpg"
-            tags={
-              [
-                1, 3, 4, 5
-              ]
-            }
-          />
+          {patente.map((patente) => (
+            <Cards
+              type="patentes"
+              image={patente.image}
+              nome={patente.nome}
+              sinopse={patente.sinopse}
+              palavraChave={patente.palavra_chave}
+              id={patente.id}
+              areaCientifica={patente.area_cientifica}
+              areaEconomica={patente.area_economica}
+            />
+          ))}
         </div>
       </div>
     </>

@@ -24,8 +24,30 @@ export function AdminPatenteUpdate() {
   const [area_cientifica, setArea_cientifica] = useState('');
   const [area_economica, setArea_economica] = useState('');
   const [palavra_chave, setPalavra_chave] = useState('');
+
+  const handleImage = (e: { target: { files: any; }; }) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+    setImage(e.target.files[0]);
+  }
+
+  const handleVideo = (e: { target: { files: any; }; }) => {
+    if (e.target.files[0]) {
+      setVideo(e.target.files[0]);
+    }
+    setVideo(e.target.files[0]);
+  }
+
+  const handlePdf = (e: { target: { files: any; }; }) => {
+    if (e.target.files[0]) {
+      setPdf(e.target.files[0]);
+    }
+    setPdf(e.target.files[0]);
+  }
+
   const { id } = useParams<{ id: string }>();
-  
+
   useEffect(() => {
     api.get(`patentes/${id}`).then((response) => {
       setNome(response.data.nome);
@@ -46,13 +68,15 @@ export function AdminPatenteUpdate() {
       setArea_cientifica(response.data.area_cientifica);
       setArea_economica(response.data.area_economica);
       setPalavra_chave(response.data.palavra_chave);
+      setImage(response.data.image);
+      setVideo(response.data.video);
+      setPdf(response.data.pdf);
     });
   }, [id]);
 
 
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
-
     e.preventDefault();
     const form = new FormData();
     form.append('nome', nome);
@@ -77,9 +101,9 @@ export function AdminPatenteUpdate() {
     form.append('video', video);
     form.append('pdf', pdf);
     console.log(form.get('nome'));
-    console.log(api.put(`patentes/edit/${id}`, form));
+    console.log(api.put(`/patentes/edit/${id}`, form));
     try {
-      const res = await api.put(`patentes/edit/${id}`, form)
+      const res = await api.put(`/patentes/edit/${id}`, form, {headers: {'Content-Type': 'multipart/form-data, application/json', 'Accept': 'application/json'}})
       console.log(res);
     }
     catch (err) {
@@ -87,32 +111,11 @@ export function AdminPatenteUpdate() {
     }
   };
 
-  const handleImage = (e: { target: { files: any; }; }) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-    setImage(e.target.files[0]);
-  }
-
-  const handleVideo = (e: { target: { files: any; }; }) => {
-    if (e.target.files[0]) {
-      setVideo(e.target.files[0]);
-    }
-    setVideo(e.target.files[0]);
-  }
-
-  const handlePdf = (e: { target: { files: any; }; }) => {
-    if (e.target.files[0]) {
-      setPdf(e.target.files[0]);
-    }
-    setPdf(e.target.files[0]);
-  }
-
   return (
     <section className="grid p-10">
       <h1 className="text-[#374151]">Update de Patentes</h1>
       <div className="bg-white rounded-md shadow-md w-full">
-        <form className="grid grid-cols-2 p-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit}>
+        <form className="grid grid-cols-2 p-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit} encType='multipart/form-data'>
           <div>
             <p>Nome:</p>
             <textarea className="shadow-md bg-[#F8FAFC]" cols={55} rows={5} name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
