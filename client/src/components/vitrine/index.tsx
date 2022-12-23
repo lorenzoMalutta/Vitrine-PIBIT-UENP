@@ -25,9 +25,9 @@ interface VitrineProps {
 
 export function Vitrine({ resumo, titulo, imagem, link, areaCientifica, areaEconomica, problema, solucao, pdf, video, vantagem, palavrasChave, criadores, email, telefone, aplicacao, coloboradores, dataCriacao, trl, pct, inpi }: VitrineProps) {
   return (
-    <section className="grid grid-flow-col-dense m-2 p-2">
+    <section className="sm:grid sm:grid-flow-col-dense m-2 p-2">
       <div className="flex flex-col p-5 m-5 bg-white justify-center rounded-md shadow-md">
-        <video src=""/>
+        <video className="sm:max-w-2xl" src=""/>
         <div>
           <h1>{titulo}</h1>
         </div>
