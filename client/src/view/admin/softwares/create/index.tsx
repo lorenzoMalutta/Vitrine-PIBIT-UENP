@@ -1,21 +1,13 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import api from "../../../../services/api";
+import axios from "axios";
 
-export function AdminPatenteUpdate() {
-  const [image, setImage] = useState('');
-  const [video, setVideo] = useState('');
-  const [solucao, setSolucao] = useState('');
-  const [pdf, setPdf] = useState('');
-  const [inpi, setInpi] = useState('');
+export function AdminSoftwareCadastrar() {
   const [nome, setNome] = useState('');
   const [sinopse, setSinopse] = useState('');
-  const [pct, setPct] = useState('');
   const [resumo, setResumo] = useState('');
   const [problema, setProblema] = useState('');
   const [vantagem, setVantagem] = useState('');
   const [aplicacao, setAplicacao] = useState('');
-  const [trl, setTrl] = useState('');
   const [telefone, setTelefone] = useState('');
   const [email, setEmail] = useState('');
   const [colaborador, setColaborador] = useState('');
@@ -25,72 +17,18 @@ export function AdminPatenteUpdate() {
   const [area_cientifica, setArea_cientifica] = useState('');
   const [area_economica, setArea_economica] = useState('');
   const [palavra_chave, setPalavra_chave] = useState('');
-
-  const handleImage = (e: { target: { files: any; }; }) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-    setImage(e.target.files[0]);
-  }
-
-  const handleVideo = (e: { target: { files: any; }; }) => {
-    if (e.target.files[0]) {
-      setVideo(e.target.files[0]);
-    }
-    setVideo(e.target.files[0]);
-  }
-
-  const handlePdf = (e: { target: { files: any; }; }) => {
-    if (e.target.files[0]) {
-      setPdf(e.target.files[0]);
-    }
-    setPdf(e.target.files[0]);
-  }
-
-  const { id } = useParams<{ id: string }>();
-
-  useEffect(() => {
-    api.get(`patentes/${id}`).then((response) => {
-      setNome(response.data.nome);
-      setSinopse(response.data.sinopse);
-      setPct(response.data.pct);
-      setSolucao(response.data.solucao);
-      setInpi(response.data.inpi);
-      setResumo(response.data.resumo);
-      setProblema(response.data.problema);
-      setVantagem(response.data.vantagem);
-      setAplicacao(response.data.aplicacao);
-      setTrl(response.data.trl);
-      setTelefone(response.data.telefone);
-      setEmail(response.data.email);
-      setColaborador(response.data.colaborador);
-      setData_criacao(response.data.data_criacao);
-      setLinks(response.data.links);
-      setCriadores(response.data.criadores);
-      setArea_cientifica(response.data.area_cientifica);
-      setArea_economica(response.data.area_economica);
-      setPalavra_chave(response.data.palavra_chave);
-      setImage(response.data.image);
-      setVideo(response.data.video);
-      setPdf(response.data.pdf);
-    });
-  }, [id]);
-
-
+  const [image, setImage] = useState('');
+  const [video, setVideo] = useState('');
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const form = new FormData();
     form.append('nome', nome);
     form.append('sinopse', sinopse);
-    form.append('pct', pct);
-    form.append('inpi', inpi);
-    form.append('solucao', solucao);
     form.append('resumo', resumo);
     form.append('problema', problema);
     form.append('vantagem', vantagem);
     form.append('aplicacao', aplicacao);
-    form.append('trl', trl);
     form.append('telefone', telefone);
     form.append('email', email);
     form.append('colaborador', colaborador);
@@ -102,23 +40,36 @@ export function AdminPatenteUpdate() {
     form.append('palavra_chave', palavra_chave);
     form.append('image', image);
     form.append('video', video);
-    form.append('pdf', pdf);
-    console.log(form.get('nome'));
-    console.log(api.put(`/patentes/edit/${id}`, form));
     try {
-      const res = await api.put(`/patentes/edit/${id}`, form, {headers: {'Content-Type': 'multipart/form-data, application/json', 'Accept': 'application/json'}})
-      console.log(res);
+      const res = await axios.post('http://127.0.0.1:8000/api/softwares/cadastrar', form, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
     }
     catch (err) {
       console.log(err);
     }
   };
 
+  const handleImage = (e: { target: { files: any; }; }) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+    setImage(e.target.files[0]);
+  };
+
+  const handleVideo = (e: { target: { files: any; }; }) => {
+    if (e.target.files[0]) {
+      setVideo(e.target.files[0]);
+    }
+  };
+
   return (
     <section className="grid p-10">
-      <h1 className="text-[#374151]">Update de Patentes</h1>
+      <h1 className="text-[#374151]">Cadastro de Software</h1>
       <div className="bg-white rounded-md shadow-md w-full">
-        <form className="grid grid-cols-2 p-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit} encType='multipart/form-data'>
+        <form className="grid grid-cols-2 p-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit}>
           <div>
             <p>Nome:</p>
             <textarea className="shadow-md bg-[#F8FAFC]" cols={55} rows={5} name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
@@ -126,10 +77,6 @@ export function AdminPatenteUpdate() {
           <div>
             <p>Sinopse:</p>
             <textarea className="shadow-md bg-[#F8FAFC]" name="sinopse" id="sinopse" cols={55} rows={5} value={sinopse} onChange={(e) => setSinopse(e.target.value)} />
-          </div>
-          <div>
-            <p>Solução:</p>
-            <textarea className="shadow-md bg-[#F8FAFC]" name="solucao" id="solucao" cols={55} rows={5} value={solucao} onChange={(e) => setResumo(e.target.value)} />
           </div>
           <div>
             <p>Resumo:</p>
@@ -160,18 +107,6 @@ export function AdminPatenteUpdate() {
             <input type="text" name="palavra_chave" id="palavra_chave" value={palavra_chave} onChange={(e) => setPalavra_chave(e.target.value)} />
           </div>
           <div>
-            <p>TRL:</p>
-            <input type="text" name="trl" id="trl" value={trl} onChange={(e) => setTrl(e.target.value)} />
-          </div>
-          <div>
-            <p>PCT:</p>
-            <input type="text" name="pct" id="pct" value={pct} onChange={(e) => setPct(e.target.value)} />
-          </div>
-          <div>
-            <p>INPI:</p>
-            <input type="text" name="inpi" id="inpi" value={inpi} onChange={(e) => setInpi(e.target.value)} />
-          </div>
-          <div>
             <p>Criadores:</p>
             <input type="text" name="criadores" id="criadores" value={criadores} onChange={(e) => setCriadores(e.target.value)} />
           </div>
@@ -200,15 +135,11 @@ export function AdminPatenteUpdate() {
             <input type="file" name="image" id="image" onChange={handleImage} />
           </div>
           <div>
-            <p>PDF:</p>
-            <input type="file" name="pdf" id="pdf" onChange={handlePdf} />
-          </div>
-          <div>
             <p>Video:</p>
             <input type="file" name="video" id="video" onChange={handleVideo} />
           </div>
           <div className="flex mt-8">
-            <button className="w-fit h-fit" type="submit"> Update </button>
+            <button className="w-fit h-fit" type="submit"> Cadastrar </button>
           </div>
 
         </form>

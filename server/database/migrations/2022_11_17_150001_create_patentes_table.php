@@ -22,6 +22,7 @@ return new class extends Migration
           $table->string('inpi')->unique();
           $table->longText('resumo');
           $table->longText('problema');
+          $table->longText('solucao');
           $table->longText('vantagem');
           $table->longText('aplicacao');
           $table->string('trl');

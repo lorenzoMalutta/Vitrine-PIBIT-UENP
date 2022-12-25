@@ -9,6 +9,14 @@ import { PatenteDetail } from './view/vitrine-detail/patente'
 import { Patente } from './view/vitrine/patente'
 import { AdminPatenteEditDelete } from './view/admin/patentes/edit-delete'
 import { AdminPatenteUpdate } from './view/admin/patentes/update'
+import { AdminSoftwareCadastrar } from './view/admin/softwares/create'
+import { AdminSoftwareEditDelete } from './view/admin/softwares/edit-delete'
+import { AdminSoftwareUpdate } from './view/admin/softwares/update'
+import { AdminSoftware } from './view/admin/softwares/menu'
+import { AdminServicoCadastrar } from './view/admin/servicos/create'
+import { AdminServicoEditDelete } from './view/admin/servicos/edit-delete'
+import { AdminServicoUpdate } from './view/admin/servicos/update'
+import { AdminServico } from './view/admin/servicos/menu'
 
 export function Router() {
   return (
@@ -27,6 +35,15 @@ export function Router() {
       <Route path="/admin/patentes/cadastrar" element={<AdminPatenteCadastrar/>} />
       <Route path="/admin/patentes/editar-delete" element={< AdminPatenteEditDelete/>} />
       <Route path="/admin/patentes/edit/:id" element={< AdminPatenteUpdate/>} />
+      <Route path="/admin/softwares" element={< AdminSoftware/>} />
+      <Route path="/admin/softwares/cadastrar" element={< AdminSoftwareCadastrar/>} />
+      <Route path="/admin/softwares/editar-delete" element={< AdminSoftwareEditDelete/>} />
+      <Route path="/admin/softwares/edit/:id" element={< AdminSoftwareUpdate/>} />
+      <Route path="/admin/servicos" element={< AdminServico/>} />
+      <Route path="/admin/servicos/cadastrar" element={< AdminServicoCadastrar/>} />
+      <Route path="/admin/servicos/editar-delete" element={< AdminServicoEditDelete/>} />
+      <Route path="/admin/servicos/edit/:id" element={< AdminServicoUpdate/>} />
+      
 
     </Routes>
   )

@@ -2,20 +2,15 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../../services/api";
 
-export function AdminPatenteUpdate() {
+export function AdminSoftwareUpdate() {
   const [image, setImage] = useState('');
   const [video, setVideo] = useState('');
-  const [solucao, setSolucao] = useState('');
-  const [pdf, setPdf] = useState('');
-  const [inpi, setInpi] = useState('');
   const [nome, setNome] = useState('');
   const [sinopse, setSinopse] = useState('');
-  const [pct, setPct] = useState('');
   const [resumo, setResumo] = useState('');
   const [problema, setProblema] = useState('');
   const [vantagem, setVantagem] = useState('');
   const [aplicacao, setAplicacao] = useState('');
-  const [trl, setTrl] = useState('');
   const [telefone, setTelefone] = useState('');
   const [email, setEmail] = useState('');
   const [colaborador, setColaborador] = useState('');
@@ -40,27 +35,16 @@ export function AdminPatenteUpdate() {
     setVideo(e.target.files[0]);
   }
 
-  const handlePdf = (e: { target: { files: any; }; }) => {
-    if (e.target.files[0]) {
-      setPdf(e.target.files[0]);
-    }
-    setPdf(e.target.files[0]);
-  }
-
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    api.get(`patentes/${id}`).then((response) => {
+    api.get(`softwares/${id}`).then((response) => {
       setNome(response.data.nome);
       setSinopse(response.data.sinopse);
-      setPct(response.data.pct);
-      setSolucao(response.data.solucao);
-      setInpi(response.data.inpi);
       setResumo(response.data.resumo);
       setProblema(response.data.problema);
       setVantagem(response.data.vantagem);
       setAplicacao(response.data.aplicacao);
-      setTrl(response.data.trl);
       setTelefone(response.data.telefone);
       setEmail(response.data.email);
       setColaborador(response.data.colaborador);
@@ -72,7 +56,6 @@ export function AdminPatenteUpdate() {
       setPalavra_chave(response.data.palavra_chave);
       setImage(response.data.image);
       setVideo(response.data.video);
-      setPdf(response.data.pdf);
     });
   }, [id]);
 
@@ -83,14 +66,10 @@ export function AdminPatenteUpdate() {
     const form = new FormData();
     form.append('nome', nome);
     form.append('sinopse', sinopse);
-    form.append('pct', pct);
-    form.append('inpi', inpi);
-    form.append('solucao', solucao);
     form.append('resumo', resumo);
     form.append('problema', problema);
     form.append('vantagem', vantagem);
     form.append('aplicacao', aplicacao);
-    form.append('trl', trl);
     form.append('telefone', telefone);
     form.append('email', email);
     form.append('colaborador', colaborador);
@@ -102,11 +81,10 @@ export function AdminPatenteUpdate() {
     form.append('palavra_chave', palavra_chave);
     form.append('image', image);
     form.append('video', video);
-    form.append('pdf', pdf);
     console.log(form.get('nome'));
-    console.log(api.put(`/patentes/edit/${id}`, form));
+    console.log(api.put(`/softwares/edit/${id}`, form));
     try {
-      const res = await api.put(`/patentes/edit/${id}`, form, {headers: {'Content-Type': 'multipart/form-data, application/json', 'Accept': 'application/json'}})
+      const res = await api.put(`/softwares/edit/${id}`, form, {headers: {'Content-Type': 'multipart/form-data, application/json', 'Accept': 'application/json'}})
       console.log(res);
     }
     catch (err) {
@@ -116,7 +94,7 @@ export function AdminPatenteUpdate() {
 
   return (
     <section className="grid p-10">
-      <h1 className="text-[#374151]">Update de Patentes</h1>
+      <h1 className="text-[#374151]">Update de Softwares</h1>
       <div className="bg-white rounded-md shadow-md w-full">
         <form className="grid grid-cols-2 p-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit} encType='multipart/form-data'>
           <div>
@@ -126,10 +104,6 @@ export function AdminPatenteUpdate() {
           <div>
             <p>Sinopse:</p>
             <textarea className="shadow-md bg-[#F8FAFC]" name="sinopse" id="sinopse" cols={55} rows={5} value={sinopse} onChange={(e) => setSinopse(e.target.value)} />
-          </div>
-          <div>
-            <p>Solução:</p>
-            <textarea className="shadow-md bg-[#F8FAFC]" name="solucao" id="solucao" cols={55} rows={5} value={solucao} onChange={(e) => setResumo(e.target.value)} />
           </div>
           <div>
             <p>Resumo:</p>
@@ -160,18 +134,6 @@ export function AdminPatenteUpdate() {
             <input type="text" name="palavra_chave" id="palavra_chave" value={palavra_chave} onChange={(e) => setPalavra_chave(e.target.value)} />
           </div>
           <div>
-            <p>TRL:</p>
-            <input type="text" name="trl" id="trl" value={trl} onChange={(e) => setTrl(e.target.value)} />
-          </div>
-          <div>
-            <p>PCT:</p>
-            <input type="text" name="pct" id="pct" value={pct} onChange={(e) => setPct(e.target.value)} />
-          </div>
-          <div>
-            <p>INPI:</p>
-            <input type="text" name="inpi" id="inpi" value={inpi} onChange={(e) => setInpi(e.target.value)} />
-          </div>
-          <div>
             <p>Criadores:</p>
             <input type="text" name="criadores" id="criadores" value={criadores} onChange={(e) => setCriadores(e.target.value)} />
           </div>
@@ -198,10 +160,6 @@ export function AdminPatenteUpdate() {
           <div>
             <p>Imagem:</p>
             <input type="file" name="image" id="image" onChange={handleImage} />
-          </div>
-          <div>
-            <p>PDF:</p>
-            <input type="file" name="pdf" id="pdf" onChange={handlePdf} />
           </div>
           <div>
             <p>Video:</p>

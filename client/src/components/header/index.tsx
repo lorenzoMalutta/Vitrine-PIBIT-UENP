@@ -13,7 +13,7 @@ export function Header() {
   return (
     <header className="grid h-max">
       <div className="grid grid-cols-2 p-2 bg-[#26448B]">
-        <img className="max-w-[300px]" src={logo} alt="" />
+        <img className="max-w-[200px] sm:max-w-sm " src={logo} alt="" />
         <ul className="inline-flex items-center justify-end gap-2 text-2xl text-white ">
           <li>
             <Link to="/"> <AiOutlineUser /> </Link>

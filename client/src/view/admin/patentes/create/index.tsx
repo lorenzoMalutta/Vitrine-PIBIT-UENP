@@ -23,11 +23,13 @@ export function AdminPatenteCadastrar() {
   const [video, setVideo] = useState('');
   const [pdf, setPdf] = useState('');
   const [inpi, setInpi] = useState('');
+  const [solucao, setSolucao] = useState('');
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const form = new FormData();
     form.append('nome', nome);
+    form.append('solucao', solucao);
     form.append('sinopse', sinopse);
     form.append('pct', pct);
     form.append('inpi', inpi);
@@ -97,6 +99,10 @@ export function AdminPatenteCadastrar() {
           <div>
             <p>Resumo:</p>
             <textarea className="shadow-md bg-[#F8FAFC]" name="resumo" id="resumo" cols={55} rows={5} value={resumo} onChange={(e) => setResumo(e.target.value)} />
+          </div>
+          <div>
+            <p>Solução:</p>
+            <textarea className="shadow-md bg-[#F8FAFC]" name="solucao" id="solucao" cols={55} rows={5} value={solucao} onChange={(e) => setResumo(e.target.value)} />
           </div>
           <div>
             <p>Problema:</p>

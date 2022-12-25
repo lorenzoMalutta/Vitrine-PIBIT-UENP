@@ -40,8 +40,8 @@ Route::middleware('auth:sanctum')->group(function () {
 // Software routes
 Route::get('/softwares', [SoftwareController::class, 'index']);
 Route::get('/softwares/{id}', [SoftwareController::class, 'show']);
-Route::post('/softwares', [SoftwareController::class, 'store']);
-Route::put('/softwares/{id}', [SoftwareController::class, 'update']);
+Route::post('/softwares/cadastrar', [SoftwareController::class, 'store']);
+Route::put('/softwares/edit/{id}', [SoftwareController::class, 'update']);
 Route::delete('/softwares/{id}', [SoftwareController::class, 'destroy']);
 Route::middleware('auth:sanctum')->group(function () {
 });
@@ -49,8 +49,8 @@ Route::middleware('auth:sanctum')->group(function () {
 // Servicos routes
 Route::get('/servicos', [ServicoController::class, 'index']);
 Route::get('/servicos/{id}', [ServicoController::class, 'show']);
-Route::post('/servicos', [ServicoController::class, 'store']);
-Route::put('/servicos/{id}', [ServicoController::class, 'update']);
+Route::post('/servicos/cadastrar', [ServicoController::class, 'store']);
+Route::put('/servicos/edit/{id}', [ServicoController::class, 'update']);
 Route::delete('/servicos/{id}', [ServicoController::class, 'destroy']);
 Route::middleware('auth:sanctum')->group(function () {
 });

@@ -1,33 +1,71 @@
+import { useEffect, useState } from "react";
 import { Vitrine } from "../../../components/vitrine";
+import api from "../../../services/api";
+
+interface IPatente {
+  nome: string;
+  sinopse: string;
+  palavra_chave: any[];
+  id: string;
+  tipo: string;
+  area_cientifica: string[];
+  area_economica: string[];
+  image: string;
+  video: string;
+  pdf: string;
+  links: string;
+  data_criacao: string;
+  problema: string;
+  solucao: string;
+  vantagem: string;
+  aplicacao: string;
+  trl: string;
+  pct: string;
+  inpi: string;
+  email: string;
+  telefone: string;
+  colaboradores: string[];
+  criadores: string[];
+  resumo: string;
+}
+
 
 export function PatenteDetail() {
+  const [patente, setPatente] = useState<IPatente[]>([]);
+  useEffect(() => {
+    api.get('/patentes').then(response => {
+      setPatente(response.data);
+    })
+  }, [])
   return (
     <>
-      <Vitrine
-        resumo="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-        titulo="Patentes"
-        imagem="src\assets\card-top.jpg"
-        link="/patentes"
-        areaCientifica={["categoria1", "categoria2", "categoria3"]}
-        areaEconomica={["categoria1", "categoria2", "categoria3"]}
-        problema="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-        solucao="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-        email="lorenzo.malutta@gmail.com"
-        coloboradores={["Lorenzo Malutta", "Lorenzo Malutta", "Lorenzo Malutta"]}
-        dataCriacao="2021-05-01"
-        trl="TRL 1"
-        pct="PCT 1"
-        inpi="INPI 1"
-        id="1"
-        palavrasChave={["categoria1", "categoria2", "categoria3"]}
-        pdf="src\assets\card-top.jpg"
-        video="src\assets\card-top.jpg"
-        vantagem="src\assets\card-top.jpg"
-        telefone="99132-1234"
-        aplicacao="lorem ipsum"
-        criadores={["Lorenzo Malutta", "Lorenzo Malutta", "Lorenzo Malutta"]}
-      />
-
+      {patente.map((patente) => (
+        <Vitrine
+          resumo={patente.resumo}
+          titulo={patente.nome}
+          imagem={patente.image}
+          link={patente.links}
+          areaCientifica={patente.area_cientifica}
+          areaEconomica={patente.area_economica}
+          problema={patente.problema}
+          solucao={patente.solucao}
+          email={patente.email}
+          coloboradores={patente.colaboradores}
+          dataCriacao={patente.data_criacao}
+          trl={patente.trl}
+          pct={patente.pct}
+          inpi={patente.inpi}
+          id={patente.id}
+          palavrasChave={patente.palavra_chave}
+          pdf={patente.pdf}
+          video={patente.video}
+          vantagem={patente.vantagem}
+          telefone={patente.telefone}
+          aplicacao={patente.aplicacao}
+          criadores={patente.criadores}
+        />
+      ))
+      }
     </>
   )
 }
