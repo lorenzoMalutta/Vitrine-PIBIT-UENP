@@ -19,6 +19,7 @@ class Patente extends Model
     'nome',
     'sinopse',
     'pct',
+    'solucao',
     'inpi',
     'resumo',
     'problema',

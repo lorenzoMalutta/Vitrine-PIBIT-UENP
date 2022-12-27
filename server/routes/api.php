@@ -34,6 +34,7 @@ Route::get('/patentes/{id}', [PatenteController::class, 'show']);
 Route::delete('/patentes/{id}', [PatenteController::class, 'destroy']);
 Route::post('/patentes/cadastrar', [PatenteController::class, 'store']);
 Route::put('/patentes/edit/{id}', [PatenteController::class, 'update']);
+Route::get('/patentes/search/{search}', [PatenteController::class, 'search']);
 Route::middleware('auth:sanctum')->group(function () {
 });
 

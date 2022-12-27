@@ -25,7 +25,7 @@ export function Router() {
       <Route path="/" element={<Home />} />
       {/* Patente */}
       <Route path="/patentes" element={<Patente />} />
-      <Route path="/patentes/:id" element={<PatenteDetail />} />
+      <Route path="/patentes/:id" element={<PatenteDetail/>} />
       {/* Login e Cadastro */}
       <Route path="/cadastro" element={<Cadastro />} />
       <Route path="/login" element={<Login />} />

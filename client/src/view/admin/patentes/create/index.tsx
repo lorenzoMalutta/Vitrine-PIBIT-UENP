@@ -29,12 +29,12 @@ export function AdminPatenteCadastrar() {
     e.preventDefault();
     const form = new FormData();
     form.append('nome', nome);
-    form.append('solucao', solucao);
     form.append('sinopse', sinopse);
     form.append('pct', pct);
     form.append('inpi', inpi);
     form.append('resumo', resumo);
     form.append('problema', problema);
+    form.append('solucao', solucao);
     form.append('vantagem', vantagem);
     form.append('aplicacao', aplicacao);
     form.append('trl', trl);
@@ -102,7 +102,7 @@ export function AdminPatenteCadastrar() {
           </div>
           <div>
             <p>Solução:</p>
-            <textarea className="shadow-md bg-[#F8FAFC]" name="solucao" id="solucao" cols={55} rows={5} value={solucao} onChange={(e) => setResumo(e.target.value)} />
+            <textarea className="shadow-md bg-[#F8FAFC]" name="solucao" id="solucao" cols={55} rows={5} value={solucao} onChange={(e) => setSolucao(e.target.value)} />
           </div>
           <div>
             <p>Problema:</p>

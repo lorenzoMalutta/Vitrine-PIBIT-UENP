@@ -29,6 +29,7 @@ class PatenteRequest extends FormRequest
       'pct'         => 'nullable|string|max:255',
       'inpi'        => 'required|string|max:255|unique:patentes',
       'resumo'      => 'required|string|min:255|max:500',
+      'solucao'     => 'required|string|min:255|max:500',
       'problema'    => 'required|string|min:255|max:500',
       'vantagem'    => 'required|string|min:255|max:500',
       'aplicacao'   => 'required|string|min:255|max:500',

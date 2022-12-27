@@ -15,7 +15,7 @@ interface CardProps {
 export function Cards({ type, palavraChave, nome, sinopse, image, areaCientifica, areaEconomica, id }: CardProps) {
   return (
     <div className="w-80 rounded overflow-hidden shadow-lg bg-white">
-      <a href={type + "/" + id}>
+      <a  href={type+"/"+id}>
         <img className="w-full" src={image} alt="Sunset in the mountains" />
         <div className="px-6 py-4">
           <div className="font-bold text-gray-700 text-xl mb-2">
