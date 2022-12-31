@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AreasController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PatenteController;
 use App\Http\Controllers\SoftwareController;
@@ -55,3 +56,7 @@ Route::put('/servicos/edit/{id}', [ServicoController::class, 'update']);
 Route::delete('/servicos/{id}', [ServicoController::class, 'destroy']);
 Route::middleware('auth:sanctum')->group(function () {
 });
+
+Route::get('/areaEconomica', [AreasController::class, 'areaEconomica']);
+Route::get('/areaCientifica', [AreasController::class, 'areaCientifica']);
+Route::get('/palavraChave', [AreasController::class, 'palavraChave']);
