@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import api from "../../../../services/api";
+
+interface Iareas {
+  denominacao: string;
+}
 
 export function AdminSoftwareCadastrar() {
   const [nome, setNome] = useState('');
@@ -15,8 +20,14 @@ export function AdminSoftwareCadastrar() {
   const [links, setLinks] = useState('');
   const [criadores, setCriadores] = useState('');
   const [area_cientifica, setArea_cientifica] = useState('');
+  const [optionCientifica, setOptionCientifica] = useState<Iareas[]>([]);
+
   const [area_economica, setArea_economica] = useState('');
+  const [optionEconomica, setOptionEconomica] = useState<Iareas[]>([]);
+
   const [palavra_chave, setPalavra_chave] = useState('');
+  const [optionPalavraChave, setOptionPalavraChave] = useState<Iareas[]>([]);
+
   const [image, setImage] = useState('');
   const [video, setVideo] = useState('');
 
@@ -65,6 +76,25 @@ export function AdminSoftwareCadastrar() {
     }
   };
 
+  useEffect(() => {
+    api.get('/areaCientifica').then(response => {
+      setOptionCientifica(response.data);
+      console.log(area_cientifica);
+    })
+  }, [])
+
+  useEffect(() => {
+    api.get('/palavraChave').then(response => {
+      setOptionPalavraChave(response.data);
+    })
+  }, [])
+
+  useEffect(() => {
+    api.get('/areaEconomica').then(response => {
+      setOptionEconomica(response.data);
+    })
+  }, [])
+
   return (
     <section className="grid p-10">
       <h1 className="text-[#374151]">Cadastro de Software</h1>
@@ -96,15 +126,27 @@ export function AdminSoftwareCadastrar() {
           </div>
           <div>
             <p>Área Científica:</p>
-            <input type="text" name="area_cientifica" id="area_cientifica" value={area_cientifica} onChange={(e) => setArea_cientifica(e.target.value)} />
+            <select name="area_cientifica" id="area_cientifica" onChange={(e) => setArea_cientifica(e.target.value)}>
+              {optionCientifica.map((optionCientifica) => (
+                <option value={optionCientifica.denominacao}>{optionCientifica.denominacao}</option>
+              ))}
+            </select>
           </div>
           <div>
             <p>Área Econômica:</p>
-            <input type="text" name="area_economica" id="area_economica" value={area_economica} onChange={(e) => setArea_economica(e.target.value)} />
+            <select name="area_economica" id="area_economica" onChange={(e) => setArea_economica(e.target.value)}>
+              {optionEconomica.map((optionEconomica) => (
+                <option value={optionEconomica.denominacao}>{optionEconomica.denominacao}</option>
+              ))}
+            </select>
           </div>
           <div>
             <p>Palavra Chave:</p>
-            <input type="text" name="palavra_chave" id="palavra_chave" value={palavra_chave} onChange={(e) => setPalavra_chave(e.target.value)} />
+            <select name="palavraChave" id="palavraChave" onChange={(e) => setPalavra_chave(e.target.value)}>
+              {optionPalavraChave.map((optionPalavraChave) => (
+                <option value={optionPalavraChave.denominacao} >{optionPalavraChave.denominacao}</option>
+              ))}
+            </select>
           </div>
           <div>
             <p>Criadores:</p>
