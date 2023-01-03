@@ -3,6 +3,9 @@ import { Cards } from "../../../components/cards";
 import { Filter } from "../../../components/filter";
 import api from "../../../services/api";
 
+interface Iareas {
+  denominacao: string;
+}
 interface IHome {
   nome: string;
   sinopse: string;
@@ -14,14 +17,21 @@ interface IHome {
   image: string;
 }
 
-
 export function Patente() {
   const [patente, setPatente] = useState<IHome[]>([]);
+  const [optionPalavraChave, setOptionPalavraChave] = useState<Iareas[]>([]);
+
+  useEffect(() => {
+    api.get('/palavraChave').then(response => {
+      setOptionPalavraChave(response.data);
+    })
+  }, [])
   useEffect(() => {
     api.get('/patentes').then(response => {
       setPatente(response.data);
     })
   }, [])
+
   return (
     <>
       <div className="flex m-10">
@@ -31,8 +41,8 @@ export function Patente() {
         <div className="grid grid-cols-4 max-w-fit gap-14 ">
           <Filter
             filter="Vitrine de Patentes"
-            catergorias={["categoria1", "categoria2", "categoria3"]}
             setFilter={() => { }}
+            type="patentes"
           />
           {patente.map((patente) => (
             <Cards
