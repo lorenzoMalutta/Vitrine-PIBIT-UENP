@@ -232,10 +232,4 @@ class PatenteController extends Controller
       'message' => 'Patente deletada com sucesso'
     ], 201);
   }
-
-  public function search(Request $request)
-  {
-    $patente = Patente::where('palavra_chave', 'like', '%' . $request->palavra_chave . '%')->get();
-    return response()->json($patente, 201);
-  }
 }
