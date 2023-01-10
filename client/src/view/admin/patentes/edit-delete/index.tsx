@@ -2,10 +2,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import api from "../../../../services/api";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export function AdminPatenteEditDelete() {
   const deletePatente = async (id: number) => {
     await api.delete(`/patentes/${id}`);
+    toast("Deletado com sucesso!")
+    setTimeout(() => {
+      window.location.reload()
+    }, 3000)
   };
 
   interface IPatente {
@@ -23,14 +30,15 @@ export function AdminPatenteEditDelete() {
   }
 
   const [patente, setPatente] = useState<IPatente[]>([]);
-
   useEffect(() => {
     api.get('/patentes').then(response => {
       setPatente(response.data);
     })
   }, [])
   return (
+
     <div className="p-10 h-screen">
+      <ToastContainer />
       <h1>Editar e Deletar:</h1>
       <table className="shadow">
         <thead>

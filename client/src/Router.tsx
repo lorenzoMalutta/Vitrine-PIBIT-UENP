@@ -43,8 +43,6 @@ export function Router() {
       <Route path="/admin/servicos/cadastrar" element={< AdminServicoCadastrar/>} />
       <Route path="/admin/servicos/editar-delete" element={< AdminServicoEditDelete/>} />
       <Route path="/admin/servicos/edit/:id" element={< AdminServicoUpdate/>} />
-      
-
     </Routes>
   )
 }
