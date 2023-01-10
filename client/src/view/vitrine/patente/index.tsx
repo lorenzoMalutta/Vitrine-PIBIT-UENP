@@ -33,31 +33,38 @@ export function Patente() {
   }, [])
 
   return (
-    <>
-      <div className="flex m-10">
-        <h1>Vitrine Patentes</h1>
+    <section >
+      <div className="mx-auto text-center">
+        <div className="ml-10 mt-10 ">
+          <h1 className="font-normal">Vitrine de Patentes</h1>
+        </div>
+        <div className="mx-auto text-center h-1 w-full bg-blue-700 lg:w-1/3"></div>
       </div>
-      <div className="grid justify-center pb-20">
-        <div className="grid grid-cols-4 max-w-fit gap-14 ">
+      <div className="flex">
+        <div className="m-10">
           <Filter
             filter="Vitrine de Patentes"
             setFilter={() => { }}
             type="patentes"
           />
-          {patente.map((patente) => (
-            <Cards
-              type="patentes"
-              image={patente.image}
-              nome={patente.nome}
-              sinopse={patente.sinopse}
-              palavraChave={patente.palavra_chave}
-              id={patente.id}
-              areaCientifica={patente.area_cientifica}
-              areaEconomica={patente.area_economica}
-            />
-          ))}
+        </div>
+        <div className="grid justify-center pb-20 pt-10">
+          <div className="grid grid-cols-3 max-w-fit gap-5">
+            {patente.map((patente) => (
+              <Cards
+                type="patentes"
+                image={patente.image}
+                nome={patente.nome}
+                sinopse={patente.sinopse}
+                palavraChave={patente.palavra_chave}
+                id={patente.id}
+                areaCientifica={patente.area_cientifica}
+                areaEconomica={patente.area_economica}
+              />
+            ))}
+          </div>
         </div>
       </div>
-    </>
+    </section>
   )
 }

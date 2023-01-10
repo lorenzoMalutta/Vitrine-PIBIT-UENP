@@ -27,7 +27,6 @@ interface Patente {
   video: string;
   pdf: string;
 }
-
 export function PatenteDetail() {
   const { id } = useParams();
   const [patente, setPatente] = useState<Patente>()
