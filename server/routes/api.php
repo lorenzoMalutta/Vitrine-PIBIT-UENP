@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+  return $request->user();
+});
 
 // Auth user
 Route::post('/login', [AuthController::class, 'login']);
@@ -26,36 +29,32 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::post('/logout', [AuthController::class, 'logout']);
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-  return $request->user();
-});
-
 // Patente routes
+Route::middleware('auth:sanctum')->group(function () {
+  Route::delete('/patentes/{id}', [PatenteController::class, 'destroy']);
+  Route::post('/patentes/cadastrar', [PatenteController::class, 'store']);
+  Route::put('/patentes/edit/{id}', [PatenteController::class, 'update']);
+});
 Route::get('/patentes', [PatenteController::class, 'index']);
 Route::get('/patentes/{id}', [PatenteController::class, 'show']);
-Route::delete('/patentes/{id}', [PatenteController::class, 'destroy']);
-Route::post('/patentes/cadastrar', [PatenteController::class, 'store']);
-Route::put('/patentes/edit/{id}', [PatenteController::class, 'update']);
 Route::get('/patentes/search/{search}', [SearchController::class, 'searchPatente']);
-Route::middleware('auth:sanctum')->group(function () {
-});
 
 // Software routes
+Route::middleware('auth:sanctum')->group(function () {
+  Route::post('/softwares/cadastrar', [SoftwareController::class, 'store']);
+  Route::put('/softwares/edit/{id}', [SoftwareController::class, 'update']);
+  Route::delete('/softwares/{id}', [SoftwareController::class, 'destroy']);
+});
 Route::get('/softwares', [SoftwareController::class, 'index']);
 Route::get('/softwares/{id}', [SoftwareController::class, 'show']);
-Route::post('/softwares/cadastrar', [SoftwareController::class, 'store']);
-Route::put('/softwares/edit/{id}', [SoftwareController::class, 'update']);
-Route::delete('/softwares/{id}', [SoftwareController::class, 'destroy']);
-Route::middleware('auth:sanctum')->group(function () {
-});
 
 // Servicos routes
 Route::get('/servicos', [ServicoController::class, 'index']);
 Route::get('/servicos/{id}', [ServicoController::class, 'show']);
-Route::post('/servicos/cadastrar', [ServicoController::class, 'store']);
-Route::put('/servicos/edit/{id}', [ServicoController::class, 'update']);
-Route::delete('/servicos/{id}', [ServicoController::class, 'destroy']);
 Route::middleware('auth:sanctum')->group(function () {
+  Route::post('/servicos/cadastrar', [ServicoController::class, 'store']);
+  Route::put('/servicos/edit/{id}', [ServicoController::class, 'update']);
+  Route::delete('/servicos/{id}', [ServicoController::class, 'destroy']);
 });
 
 // Areas de busca

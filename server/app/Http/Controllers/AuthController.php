@@ -9,35 +9,32 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-  public function register(Request $request)
+  public function register(Request $request, User $user)
   {
-    $credentials = $request->only('name', 'email', 'password', 'cpf');
-
     $request->validate(
       [
         'name' => 'required|string',
         'email' => 'required|string|email|unique:users',
         'password' => 'required|string|confirmed',
+        'password_confirmation' => 'required|string',
         'cpf' => 'required|string|unique:users'
       ]
     );
 
-    $user = User::create([
-      'name' => $request->name,
-      'email' => $request->email,
-      'password' => bcrypt($request->password),
-      'cpf' => $request->cpf,
+    $userData = $request->only('name', 'email', 'password', 'cpf', 'password_confirmation');
+    $userData['password'] = bcrypt($userData['password']);
+
+    if (!$user = $user->create($userData)) {
+      abort(500, 'Erro ao criar usuário');
+    }
+
+    return response()->json([
+      'data' => [
+        'user' => $user
+      ]
     ]);
-
-    $token = $user->createToken('token-name')->plainTextToken;
-
-    $response = [
-      'user' => $user,
-      'token' => $token
-    ];
-
-    return response($response, 201);
   }
+
 
   public function login(Request $request)
   {
@@ -48,23 +45,21 @@ class AuthController extends Controller
       ]
     );
 
-    $user = User::where('email', $request->email)->first();
+    $credentials = $request->only('email', 'password');
 
-    if (!$user || !Hash::check($request->password, $user->password)) {
-      throw ValidationException::withMessages([
-        'email' => ['The provided credentials are incorrect.'],
-      ]);
+    if (!auth()->attempt($credentials)) {
+      abort(401, 'Credenciais Inválidas');
     }
-    $token = $user->createToken('token-name')->plainTextToken;
 
-    $response = [
-      'user' => $user,
-      'token' => $token
-    ];
+    $token = auth()->user()->createToken('auth_token');
 
-    return response($response, 201);
+    return response()->json([
+      'data' => [
+        'token' => $token->plainTextToken
+      ]
+    ]);
   }
-  
+
   public function logout()
   {
     auth('sanctum')->user()->tokens()->delete();
