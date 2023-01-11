@@ -5,7 +5,11 @@ import { Link } from "react-router-dom";
 
 export function AdminSoftwareEditDelete() {
   const deleteSoftware = async (id: number) => {
-    await api.delete(`/softwares/${id}`);
+    await api.delete(`/softwares/${id}`, {
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem('token'),
+      }
+    });
   };
 
   interface ISoftware {

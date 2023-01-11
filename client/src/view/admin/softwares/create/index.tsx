@@ -52,9 +52,10 @@ export function AdminSoftwareCadastrar() {
     form.append('image', image);
     form.append('video', video);
     try {
-      const res = await axios.post('http://127.0.0.1:8000/api/softwares/cadastrar', form, {
+      await axios.post('http://127.0.0.1:8000/api/softwares/cadastrar', form, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
         },
       });
     }

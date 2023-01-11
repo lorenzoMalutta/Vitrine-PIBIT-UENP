@@ -92,8 +92,7 @@ export function AdminSoftwareUpdate() {
     console.log(form.get('nome'));
     console.log(api.put(`/softwares/edit/${id}`, form));
     try {
-      const res = await api.put(`/softwares/edit/${id}`, form, { headers: { 'Content-Type': 'multipart/form-data, application/json', 'Accept': 'application/json' } })
-      console.log(res);
+      await api.put(`/softwares/edit/${id}`, form, { headers: { 'Content-Type': 'multipart/form-data, application/json', 'Accept': 'application/json', 'Authorization': "Bearer " + localStorage.getItem('token') } })
     }
     catch (err) {
       console.log(err);

@@ -80,7 +80,7 @@ export function AdminServicoUpdate() {
     console.log(form.get('nome'));
     console.log(api.put(`/servicos/edit/${id}`, form));
     try {
-      const res = await api.put(`/servicos/edit/${id}`, form, { headers: { 'Content-Type': 'multipart/form-data, application/json', 'Accept': 'application/json' } })
+      const res = await api.put(`/servicos/edit/${id}`, form, { headers: { 'Content-Type': 'multipart/form-data, application/json', 'Accept': 'application/json', 'Authorization': "Bearer " + localStorage.getItem('token') } })
       console.log(res);
     }
     catch (err) {

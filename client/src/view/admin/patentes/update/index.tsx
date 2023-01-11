@@ -115,8 +115,7 @@ export function AdminPatenteUpdate() {
     console.log(form.get('nome'));
     console.log(api.put(`/patentes/edit/${id}`, form));
     try {
-      const res = await api.put(`/patentes/edit/${id}`, form, { headers: { 'Content-Type': 'multipart/form-data, application/json', 'Accept': 'application/json', 'Authorization': "Bearer " + localStorage.getItem('token') } })
-      console.log(res);
+      await api.put(`/patentes/edit/${id}`, form, { headers: { 'Content-Type': 'multipart/form-data, application/json', 'Accept': 'application/json', 'Authorization': "Bearer " + localStorage.getItem('token') } })
     }
     catch (err) {
       console.log(err);

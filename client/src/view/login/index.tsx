@@ -12,11 +12,9 @@ export function Login() {
       email,
       password,
     };
-
     try {
       const response = await axios.post("http://127.0.0.1:8000/api/login", data);
       localStorage.setItem('token', response.data.token);
-      console.log(response.data.token);
     } catch (err) {
       console.log(err);
     }

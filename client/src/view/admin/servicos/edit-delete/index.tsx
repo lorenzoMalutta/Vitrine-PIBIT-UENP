@@ -5,7 +5,11 @@ import { Link } from "react-router-dom";
 
 export function AdminServicoEditDelete() {
   const deleteServico = async (id: number) => {
-    await api.delete(`/servicos/${id}`);
+    const response = await api.delete(`/servicos/${id}`, {
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem('token'),
+      }
+    });
   };
 
   interface IServico {

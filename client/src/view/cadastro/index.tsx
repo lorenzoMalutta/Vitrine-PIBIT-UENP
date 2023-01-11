@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -8,15 +9,7 @@ export function Cadastro() {
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
 
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/cadastro")
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, []);
-
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const data = {
       name,
@@ -25,16 +18,11 @@ export function Cadastro() {
       password_confirmation,
       cpf,
     };
-
-    fetch("http://127.0.0.1:8000/api/cadastro", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    try {
+      await axios.post("http://127.0.0.1:8000/api/cadastro", data);
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <section className="flex justify-center h-screen items-center">
