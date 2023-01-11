@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -54,9 +53,7 @@ class AuthController extends Controller
     $token = auth()->user()->createToken('auth_token');
 
     return response()->json([
-      'data' => [
-        'token' => $token->plainTextToken
-      ]
+      'token' => $token->plainTextToken
     ]);
   }
 

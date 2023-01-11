@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import api from "../../../../services/api";
 import { Link } from "react-router-dom";
@@ -8,7 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export function AdminPatenteEditDelete() {
   const deletePatente = async (id: number) => {
-    await api.delete(`/patentes/${id}`);
+    const response = await api.delete(`/patentes/${id}`, {
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem('token'),
+      }
+    });
+    console.log(response);
     toast("Deletado com sucesso!")
     setTimeout(() => {
       window.location.reload()

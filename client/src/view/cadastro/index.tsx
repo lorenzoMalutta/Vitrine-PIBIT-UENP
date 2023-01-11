@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export function Cadastro() {
-  //post request whith axios
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [password_confirmation, setPassword_confirmation] = useState("");
@@ -39,7 +38,7 @@ export function Cadastro() {
   };
   return (
     <section className="flex justify-center h-screen items-center">
-      <div className="flex flex-col h-fit p-10 justify-center text-center shadow-md rounded-lg bg-white ">
+      <div className="flex flex-col h-fit p-8 justify-center text-center shadow-md rounded-lg bg-white  ">
         <div>
           <h3>Bem-vindo ao Cadastro👋</h3>
         </div>
