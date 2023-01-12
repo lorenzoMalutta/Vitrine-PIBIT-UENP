@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import api from "../../../../services/api";
 import { Link } from "react-router-dom";
+interface IServico {
+  nome: string;
+  id: number;
+  criadores: string;
+  data_criacao: string;
+  area_cientifica: string;
+  area_economica: string;
+  links: string;
+  colaborador: string;
+  palavra_chave: string;
+}
 
 export function AdminServicoEditDelete() {
-  interface IServico {
-    nome: string;
-    id: number;
-    criadores: string;
-    data_criacao: string;
-    area_cientifica: string;
-    area_economica: string;
-    links: string;
-    colaborador: string;
-    palavra_chave: string;
-  }
 
   const [servico, setServico] = useState<IServico[]>([]);
 

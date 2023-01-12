@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import api from "../../../../services/api";
 import { Link } from "react-router-dom";
+interface ISoftware {
+  nome: string;
+  id: number;
+  criadores: string;
+  data_criacao: string;
+  area_cientifica: string;
+  area_economica: string;
+  links: string;
+  colaborador: string;
+  palavra_chave: string;
+}
 
 export function AdminSoftwareEditDelete() {
-  interface ISoftware {
-    nome: string;
-    id: number;
-    criadores: string;
-    data_criacao: string;
-    area_cientifica: string;
-    area_economica: string;
-    links: string;
-    colaborador: string;
-    palavra_chave: string;
-  }
 
   const [software, setSoftware] = useState<ISoftware[]>([]);
 
