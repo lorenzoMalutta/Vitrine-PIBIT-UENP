@@ -19,30 +19,37 @@ import { AdminServicoUpdate } from './view/admin/servicos/update'
 import { AdminServico } from './view/admin/servicos/menu'
 
 export function Router() {
-  return (
-    <Routes>
-      {/* Views */}
-      <Route path="/" element={<Home />} />
-      {/* Patente */}
-      <Route path="/patentes" element={<Patente />} />
-      <Route path="/patentes/:id" element={<PatenteDetail/>} />
-      {/* Login e Cadastro */}
-      <Route path="/cadastro" element={<Cadastro />} />
-      <Route path="/login" element={<Login />} />
-      {/* Admin */}
-      <Route path="/dashboard" element={<MenuAdmin/>} />
-      <Route path="/admin/patentes" element={<AdminPatente/>} />
-      <Route path="/admin/patentes/cadastrar" element={<AdminPatenteCadastrar/>} />
-      <Route path="/admin/patentes/editar-delete" element={< AdminPatenteEditDelete/>} />
-      <Route path="/admin/patentes/edit/:id" element={< AdminPatenteUpdate/>} />
-      <Route path="/admin/softwares" element={< AdminSoftware/>} />
-      <Route path="/admin/softwares/cadastrar" element={< AdminSoftwareCadastrar/>} />
-      <Route path="/admin/softwares/editar-delete" element={< AdminSoftwareEditDelete/>} />
-      <Route path="/admin/softwares/edit/:id" element={< AdminSoftwareUpdate/>} />
-      <Route path="/admin/servicos" element={< AdminServico/>} />
-      <Route path="/admin/servicos/cadastrar" element={< AdminServicoCadastrar/>} />
-      <Route path="/admin/servicos/editar-delete" element={< AdminServicoEditDelete/>} />
-      <Route path="/admin/servicos/edit/:id" element={< AdminServicoUpdate/>} />
-    </Routes>
-  )
+  if (localStorage.getItem('authenticating') === 'true') {
+    return (
+      <Routes>
+        {/* Admin */}
+        <Route path="/dashboard" element={<MenuAdmin />} />
+        <Route path="/admin/patentes" element={<AdminPatente />} />
+        <Route path="/admin/patentes/cadastrar" element={<AdminPatenteCadastrar />} />
+        <Route path="/admin/patentes/editar-delete" element={< AdminPatenteEditDelete />} />
+        <Route path="/admin/patentes/edit/:id" element={< AdminPatenteUpdate />} />
+        <Route path="/admin/softwares" element={< AdminSoftware />} />
+        <Route path="/admin/softwares/cadastrar" element={< AdminSoftwareCadastrar />} />
+        <Route path="/admin/softwares/editar-delete" element={< AdminSoftwareEditDelete />} />
+        <Route path="/admin/softwares/edit/:id" element={< AdminSoftwareUpdate />} />
+        <Route path="/admin/servicos" element={< AdminServico />} />
+        <Route path="/admin/servicos/cadastrar" element={< AdminServicoCadastrar />} />
+        <Route path="/admin/servicos/editar-delete" element={< AdminServicoEditDelete />} />
+        <Route path="/admin/servicos/edit/:id" element={< AdminServicoUpdate />} />
+      </Routes>
+    )
+  } else {
+    return (
+      <Routes>
+        {/* Views */}
+        <Route path="/" element={<Home />} />
+        {/* Patente */}
+        <Route path="/patentes" element={<Patente />} />
+        <Route path="/patentes/:id" element={<PatenteDetail />} />
+        {/* Login e Cadastro */}
+        <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    )
+  }
 }

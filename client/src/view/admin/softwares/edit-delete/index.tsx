@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../../../services/api";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 interface ISoftware {
   nome: string;
   id: number;
@@ -24,6 +25,11 @@ export function AdminSoftwareEditDelete() {
           'Authorization': "Bearer " + localStorage.getItem('token'),
         }
       });
+      toast.success("Deletado com sucesso!")
+      setTimeout(() => {
+        window.location.reload()
+      }
+        , 1000)
     } catch (error) {
       console.log(error);
     }
@@ -37,6 +43,7 @@ export function AdminSoftwareEditDelete() {
 
   return (
     <div className="p-10 h-screen">
+      <ToastContainer />
       <h1>Editar e Deletar:</h1>
       <table className="shadow">
         <thead>

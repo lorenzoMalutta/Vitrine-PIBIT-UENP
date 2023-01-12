@@ -28,10 +28,10 @@ export function AdminPatenteEditDelete() {
           'Authorization': "Bearer " + localStorage.getItem('token'),
         }
       });
-      toast("Deletado com sucesso!")
+      toast.success("Deletado com sucesso!")
       setTimeout(() => {
         window.location.reload()
-      }, 3000)
+      }, 1000)
     } catch (error) {
       console.log(error)
     }

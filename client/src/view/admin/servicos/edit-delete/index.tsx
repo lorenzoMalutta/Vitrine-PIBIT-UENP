@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import api from "../../../../services/api";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 interface IServico {
   nome: string;
   id: number;
@@ -18,11 +20,19 @@ export function AdminServicoEditDelete() {
   const [servico, setServico] = useState<IServico[]>([]);
 
   const deleteServico = async (id: number) => {
-    const response = await api.delete(`/servicos/${id}`, {
-      headers: {
-        'Authorization': "Bearer " + localStorage.getItem('token'),
-      }
-    });
+    try {
+      await api.delete(`/servicos/${id}`, {
+        headers: {
+          'Authorization': "Bearer " + localStorage.getItem('token'),
+        }
+      });
+      toast.success("Deletado com sucesso!")
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   useEffect(() => {
@@ -30,9 +40,10 @@ export function AdminServicoEditDelete() {
       setServico(response.data);
     })
   }, [])
-  
+
   return (
     <div className="p-10 h-screen">
+      <ToastContainer />
       <h1>Editar e Deletar:</h1>
       <table className="shadow">
         <thead>

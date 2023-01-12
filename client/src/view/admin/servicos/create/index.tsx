@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../../../services/api";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Iareas {
   denominacao: string;
@@ -61,6 +63,7 @@ export function AdminServicoCadastrar() {
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         },
       });
+      toast.success('Serviços criado com sucesso!')
     }
     catch (error) {
       console.log(error);
@@ -88,6 +91,7 @@ export function AdminServicoCadastrar() {
 
   return (
     <section className="grid p-10">
+      <ToastContainer/>
       <h1 className="text-[#374151]">Cadastro de Serviços</h1>
       <div className="bg-white rounded-md shadow-md w-full">
         <form className="grid grid-cols-2 p-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit}>

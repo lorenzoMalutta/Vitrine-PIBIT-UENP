@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../../services/api";
+import { ToastContainer, toast } from "react-toastify";
 
 interface Iareas {
   denominacao: string;
@@ -84,6 +85,7 @@ export function AdminServicoUpdate() {
           'Authorization': "Bearer " + localStorage.getItem('token')
         }
       })
+      toast.success('Serviço atualizado com sucesso!');
     }
     catch (error) {
       console.log(error);
@@ -111,6 +113,7 @@ export function AdminServicoUpdate() {
 
   return (
     <section className="grid p-10">
+      <ToastContainer />
       <h1 className="text-[#374151]">Update de Serviços</h1>
       <div className="bg-white rounded-md shadow-md w-full">
         <form className="grid grid-cols-2 p-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit} encType='multipart/form-data'>
