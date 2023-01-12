@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 interface IPatente {
   nome: string;
   id: number;
@@ -19,9 +18,8 @@ interface IPatente {
   trl: string;
 }
 
-const [patente, setPatente] = useState<IPatente[]>([]);
-
 export function AdminPatenteEditDelete() {
+  const [patente, setPatente] = useState<IPatente[]>([]);
   const deletePatente = async (id: number) => {
     try {
       await api.delete(`/patentes/${id}`, {
