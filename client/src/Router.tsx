@@ -30,7 +30,7 @@ export function Router() {
       <Route path="/cadastro" element={<Cadastro />} />
       <Route path="/login" element={<Login />} />
       {/* Admin */}
-      <Route path="/menu-admin" element={<MenuAdmin/>} />
+      <Route path="/dashboard" element={<MenuAdmin/>} />
       <Route path="/admin/patentes" element={<AdminPatente/>} />
       <Route path="/admin/patentes/cadastrar" element={<AdminPatenteCadastrar/>} />
       <Route path="/admin/patentes/editar-delete" element={< AdminPatenteEditDelete/>} />

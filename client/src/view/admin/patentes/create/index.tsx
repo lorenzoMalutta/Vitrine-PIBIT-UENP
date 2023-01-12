@@ -56,7 +56,7 @@ export function AdminPatenteCadastrar() {
     }
   };
 
-  const verificacao = () => { toast("Patente cadastrada com sucesso!") }
+  const verificacao = () => { toast.success("Patente cadastrada com sucesso!") }
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();

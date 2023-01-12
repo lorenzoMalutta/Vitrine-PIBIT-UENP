@@ -26,7 +26,7 @@ class PatenteController extends Controller
     } catch (\Exception $e) {
       return response()->json(['error' => $e->getMessage()], 500);
     }
-    return response()->json($patente);
+    return response()->json($patente, 201);
   }
 
   /**
