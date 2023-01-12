@@ -1,6 +1,6 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../../services/api";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -13,10 +13,10 @@ export function Login() {
       password,
     };
     try {
-      const response = await axios.post("http://127.0.0.1:8000/api/login", data);
+      const response = await api.post("/login", data);
       localStorage.setItem('token', response.data.token);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
 };
 return (

@@ -85,8 +85,6 @@ export function AdminPatenteUpdate() {
     });
   }, [id]);
 
-
-
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const form = new FormData();
@@ -112,13 +110,18 @@ export function AdminPatenteUpdate() {
     form.append('image', image);
     form.append('video', video);
     form.append('pdf', pdf);
-    console.log(form.get('nome'));
-    console.log(api.put(`/patentes/edit/${id}`, form));
+    
     try {
-      await api.put(`/patentes/edit/${id}`, form, { headers: { 'Content-Type': 'multipart/form-data, application/json', 'Accept': 'application/json', 'Authorization': "Bearer " + localStorage.getItem('token') } })
+      await api.put(`/patentes/edit/${id}`, form, {
+        headers: {
+          'Content-Type': 'multipart/form-data, application/json',
+          'Accept': 'application/json',
+          'Authorization': "Bearer " + localStorage.getItem('token')
+        }
+      })
     }
-    catch (err) {
-      console.log(err);
+    catch (error) {
+      console.log(error);
     }
   };
 

@@ -30,6 +30,7 @@ interface Patente {
 export function PatenteDetail() {
   const { id } = useParams();
   const [patente, setPatente] = useState<Patente>()
+  
   useEffect(() => {
     api.get(`/patentes/${id}`).then((response) => {
       setPatente(response.data);

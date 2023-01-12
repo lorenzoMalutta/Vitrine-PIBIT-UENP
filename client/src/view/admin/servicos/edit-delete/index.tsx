@@ -1,17 +1,8 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import api from "../../../../services/api";
 import { Link } from "react-router-dom";
 
 export function AdminServicoEditDelete() {
-  const deleteServico = async (id: number) => {
-    const response = await api.delete(`/servicos/${id}`, {
-      headers: {
-        'Authorization': "Bearer " + localStorage.getItem('token'),
-      }
-    });
-  };
-
   interface IServico {
     nome: string;
     id: number;
@@ -26,11 +17,20 @@ export function AdminServicoEditDelete() {
 
   const [servico, setServico] = useState<IServico[]>([]);
 
+  const deleteServico = async (id: number) => {
+    const response = await api.delete(`/servicos/${id}`, {
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem('token'),
+      }
+    });
+  };
+
   useEffect(() => {
     api.get('/servicos').then(response => {
       setServico(response.data);
     })
   }, [])
+  
   return (
     <div className="p-10 h-screen">
       <h1>Editar e Deletar:</h1>

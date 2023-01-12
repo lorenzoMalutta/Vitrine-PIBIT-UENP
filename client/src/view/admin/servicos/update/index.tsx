@@ -57,8 +57,6 @@ export function AdminServicoUpdate() {
     });
   }, [id]);
 
-
-
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const form = new FormData();
@@ -77,14 +75,18 @@ export function AdminServicoUpdate() {
     form.append('area_economica', area_economica);
     form.append('palavra_chave', palavra_chave);
     form.append('image', image);
-    console.log(form.get('nome'));
-    console.log(api.put(`/servicos/edit/${id}`, form));
+
     try {
-      const res = await api.put(`/servicos/edit/${id}`, form, { headers: { 'Content-Type': 'multipart/form-data, application/json', 'Accept': 'application/json', 'Authorization': "Bearer " + localStorage.getItem('token') } })
-      console.log(res);
+      await api.put(`/servicos/edit/${id}`, form, {
+        headers: {
+          'Content-Type': 'multipart/form-data, application/json',
+          'Accept': 'application/json',
+          'Authorization': "Bearer " + localStorage.getItem('token')
+        }
+      })
     }
-    catch (err) {
-      console.log(err);
+    catch (error) {
+      console.log(error);
     }
   };
 

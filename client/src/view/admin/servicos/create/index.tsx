@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import api from "../../../../services/api";
 
 interface Iareas {
@@ -30,6 +29,13 @@ export function AdminServicoCadastrar() {
 
   const [image, setImage] = useState('');
 
+  const handleImage = (e: { target: { files: any; }; }) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+    setImage(e.target.files[0]);
+  };
+
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const form = new FormData();
@@ -49,15 +55,15 @@ export function AdminServicoCadastrar() {
     form.append('palavra_chave', palavra_chave);
     form.append('image', image);
     try {
-      const res = await axios.post('http://127.0.0.1:8000/api/servicos/cadastrar', form, {
+      await api.post('/servicos/cadastrar', form, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         },
       });
     }
-    catch (err) {
-      console.log(err);
+    catch (error) {
+      console.log(error);
     }
   };
 
@@ -79,13 +85,6 @@ export function AdminServicoCadastrar() {
       setOptionEconomica(response.data);
     })
   }, [])
-
-  const handleImage = (e: { target: { files: any; }; }) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-    setImage(e.target.files[0]);
-  };
 
   return (
     <section className="grid p-10">

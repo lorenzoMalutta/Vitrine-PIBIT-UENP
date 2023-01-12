@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import api from "../../../../services/api";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,6 +22,11 @@ export function AdminPatenteCadastrar() {
   const [data_criacao, setData_criacao] = useState('');
   const [links, setLinks] = useState('');
   const [criadores, setCriadores] = useState('');
+  const [image, setImage] = useState('');
+  const [video, setVideo] = useState('');
+  const [pdf, setPdf] = useState('');
+  const [inpi, setInpi] = useState('');
+  const [solucao, setSolucao] = useState('');
 
   const [area_cientifica, setArea_cientifica] = useState('');
   const [optionCientifica, setOptionCientifica] = useState<Iareas[]>([]);
@@ -33,12 +37,25 @@ export function AdminPatenteCadastrar() {
   const [palavra_chave, setPalavra_chave] = useState('');
   const [optionPalavraChave, setOptionPalavraChave] = useState<Iareas[]>([]);
 
-  const [image, setImage] = useState('');
-  const [video, setVideo] = useState('');
-  const [pdf, setPdf] = useState('');
-  const [inpi, setInpi] = useState('');
-  const [solucao, setSolucao] = useState('');
-  const [pesquisa, setPesquisa] = useState('');
+  const handleImage = (e: { target: { files: any; }; }) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+    setImage(e.target.files[0]);
+  };
+
+  const handleVideo = (e: { target: { files: any; }; }) => {
+    if (e.target.files[0]) {
+      setVideo(e.target.files[0]);
+    }
+  };
+
+  const handlePdf = (e: { target: { files: any; }; }) => {
+    if (e.target.files[0]) {
+      setPdf(e.target.files[0]);
+    }
+  };
+
   const verificacao = () => { toast("Patente cadastrada com sucesso!") }
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
@@ -68,15 +85,15 @@ export function AdminPatenteCadastrar() {
     form.append('pdf', pdf);
 
     try {
-      await axios.post('http://127.0.0.1:8000/api/patentes/cadastrar', form, {
+      await api.post('/patentes/cadastrar', form, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': "Bearer " + localStorage.getItem('token'),
         },
       });
     }
-    catch (err) {
-      console.log(err);
+    catch (error) {
+      console.log(error);
     }
   };
 
@@ -98,26 +115,6 @@ export function AdminPatenteCadastrar() {
       setOptionEconomica(response.data);
     })
   }, [])
-
-  const handleImage = (e: { target: { files: any; }; }) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-    setImage(e.target.files[0]);
-  };
-
-  const handleVideo = (e: { target: { files: any; }; }) => {
-    if (e.target.files[0]) {
-      setVideo(e.target.files[0]);
-    }
-  };
-
-  const handlePdf = (e: { target: { files: any; }; }) => {
-    if (e.target.files[0]) {
-      setPdf(e.target.files[0]);
-    }
-  };
-
 
   return (
     <section className="grid p-10">

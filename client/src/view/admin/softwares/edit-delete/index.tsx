@@ -1,17 +1,8 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import api from "../../../../services/api";
 import { Link } from "react-router-dom";
 
 export function AdminSoftwareEditDelete() {
-  const deleteSoftware = async (id: number) => {
-    await api.delete(`/softwares/${id}`, {
-      headers: {
-        'Authorization': "Bearer " + localStorage.getItem('token'),
-      }
-    });
-  };
-
   interface ISoftware {
     nome: string;
     id: number;
@@ -26,11 +17,24 @@ export function AdminSoftwareEditDelete() {
 
   const [software, setSoftware] = useState<ISoftware[]>([]);
 
+  const deleteSoftware = async (id: number) => {
+    try {
+      await api.delete(`/softwares/${id}`, {
+        headers: {
+          'Authorization': "Bearer " + localStorage.getItem('token'),
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     api.get('/softwares').then(response => {
       setSoftware(response.data);
     })
   }, [])
+
   return (
     <div className="p-10 h-screen">
       <h1>Editar e Deletar:</h1>

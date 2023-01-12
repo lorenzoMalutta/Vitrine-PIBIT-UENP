@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import api from "../../../../services/api";
 
 interface Iareas {
@@ -19,17 +18,30 @@ export function AdminSoftwareCadastrar() {
   const [data_criacao, setData_criacao] = useState('');
   const [links, setLinks] = useState('');
   const [criadores, setCriadores] = useState('');
+  const [image, setImage] = useState('');
+  const [video, setVideo] = useState('');
+
   const [area_cientifica, setArea_cientifica] = useState('');
   const [optionCientifica, setOptionCientifica] = useState<Iareas[]>([]);
-
+  
   const [area_economica, setArea_economica] = useState('');
   const [optionEconomica, setOptionEconomica] = useState<Iareas[]>([]);
 
   const [palavra_chave, setPalavra_chave] = useState('');
   const [optionPalavraChave, setOptionPalavraChave] = useState<Iareas[]>([]);
 
-  const [image, setImage] = useState('');
-  const [video, setVideo] = useState('');
+  const handleImage = (e: { target: { files: any; }; }) => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+    setImage(e.target.files[0]);
+  };
+
+  const handleVideo = (e: { target: { files: any; }; }) => {
+    if (e.target.files[0]) {
+      setVideo(e.target.files[0]);
+    }
+  };
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -51,29 +63,17 @@ export function AdminSoftwareCadastrar() {
     form.append('palavra_chave', palavra_chave);
     form.append('image', image);
     form.append('video', video);
+    
     try {
-      await axios.post('http://127.0.0.1:8000/api/softwares/cadastrar', form, {
+      await api.post('/softwares/cadastrar', form, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': 'Bearer ' + localStorage.getItem('token')
         },
       });
     }
-    catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleImage = (e: { target: { files: any; }; }) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-    setImage(e.target.files[0]);
-  };
-
-  const handleVideo = (e: { target: { files: any; }; }) => {
-    if (e.target.files[0]) {
-      setVideo(e.target.files[0]);
+    catch (error) {
+      console.log(error);
     }
   };
 

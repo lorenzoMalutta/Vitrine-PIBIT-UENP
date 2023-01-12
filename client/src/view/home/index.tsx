@@ -25,6 +25,7 @@ export function Home() {
   const [software, setSoftware] = useState<IHome[]>([]);
   const [patente, setPatente] = useState<IHome[]>([]);
   const [startups, setStartups] = useState<IHome[]>([]);
+  
   useEffect(() => {
     api.get('/patentes').then(response => {
       setPatente(response.data);

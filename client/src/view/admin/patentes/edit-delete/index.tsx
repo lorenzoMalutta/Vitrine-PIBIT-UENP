@@ -5,39 +5,45 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+interface IPatente {
+  nome: string;
+  id: number;
+  criadores: string;
+  data_criacao: string;
+  area_cientifica: string;
+  area_economica: string;
+  links: string;
+  colaborador: string;
+  palavra_chave: string;
+  inpi: string;
+  trl: string;
+}
+
+const [patente, setPatente] = useState<IPatente[]>([]);
+
 export function AdminPatenteEditDelete() {
   const deletePatente = async (id: number) => {
-    await api.delete(`/patentes/${id}`, {
-      headers: {
-        'Authorization': "Bearer " + localStorage.getItem('token'),
-      }
-    });
-    toast("Deletado com sucesso!")
-    setTimeout(() => {
-      window.location.reload()
-    }, 3000)
+    try {
+      await api.delete(`/patentes/${id}`, {
+        headers: {
+          'Authorization': "Bearer " + localStorage.getItem('token'),
+        }
+      });
+      toast("Deletado com sucesso!")
+      setTimeout(() => {
+        window.location.reload()
+      }, 3000)
+    } catch (error) {
+      console.log(error)
+    }
   };
 
-  interface IPatente {
-    nome: string;
-    id: number;
-    criadores: string;
-    data_criacao: string;
-    area_cientifica: string;
-    area_economica: string;
-    links: string;
-    colaborador: string;
-    palavra_chave: string;
-    inpi: string;
-    trl: string;
-  }
-
-  const [patente, setPatente] = useState<IPatente[]>([]);
   useEffect(() => {
     api.get('/patentes').then(response => {
       setPatente(response.data);
     })
   }, [])
+
   return (
 
     <div className="p-10 h-screen">

@@ -5,6 +5,7 @@ import api from "../../../../services/api";
 interface Iareas {
   denominacao: string;
 }
+
 export function AdminSoftwareUpdate() {
   const [image, setImage] = useState('');
   const [video, setVideo] = useState('');
@@ -89,13 +90,18 @@ export function AdminSoftwareUpdate() {
     form.append('palavra_chave', palavra_chave);
     form.append('image', image);
     form.append('video', video);
-    console.log(form.get('nome'));
-    console.log(api.put(`/softwares/edit/${id}`, form));
+
     try {
-      await api.put(`/softwares/edit/${id}`, form, { headers: { 'Content-Type': 'multipart/form-data, application/json', 'Accept': 'application/json', 'Authorization': "Bearer " + localStorage.getItem('token') } })
+      await api.put(`/softwares/edit/${id}`, form, {
+        headers: {
+          'Content-Type': 'multipart/form-data, application/json',
+          'Accept': 'application/json',
+          'Authorization': "Bearer " + localStorage.getItem('token')
+        }
+      })
     }
-    catch (err) {
-      console.log(err);
+    catch (error) {
+      console.log(error);
     }
   };
 

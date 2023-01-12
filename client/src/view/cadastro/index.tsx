@@ -1,6 +1,7 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../../services/api";
 
 export function Cadastro() {
   const [name, setName] = useState("");
@@ -19,11 +20,12 @@ export function Cadastro() {
       cpf,
     };
     try {
-      await axios.post("http://127.0.0.1:8000/api/cadastro", data);
-    } catch (err) {
-      console.log(err);
+      await api.post("/cadastro", data);
+    } catch (error) {
+      console.log(error);
     }
   };
+  
   return (
     <section className="flex justify-center h-screen items-center">
       <div className="flex flex-col h-fit p-8 justify-center text-center shadow-md rounded-lg bg-white  ">
