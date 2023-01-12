@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
+use Spatie\LaravelIgnition\Recorders\DumpRecorder\Dump;
 
 class AuthController extends Controller
 {
@@ -59,7 +59,7 @@ class AuthController extends Controller
 
   public function logout()
   {
-    auth('sanctum')->user()->tokens()->delete();
+    auth()->user()->tokens()->delete();
 
     return response()->json([
       'message' => 'Logged out'
