@@ -19,7 +19,12 @@ export function Cadastro() {
       cpf,
     };
     try {
-      await api.post("/cadastro", data);
+      await api.post("/cadastro", data, {
+        'headers': {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      } );
     } catch (error) {
       console.log(error);
     }
