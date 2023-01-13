@@ -36,6 +36,8 @@ Route::middleware('auth:sanctum')->group(function () {
 // Auth admin
 Route::middleware('auth:sanctum')->group(function () {
   Route::post('/newAdmin/{id}', [AuthAdminController::class, 'newAdmin']);
+  Route::post('/removeAdmin/{id}', [AuthAdminController::class, 'removeAdmin']);
+  Route::get('/showAllUsers', [AuthAdminController::class, 'showAllUsers']);
 });
 
 // Patente routes
@@ -66,7 +68,7 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::delete('/servicos/{id}', [ServicoController::class, 'destroy']);
 });
 
-// Areas de busca
+// Areas routes
 Route::get('/areaEconomica', [AreasController::class, 'areaEconomica']);
 Route::get('/areaCientifica', [AreasController::class, 'areaCientifica']);
 Route::get('/palavraChave', [AreasController::class, 'palavraChave']);
