@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\AreasController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthAdminController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PatenteController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SoftwareController;
 use App\Http\Controllers\ServicoController;
@@ -24,10 +27,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Auth user
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/cadastro', [AuthController::class, 'register']);
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/cadastro', [RegisterController::class, 'register']);
 Route::middleware('auth:sanctum')->group(function () {
-  Route::post('/logout', [AuthController::class, 'logout']);
+  Route::post('/logout', [LogoutController::class, 'logout']);
+});
+
+// Auth admin
+Route::middleware('auth:sanctum')->group(function () {
+  Route::post('/newAdmin/{id}', [AuthAdminController::class, 'newAdmin']);
 });
 
 // Patente routes
