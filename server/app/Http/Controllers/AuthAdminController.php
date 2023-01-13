@@ -14,7 +14,26 @@ class AuthAdminController extends Controller
     return response()->json([
       'data' => [
         'user' => $user
-      ], 201
+      ], 200
     ]);
+  }
+
+  public function removeAdmin($id)
+  {
+    $user = User::findorFail($id);
+    $user->admin = false;
+    $user->update();
+    return response()->json([
+      'data' => [
+        'user' => $user
+      ], 200
+    ]);
+  }
+
+  public function showAllUsers()
+  {
+
+    $users = User::all()->toArray();
+    return response()->json($users, 201);
   }
 }
