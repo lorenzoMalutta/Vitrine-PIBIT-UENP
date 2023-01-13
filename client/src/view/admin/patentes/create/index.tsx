@@ -7,7 +7,7 @@ interface Iareas {
   denominacao: string;
 }
 
-export function AdminPatenteCadastrar() {
+export function PatenteCadastrar() {
   const [nome, setNome] = useState('');
   const [sinopse, setSinopse] = useState('');
   const [pct, setPct] = useState('');

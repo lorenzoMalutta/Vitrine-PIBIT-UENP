@@ -6,7 +6,7 @@ interface Iareas {
   denominacao: string;
 }
 
-export function AdminSoftwareCadastrar() {
+export function SoftwareCadastrar() {
   const [nome, setNome] = useState('');
   const [sinopse, setSinopse] = useState('');
   const [resumo, setResumo] = useState('');

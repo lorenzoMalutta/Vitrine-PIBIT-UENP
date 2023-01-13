@@ -19,7 +19,7 @@ interface IPatente {
   trl: string;
 }
 
-export function AdminPatenteEditDelete() {
+export function PatenteEditDelete() {
   const [patente, setPatente] = useState<IPatente[]>([]);
   const deletePatente = async (id: number) => {
     try {

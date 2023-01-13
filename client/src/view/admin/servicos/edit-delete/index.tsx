@@ -15,7 +15,7 @@ interface IServico {
   palavra_chave: string;
 }
 
-export function AdminServicoEditDelete() {
+export function ServicoEditDelete() {
 
   const [servico, setServico] = useState<IServico[]>([]);
 

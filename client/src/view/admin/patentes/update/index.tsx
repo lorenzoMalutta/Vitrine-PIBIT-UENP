@@ -8,7 +8,7 @@ interface Iareas {
   denominacao: string;
 }
 
-export function AdminPatenteUpdate() {
+export function PatenteUpdate() {
   const [image, setImage] = useState('');
   const [video, setVideo] = useState('');
   const [solucao, setSolucao] = useState('');

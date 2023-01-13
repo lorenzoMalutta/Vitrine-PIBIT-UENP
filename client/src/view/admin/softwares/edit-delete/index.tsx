@@ -14,7 +14,7 @@ interface ISoftware {
   palavra_chave: string;
 }
 
-export function AdminSoftwareEditDelete() {
+export function SoftwareEditDelete() {
 
   const [software, setSoftware] = useState<ISoftware[]>([]);
 

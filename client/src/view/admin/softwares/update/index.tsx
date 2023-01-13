@@ -6,7 +6,7 @@ interface Iareas {
   denominacao: string;
 }
 
-export function AdminSoftwareUpdate() {
+export function SoftwareUpdate() {
   const [image, setImage] = useState('');
   const [video, setVideo] = useState('');
   const [nome, setNome] = useState('');

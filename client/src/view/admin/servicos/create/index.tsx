@@ -7,7 +7,7 @@ interface Iareas {
   denominacao: string;
 }
 
-export function AdminServicoCadastrar() {
+export function ServicoCadastrar() {
   const [nome, setNome] = useState('');
   const [sinopse, setSinopse] = useState('');
   const [resumo, setResumo] = useState('');

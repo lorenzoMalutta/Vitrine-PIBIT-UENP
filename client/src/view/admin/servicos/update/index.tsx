@@ -7,7 +7,7 @@ interface Iareas {
   denominacao: string;
 }
 
-export function AdminServicoUpdate() {
+export function ServicoUpdate() {
   const [image, setImage] = useState('');
   const [nome, setNome] = useState('');
   const [sinopse, setSinopse] = useState('');
