@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Spatie\LaravelIgnition\Recorders\DumpRecorder\Dump;
 
-class AuthController extends Controller
+class RegisterController extends Controller
 {
   public function register(Request $request, User $user)
   {
@@ -31,38 +30,6 @@ class AuthController extends Controller
       'data' => [
         'user' => $user
       ]
-    ]);
-  }
-
-
-  public function login(Request $request)
-  {
-    $request->validate(
-      [
-        'email' => 'required|string|email',
-        'password' => 'required|string',
-      ]
-    );
-
-    $credentials = $request->only('email', 'password');
-
-    if (!auth()->attempt($credentials)) {
-      abort(401, 'Credenciais Inválidas');
-    }
-
-    $token = auth()->user()->createToken('auth_token');
-
-    return response()->json([
-      'token' => $token->plainTextToken
-    ]);
-  }
-
-  public function logout()
-  {
-    auth()->user()->tokens()->delete();
-
-    return response()->json([
-      'message' => 'Logged out'
     ]);
   }
 }
