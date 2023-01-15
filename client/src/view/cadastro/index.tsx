@@ -32,7 +32,7 @@ export function Cadastro() {
   
   return (
     <section className="flex justify-center h-screen items-center">
-      <div className="flex flex-col h-fit p-8 justify-center text-center shadow-md rounded-lg bg-white  ">
+      <div className="flex flex-col h-fit m-8 justify-center text-center shadow-md rounded-lg bg-white  ">
         <div>
           <h3>Bem-vindo ao Cadastro👋</h3>
         </div>

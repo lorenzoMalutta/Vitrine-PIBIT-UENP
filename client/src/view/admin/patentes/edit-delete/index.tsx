@@ -46,7 +46,7 @@ export function PatenteEditDelete() {
 
   return (
 
-    <div className="p-10 h-screen">
+    <div className="m-10 h-screen">
       <ToastContainer />
       <Title
         titulo="Editar ou Deletar um Patente"

@@ -43,7 +43,7 @@ export function SoftwareEditDelete() {
   }, [])
 
   return (
-    <div className="p-10 h-screen">
+    <div className="m-10 h-screen">
       <ToastContainer />
       <Title
         titulo="Editar ou Deletar um Software"

@@ -49,7 +49,7 @@ export function Patente() {
             type="patentes"
           />
         </div>
-        <div className="grid justify-center pb-20 pt-10">
+        <div className="grid justify-center mb-20 mt-10">
           <div className="grid grid-cols-3 max-w-fit gap-5">
             {patente.map((patente) => (
               <Cards

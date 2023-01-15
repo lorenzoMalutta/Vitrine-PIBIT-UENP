@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Title } from "../../../../components/title";
 export function AdminSoftware() {
   return (
-    <section className="grid pb-20 pt-20 justify-center">
+    <section className="grid mb-20 mt-20 justify-center">
       <Title
         titulo="Dashboard de Softwares"
         subtitulo="Administre os softwares cadastrados"
@@ -19,7 +19,7 @@ export function AdminSoftware() {
       </div>
       <ul className="grid grid-cols-2 w-fit items-center gap-11">
         <li className="w-fit">
-          <div className="bg-white max-w-[230px] p-2 rounded shadow-md text-center">
+          <div className="bg-white max-w-[230px] m-2 rounded shadow-md text-center">
             <Link to="/admin/softwares/cadastrar">
               <img src="..\src\assets\dashboard\img1.svg" alt="" />
               <h4>Cadastrar Softwares</h4>
@@ -27,7 +27,7 @@ export function AdminSoftware() {
           </div>
         </li>
         <li className="w-fit">
-          <div className="bg-white max-w-[230px] p-2 rounded shadow-md text-center">
+          <div className="bg-white max-w-[230px] m-2 rounded shadow-md text-center">
             <Link to="/admin/softwares/editar-delete">
               <img src="..\src\assets\dashboard\img2.svg" alt="" />
               <h4>Deletar ou Editar Softwares</h4>

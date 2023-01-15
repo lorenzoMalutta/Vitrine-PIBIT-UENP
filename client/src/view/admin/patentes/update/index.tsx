@@ -149,14 +149,14 @@ export function PatenteUpdate() {
   }, [])
 
   return (
-    <section className="grid p-10">
+    <section className="grid m-10">
       <ToastContainer/>
       <Title
         titulo="Atualizar Patente"
         subtitulo="Atualize os dados da patente"
       />
       <div className="bg-white rounded-md shadow-md w-full">
-        <form className="grid grid-cols-2 p-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit} encType='multipart/form-data'>
+        <form className="grid grid-cols-2 m-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit} encType='multipart/form-data'>
           <div>
             <p>Nome:</p>
             <textarea className="shadow-md bg-[#F8FAFC]" cols={55} rows={5} name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />

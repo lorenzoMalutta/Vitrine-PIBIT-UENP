@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export function MenuAdmin() {
   return (
-    <section className="p-10 h-full text-gray-400">
+    <section className="m-10 h-full text-gray-400">
       <div className="flex flex-col bg-white rounded-md shadow-md ">
         <div className="px-3 py-6">
           <h3 className="font-bold text-3xl ">Dashboard |<span className="font-normal"> Gerenciar - Criar - Editar - Excluir</span></h3>

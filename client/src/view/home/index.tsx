@@ -54,7 +54,7 @@ export function Home() {
 
   return (
     <section className="grid">
-      <div className="grid xl:grid-cols-5 md:grid-cols-2  m-5 gap-5 p-4 ">
+      <div className="grid xl:grid-cols-5 md:grid-cols-2  m-5 gap-5">
         <Link to="/patentes">
           <div className="flex flex-col items-center pt-4  bg-white shadow-2xl hover:bg-[#ededed] duration-700 rounded-md">
             <div className="flex justify-center items-center bg-slate-300 rounded-full w-14 h-14">
@@ -104,7 +104,7 @@ export function Home() {
       <div className="grid items-center grid-cols-1 m-9 shadow-lg">
         <div className="grid md:flex items-center justify-center rounded-md bg-white">
           <img className="sm:h-52" src="src\assets\pesquisas.svg" alt="" />
-          <div className="flex flex-wrap items-center p-4 text-left">
+          <div className="flex flex-wrap items-center m-4 text-left">
             <h2>Patentes e Pesquisa</h2>
             <p>
               Encontre as patentes produzidas pelos pesquisadores da UENP, sendo aprovadas e analisadas pelo
@@ -113,7 +113,7 @@ export function Home() {
           </div>
         </div>
       </div>
-      <div className="grid justify-center">
+      <div className="grid justify-center m-10">
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 max-w-fit gap-14 ">
           {patente.map((patente) => (
             <Cards
@@ -132,7 +132,7 @@ export function Home() {
       <div className="grid items-center grid-cols-1 m-9 shadow-lg">
         <div className="grid md:flex items-center justify-center rounded-md bg-white">
           <img className="h-52" src="src\assets\servicos.svg" alt="" />
-          <div className="flex flex-wrap items-center p-4 text-left">
+          <div className="flex flex-wrap items-center m-4 text-left">
             <h2>Serviços</h2>
             <p>
               Busque pelos serviços prestados pela UENP, como consultorias, cursos, palestras, entre outros. Tendo
@@ -141,7 +141,7 @@ export function Home() {
           </div>
         </div>
       </div>
-      <div className="grid justify-center">
+      <div className="grid justify-center m-10">
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 max-w-fit gap-14 ">
           {servico.map((servico) => (
             <Cards
@@ -160,7 +160,7 @@ export function Home() {
       <div className="grid items-center grid-cols-1 m-9 shadow-lg">
         <div className="grid md:flex items-center justify-center rounded-md bg-white">
           <img className="h-52" src="src\assets\startups.svg" alt="" />
-          <div className="flex flex-wrap items-center p-4 text-left">
+          <div className="flex flex-wrap items-center m-4 text-left">
             <h2>Startups</h2>
             <p>
               Venha conhecer as startups que estão sendo desenvolvidas pelos alunos da Universidade.
@@ -169,7 +169,7 @@ export function Home() {
           </div>
         </div>
       </div>
-      <div className="grid justify-center">
+      <div className="grid justify-center m-10">
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 max-w-fit gap-14 ">
           {startups.map((startups) => (
             <Cards
@@ -188,7 +188,7 @@ export function Home() {
       <div className="grid items-center grid-cols-1 m-9 shadow-lg">
         <div className="grid md:flex items-center justify-center rounded-md bg-white">
           <img className="h-52" src="src\assets\software.svg" alt="" />
-          <div className="flex flex-wrap items-center p-4 text-left ">
+          <div className="flex flex-wrap items-center m-4 text-left ">
             <h2>Software</h2>
             <p>
               Software desenvolvido pelos alunos da Universidade, com o objetivo de facilitar o dia a dia de
@@ -197,7 +197,7 @@ export function Home() {
           </div>
         </div>
       </div>
-      <div className="grid justify-center pb-20">
+      <div className="grid justify-center m-10">
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 max-w-fit gap-14  ">
           {software.map((software) => (
             <Cards
