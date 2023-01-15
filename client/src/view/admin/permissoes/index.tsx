@@ -1,58 +1,103 @@
+import { ToastContainer, toast } from "react-toastify";
 import api from "../../../services/api";
 import { useEffect, useState } from "react";
-
-interface IPermissoes {
+import 'react-toastify/dist/ReactToastify.css';
+import { Title } from "../../../components/title";
+interface IUsuarios {
   name: string,
   id: string,
   email: string,
   cpf: string,
-  permissoes: string,
-  admin: string,
+  usuarios: string,
+  admin: boolean|string,
 }
 
 export function PermissoesUsuarios() {
-  const [permissoes, setPermissoes] = useState<IPermissoes[]>([]);
+  const [usuarios, setUsuarios] = useState<IUsuarios[]>([]);
 
-  api.get('/showAllUsers', {
-    "headers": {
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+  useEffect(() => {
+    api.get('/showAllUsers', {
+      headers: {
+        'Authorization': "Bearer " + localStorage.getItem('token'),
+      }
+    }).then(response => {
+      setUsuarios(response.data);
+    })
+  }, [])
+
+  const tornarAdmin = async (id: string) => {
+    try {
+      await api.post(`/newAdmin/${id}`, null, {
+        headers: {
+          'Authorization': "Bearer " + localStorage.getItem('token'),
+        }
+      })
+      toast.success('Permissão concedida com sucesso!')
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
+    } catch (error) {
+      console.log(error)
     }
-  }).then(response => {
-    setPermissoes(response.data);
-    console.log(response.data)
-  })
+  }
+
+  const removerAdmin = async (id: string) => {
+    try {
+      await api.post(`/removeAdmin/${id}`, null, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem('token'),
+        }
+      })
+      toast.success('Permissão removida com sucesso!')
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   return (
-    <section className="h-screen">
+    <section className="m-10">
+        <Title 
+        titulo="Permissões de usuários"
+        subtitulo="Aqui você pode conceder ou remover permissões de usuários"
+        />
       <div className="flex flex-col items-center justify-center w-full h-full">
-        <h1>Permissões de Usuários</h1>
+        <ToastContainer />
         <table className="shadow w-[1200px]">
           <thead>
             <tr>
-              <th>Nome</th>
+              <th className="rounded">Nome</th>
               <th>Email</th>
               <th>CPF</th>
               <th>Permissões</th>
-              <th>Opção</th>
+              <th>Editar permissão</th>
+              <th className="rounded">Remover permissão</th>
             </tr>
           </thead>
           <tbody>
-            {permissoes.map(permissoes => {
-              if (permissoes.admin === "true") {
-                permissoes.admin = "Administrador"
-              } else {
-                permissoes.admin = "Usuário"
+            {usuarios.map(usuarios => {
+              if (usuarios.admin == true) {
+                usuarios.admin = "Administrador"
+              } else if (usuarios.admin == false) {
+                usuarios.admin = "Usuário"
               }
+              console.log(localStorage.getItem('admin'))
               return (
-                <tr key={permissoes.id}>
-                  <td>{permissoes.name}</td>
-                  <td>{permissoes.email}</td>
-                  <td>{permissoes.cpf}</td>
-                  <td>{permissoes.admin}</td>
+                <tr key={usuarios.id}>
+                  <td>{usuarios.name}</td>
+                  <td>{usuarios.email}</td>
+                  <td>{usuarios.cpf}</td>
+                  <td>{usuarios.admin}</td>
                   <td>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                      Editar
+                    <button onClick={() => tornarAdmin(usuarios.id)} className="bg-[#2563EB] hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-sm">
+                      Permitir
                     </button>
+                  </td>
+                  <td>
+                    <button onClick={() => removerAdmin(usuarios.id)} className="bg-[#2563EB] hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow-sm">Deletar</button>
                   </td>
                 </tr>
               )
