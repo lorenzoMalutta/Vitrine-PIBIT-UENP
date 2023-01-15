@@ -32,8 +32,17 @@ class AuthAdminController extends Controller
 
   public function showAllUsers()
   {
-
     $users = User::all()->toArray();
-    return response()->json($users, 201);
+    return response()->json($users, 200);
+  }
+
+  public function isAdmin($id)
+  {
+    $user = User::findorFail($id);
+    return response()->json([
+      'data' => [
+        'user' => $user
+      ], 200
+    ]);
   }
 }

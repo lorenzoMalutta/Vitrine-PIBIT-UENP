@@ -38,6 +38,7 @@ Route::middleware('auth:sanctum')->group(function () {
   Route::post('/newAdmin/{id}', [AuthAdminController::class, 'newAdmin']);
   Route::post('/removeAdmin/{id}', [AuthAdminController::class, 'removeAdmin']);
   Route::get('/showAllUsers', [AuthAdminController::class, 'showAllUsers']);
+  Route::get('/isAdmin/{id}', [AuthAdminController::class, 'isAdmin']);
 });
 
 // Patente routes
