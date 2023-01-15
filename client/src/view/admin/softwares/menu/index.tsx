@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import { Title } from "../../../../components/title";
 export function AdminSoftware() {
   return (
     <section className="grid pb-20 pt-20 justify-center">
-      <h1>Administrador de Softwares</h1>
+      <Title
+        titulo="Dashboard de Softwares"
+        subtitulo="Administre os softwares cadastrados"
+      />
       <div className="absolute top-56 left-72 -z-10">
         <img
           src="..\src\assets\dashboard\quadrado0.png"

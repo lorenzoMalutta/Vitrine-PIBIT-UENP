@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Cards } from "../../../components/cards";
 import { Filter } from "../../../components/filter";
 import api from "../../../services/api";
+import { Title } from "../../../components/title";
 
 interface Iareas {
   denominacao: string;
@@ -35,10 +36,10 @@ export function Patente() {
   return (
     <section >
       <div className="mx-auto text-center">
-        <div className="ml-10 mt-10 ">
-          <h1 className="font-normal">Vitrine de Patentes</h1>
-        </div>
-        <div className="mx-auto text-center h-1 w-full bg-blue-700 lg:w-1/3"></div>
+        <Title 
+        titulo="Vitrine de Patentes"
+        subtitulo="Tecnologias e Inovação "
+        />
       </div>
       <div className="flex">
         <div className="m-10">

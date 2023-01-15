@@ -5,7 +5,7 @@ export function MenuAdmin() {
     <section className="p-10 h-full text-gray-400">
       <div className="flex flex-col bg-white rounded-md shadow-md ">
         <div className="px-3 py-6">
-          <h3 className="font-bold ">Dashboard |<span className="font-normal"> Gerenciar - Criar - Editar - Excluir</span></h3>
+          <h3 className="font-bold text-3xl ">Dashboard |<span className="font-normal"> Gerenciar - Criar - Editar - Excluir</span></h3>
           <p className="font-medium">Navegação completa para administradores com suas respectivas permissões</p>
         </div>
         <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5" />

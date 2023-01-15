@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../../../../services/api";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { Title } from "../../../../components/title";
 interface ISoftware {
   nome: string;
   id: number;
@@ -44,7 +45,10 @@ export function SoftwareEditDelete() {
   return (
     <div className="p-10 h-screen">
       <ToastContainer />
-      <h1>Editar e Deletar:</h1>
+      <Title
+        titulo="Editar ou Deletar um Software"
+        subtitulo="Faça alterações em um software"
+      />
       <table className="shadow">
         <thead>
           <tr>

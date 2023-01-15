@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import api from "../../../../services/api";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { Title } from "../../../../components/title";
 
 interface Iareas {
   denominacao: string;
@@ -150,7 +151,10 @@ export function PatenteUpdate() {
   return (
     <section className="grid p-10">
       <ToastContainer/>
-      <h1 className="text-[#374151]">Update de Patentes</h1>
+      <Title
+        titulo="Atualizar Patente"
+        subtitulo="Atualize os dados da patente"
+      />
       <div className="bg-white rounded-md shadow-md w-full">
         <form className="grid grid-cols-2 p-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit} encType='multipart/form-data'>
           <div>

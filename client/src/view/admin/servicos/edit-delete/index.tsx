@@ -3,6 +3,7 @@ import api from "../../../../services/api";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { Title } from "../../../../components/title";
 interface IServico {
   nome: string;
   id: number;
@@ -44,7 +45,10 @@ export function ServicoEditDelete() {
   return (
     <div>
       <ToastContainer />
-      <h1>Editar e Deletar:</h1>
+      <Title
+        titulo="Editar e Deletar Serviços"
+        subtitulo="Faça alterações nos serviços cadastrados"
+      />
       <table className="shadow">
         <thead>
           <tr>

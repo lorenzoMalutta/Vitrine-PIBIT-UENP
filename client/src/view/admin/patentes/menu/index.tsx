@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
+import { Title } from "../../../../components/title";
 export function AdminPatente() {
   return (
     <section className="grid pb-20 pt-20 justify-center">
-      <h1>Administrador de patentes</h1>
+      <Title
+        titulo="Dashboard de Patentes"
+        subtitulo="Administre as patentes"
+      />
       <div className="absolute top-56 left-72 -z-10">
         <img
           src="..\src\assets\dashboard\quadrado0.png"

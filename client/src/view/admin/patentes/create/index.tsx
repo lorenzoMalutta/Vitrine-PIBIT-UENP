@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../../../../services/api";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { Title } from "../../../../components/title";
 
 interface Iareas {
   denominacao: string;
@@ -119,7 +120,10 @@ export function PatenteCadastrar() {
   return (
     <section className="grid p-10">
       <ToastContainer />
-      <h1 className="text-[#374151]">Cadastro de Patente</h1>
+      <Title
+        titulo="Cadastrar Patente"
+        subtitulo="Cadastre uma nova patente"
+      />
       <div className="bg-white rounded-md shadow-md w-full">
         <form className="grid grid-cols-2 p-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit}>
           <div>

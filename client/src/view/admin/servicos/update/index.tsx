@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../../services/api";
 import { ToastContainer, toast } from "react-toastify";
+import { Title } from "../../../../components/title";
 
 interface Iareas {
   denominacao: string;
@@ -114,7 +115,10 @@ export function ServicoUpdate() {
   return (
     <section className="grid p-10">
       <ToastContainer />
-      <h1 className="text-[#374151]">Update de Serviços</h1>
+      <Title
+        titulo="Atualizar Serviço"
+        subtitulo="Faça as alterações necessárias no formulário abaixo."
+      />
       <div className="bg-white rounded-md shadow-md w-full">
         <form className="grid grid-cols-2 p-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit} encType='multipart/form-data'>
           <div>
