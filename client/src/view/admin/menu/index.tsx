@@ -65,7 +65,7 @@ export function MenuAdmin() {
               </li>
             </div>
           </Link>
-          <Link to="/admin/startups">
+          <Link to="/admin/permissoes">
             <div className="grid grid-flow-col-dense hover:shadow-3xl     hover:bg-gray-100 items-center text-left  shadow-lg rounded-md ">
               <li>
                 <img className="max-w-xs rounded-tl-md rounded-bl-md" src="src\assets\startups.svg" alt="" />

@@ -20,7 +20,8 @@ import { AdminServico } from './view/admin/servicos/menu'
 import { PermissoesUsuarios } from './view/admin/permissoes'
 
 export function Router() {
-  if (localStorage.getItem('authenticating') === 'true') {
+
+  if (localStorage.getItem('authenticating') === 'true' ) {
     return (
       <Routes>
         {/* Admin */}
@@ -38,6 +39,11 @@ export function Router() {
         <Route path="/admin/servicos/editar-delete" element={< ServicoEditDelete />} />
         <Route path="/admin/servicos/edit/:id" element={< ServicoUpdate />} />
         <Route path="/admin/permissoes" element={< PermissoesUsuarios />} />
+        {/* home */}
+        <Route path="/" element={<Home />} />
+        {/* Patente */}
+        <Route path="/patentes" element={<Patente />} />
+        <Route path="/patentes/:id" element={<PatenteDetail />} />
       </Routes>
     )
   } else {

@@ -19,6 +19,7 @@ export function Header() {
   const [expanded, setExpanded] = useState(false);
   const menuMobile = () => setExpanded(!expanded);
   const navigate = useNavigate();
+  // console.log(localStorage.getItem('token'))
   const logout = () => {
     api.post("/logout", null, {
       headers: {

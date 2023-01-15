@@ -42,13 +42,13 @@ export function ServicoEditDelete() {
   }, [])
 
   return (
-    <div className="p-10 h-screen">
+    <div>
       <ToastContainer />
       <h1>Editar e Deletar:</h1>
       <table className="shadow">
         <thead>
           <tr>
-            <th>Título</th>
+            <th className="rounded">Título</th>
             <th>Colaborador</th>
             <th>Links</th>
             <th>Área Científica</th>
@@ -57,7 +57,7 @@ export function ServicoEditDelete() {
             <th>Criador</th>
             <th>Data</th>
             <th>Editar</th>
-            <th>Deletar</th>
+            <th className="rounded">Deletar</th>
           </tr>
         </thead>
         <tbody>
@@ -73,11 +73,11 @@ export function ServicoEditDelete() {
               <td>{servico.data_criacao}</td>
               <td>
                 <Link to={`/admin/servicos/edit/${servico.id}`}>
-                  <button className=" bg-[#2563EB] hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-sm">Editar</button>
+                  <button className="bg-[#2563EB] hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg shadow-sm">Editar</button>
                 </Link>
               </td>
               <td>
-                <button className=" bg-[#2563EB] hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow-sm" onClick={() => deleteServico(servico.id)}>Deletar</button>
+                <button className="bg-[#2563EB] hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg shadow-sm" onClick={() => deleteServico(servico.id)}>Deletar</button>
               </td>
             </tr>
           ))}
