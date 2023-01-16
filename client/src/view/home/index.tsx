@@ -11,7 +11,7 @@ import api from "../../services/api";
 interface IHome {
   nome: string;
   sinopse: string;
-  palavra_chave: any[];
+  palavra_chave: string;
   id: number;
   tipo: string;
   area_cientifica: string;
