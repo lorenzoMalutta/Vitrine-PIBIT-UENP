@@ -4,20 +4,21 @@ interface Iareas {
   denominacao: string;
 }
 interface PropsFilter {
-  filter: string;
+  nomeFiltro: string;
   setFilter: (filter: string) => void;
   type: "patentes" | "softwares" | "pesquisas" | "servicos" | "startups";
+  setBusca: (busca: string) => void;
 }
 
+export function Filter({ setBusca, nomeFiltro, setFilter, type }: PropsFilter) {
+  const [valorBusca, setValorBusca] = useState("");
 
-export function Filter({ filter, setFilter, type }: PropsFilter) {
-  const [valorBusca, setValorBusca] = useState('');
-
-
-  api.get(`/patentes/search/${valorBusca}`).then(response => {
-    setFilter(response.data);
-  })
-
+  useEffect(() => {
+    api.get(`/patentes/search/${valorBusca}`).then(response => {
+      setFilter(response.data);
+    })
+  }, [valorBusca])
+  setBusca(valorBusca)
 
   if (type === "patentes") {
     const [optionPalavraChave, setOptionPalavraChave] = useState<Iareas[]>([]);
@@ -30,7 +31,7 @@ export function Filter({ filter, setFilter, type }: PropsFilter) {
     return (
       <div className="bg-white flex flex-col h-max p-4 shadow-xl rounded-md">
         <form>
-          <h4 className="text-gray-700 font-medium">{filter}</h4>
+          <h4 className="text-gray-700 font-medium">{nomeFiltro}</h4>
           <input type="text" placeholder="Pesquise..." onChange={(e) => setValorBusca(e.target.value)} />
           {optionPalavraChave.map((optionPalavraChave) => (
             <div className="flex gap-1 items-center p-1" key={optionPalavraChave.denominacao}>
@@ -52,7 +53,7 @@ export function Filter({ filter, setFilter, type }: PropsFilter) {
     }, [])
     return (
       <div className="bg-white flex flex-col h-max p-4 shadow-xl rounded-md">
-        <h4 className="text-gray-700 font-medium">{filter}</h4>
+        <h4 className="text-gray-700 font-medium">{nomeFiltro = ""}</h4>
         <input type="text" placeholder="Pesquise..." onChange={(e) => setFilter(e.target.value)} />
         {optionPalavraChave.map((optionPalavraChave) => (
           <div className="flex gap-1 items-center p-1" key={optionPalavraChave.denominacao}>
@@ -73,7 +74,7 @@ export function Filter({ filter, setFilter, type }: PropsFilter) {
     }, [])
     return (
       <div className="bg-white flex flex-col h-max p-4 shadow-xl rounded-md">
-        <h4 className="text-gray-700 font-medium">{filter}</h4>
+        <h4 className="text-gray-700 font-medium">{nomeFiltro}</h4>
         <input type="text" placeholder="Pesquise..." onChange={(e) => setFilter(e.target.value)} />
         {optionPalavraChave.map((optionPalavraChave) => (
           <div className="flex gap-1 items-center p-1" key={optionPalavraChave.denominacao}>
@@ -94,7 +95,7 @@ export function Filter({ filter, setFilter, type }: PropsFilter) {
     }, [])
     return (
       <div className="bg-white flex flex-col h-max p-4 shadow-xl rounded-md">
-        <h4 className="text-gray-700 font-medium">{filter}</h4>
+        <h4 className="text-gray-700 font-medium">{nomeFiltro = ""}</h4>
         <input type="text" placeholder="Pesquise..." onChange={(e) => setFilter(e.target.value)} />
         {optionPalavraChave.map((optionPalavraChave) => (
           <div className="flex gap-1 items-center p-1" key={optionPalavraChave.denominacao}>
@@ -115,7 +116,7 @@ export function Filter({ filter, setFilter, type }: PropsFilter) {
     }, [])
     return (
       <div className="bg-white flex flex-col h-max p-4 shadow-xl rounded-md">
-        <h4 className="text-gray-700 font-medium">{filter}</h4>
+        <h4 className="text-gray-700 font-medium">{nomeFiltro}</h4>
         <input type="text" placeholder="Pesquise..." onChange={(e) => setFilter(e.target.value)} />
         {optionPalavraChave.map((optionPalavraChave) => (
           <div className="flex gap-1 items-center p-1" key={optionPalavraChave.denominacao}>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Children, useEffect, useState } from "react";
 import { Cards } from "../../../components/cards";
 import { Filter } from "../../../components/filter";
 import api from "../../../services/api";
@@ -10,7 +10,7 @@ interface Iareas {
 interface Ifiltro {
   nome: string;
   sinopse: string;
-  palavra_chave: any;
+  palavra_chave: string;
   id: number;
   tipo: string;
   area_cientifica: string;
@@ -19,7 +19,7 @@ interface Ifiltro {
 interface IHome {
   nome: string;
   sinopse: string;
-  palavra_chave: any[];
+  palavra_chave: string;
   id: number;
   tipo: string;
   area_cientifica: string;
@@ -30,11 +30,18 @@ interface IHome {
 export function Patente() {
   const [filter, setFilter] = useState<Ifiltro[]>([])
   const [patente, setPatente] = useState<IHome[]>([]);
+  const [busca, setBusca] = useState<string>("");
   const [optionPalavraChave, setOptionPalavraChave] = useState<Iareas[]>([]);
 
   const filtro = (childrenData: any) => {
-    setFilter(childrenData);
+    setFilter(childrenData)
   }
+  // console.log(filter)
+
+  const buscar = (childrenData: any) => {
+    setBusca(childrenData)
+  }
+  console.log(busca)
 
   useEffect(() => {
     api.get('/palavraChave').then(response => {
@@ -46,8 +53,7 @@ export function Patente() {
       setPatente(response.data);
     })
   }, [])
-  console.log(filter)
-  if (filter.map((filtro) => filtro.palavra_chave == 'Fertilizantes')) {
+  if (busca == "todos") {
     return (
       <section >
         <div className="mx-auto text-center">
@@ -59,13 +65,14 @@ export function Patente() {
         <div className="flex">
           <div className="m-10">
             <Filter
-              filter="Vitrine de Patentes"
+              nomeFiltro="Vitrine de Patentes"
               setFilter={filtro}
               type="patentes"
+              setBusca={buscar}
             />
           </div>
           <div className="grid justify-center mb-20 mt-10">
-            <div className="grid grid-cols-3 gap-5">
+            <div className="grid grid-cols-3 gap-5 max-h-fit">
               {patente.map((patente) => (
                 <Cards
                   type="patentes"
@@ -83,41 +90,46 @@ export function Patente() {
         </div>
       </section>
     )
-  } else if (filter) {
+  } else if (filter.map((filtro) => filtro.palavra_chave == busca)) {
     return (
       <section >
-      <div className="mx-auto text-center">
-        <Title
-          titulo="Vitrine de Patentes"
-          subtitulo="Tecnologias e Inovação "
-        />
-      </div>
-      <div className="flex">
-        <div className="m-10">
-          <Filter
-            filter="Vitrine de Patentes"
-            setFilter={filtro}
-            type="patentes"
+        <div className="mx-auto text-center">
+          <Title
+            titulo="Vitrine de Patentes"
+            subtitulo="Tecnologias e Inovação "
           />
         </div>
-        <div className="grid justify-center mb-20 mt-10">
-          <div className="grid grid-cols-3 gap-5">
-            {patente.map((patente) => (
-              <Cards
-                type="patentes"
-                image={patente.image}
-                nome={patente.nome}
-                sinopse={patente.sinopse}
-                palavraChave={patente.palavra_chave}
-                id={patente.id}
-                areaCientifica={patente.area_cientifica}
-                areaEconomica={patente.area_economica}
-              />
-            ))}
+        <div className="flex">
+          <div className="m-10">
+            <Filter
+              nomeFiltro="Vitrine de Patentes"
+              setFilter={filtro}
+              type="patentes"
+              setBusca={buscar}
+            />
+          </div>
+          <div className="grid justify-center mb-20 mt-10">
+            <div className="grid grid-cols-3 gap-5 max-h-fit">
+              {patente.map((patente) => {
+                if (busca == patente.palavra_chave) {
+                  return (
+                    <Cards
+                      type="patentes"
+                      image={patente.image}
+                      nome={patente.nome}
+                      sinopse={patente.sinopse}
+                      palavraChave={patente.palavra_chave}
+                      id={patente.id}
+                      areaCientifica={patente.area_cientifica}
+                      areaEconomica={patente.area_economica}
+                    />
+                  )
+                }
+              })}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
     )
   }
 }
