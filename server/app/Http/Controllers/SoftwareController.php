@@ -42,18 +42,20 @@ class SoftwareController extends Controller
       $software = Software::create($request->all());
       if ($request->hasFile('image')) {
         $destinationPath = "public/images/software";
+        $namePath = "/images/software/";
         $extension = $request->image->getClientOriginalExtension();
         $name = Uuid::uuid1();
         $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-        $software->image = $name . "." . $extension;
+        $software->image = $namePath . $name . "." . $extension;
         $software->save();
       }
       if ($request->hasFile('video')) {
         $destinationPath = "public/videos/software";
+        $namePath = "/videos/software/";
         $extension = $request->video->getClientOriginalExtension();
         $name = Uuid::uuid1();
         $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
-        $software->video = $name . "." . $extension;
+        $software->video = $namePath . $name . "." . $extension;
         $software->save();
       }
     } catch (\Exception $e) {

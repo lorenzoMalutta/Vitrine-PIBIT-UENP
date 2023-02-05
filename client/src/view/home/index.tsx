@@ -28,7 +28,8 @@ export function Home() {
   
   useEffect(() => {
     api.get('/patentes').then(response => {
-      setPatente(response.data);
+        setPatente(response.data);
+        console.log(response.data)
     })
   }, [])
   useEffect(() => {

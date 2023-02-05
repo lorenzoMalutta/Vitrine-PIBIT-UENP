@@ -41,10 +41,11 @@ class ServicoController extends Controller
       $servico = Servico::create($request->all());
       if ($request->hasFile('image')) {
         $destinationPath = "public/images/servicos";
+        $namePath = "/images/servicos/";
         $extension = $request->image->getClientOriginalExtension();
         $name = Uuid::uuid1();
         $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-        $servico->image = $name . "." . $extension;
+        $servico->image = $namePath . $name . "." . $extension;
         $servico->save();
       }
     } catch (\Exception $e) {
