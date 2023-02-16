@@ -70,7 +70,7 @@ class PatenteController extends Controller
                 'criadores' => $request->criadores,
                 'palavra_chave' => $request->palavra_chave,
             ]);
-            $patente->update();
+            $patente->save();
             if ($request->hasFile('image')) {
                 $destinationPath = "public/images/patente";
                 $namePath = "/images/patente/";
@@ -78,7 +78,7 @@ class PatenteController extends Controller
                 $name = Uuid::uuid1();
                 $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
                 $patente->image =  $namePath . $name . "." . $extension;
-                $patente->update();
+                $patente->save();
             }
             if ($request->hasFile('pdf')) {
                 $destinationPath = "public/pdf/patente";
@@ -87,7 +87,7 @@ class PatenteController extends Controller
                 $name = Uuid::uuid1();
                 $path['pdf'] = $request->file('pdf')->storeAs($destinationPath, $name . ".{$extension}");
                 $patente->pdf = $namePath . $name . "." . $extension;
-                $patente->update();
+                $patente->save();
             }
             if ($request->hasFile('video')) {
                 $destinationPath = "public/video/patente";
@@ -96,7 +96,7 @@ class PatenteController extends Controller
                 $name = Uuid::uuid1();
                 $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
                 $patente->video = $namePath . $name . "." . $extension;
-                $patente->update();
+                $patente->save();
             }
         } catch (\Exception $e) {
             return response()->json([
