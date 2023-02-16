@@ -16,7 +16,7 @@ export function Cards({ type, palavraChave, nome, sinopse, image, areaCientifica
     return (
         <div className="rounded shadow-lg bg-white w-64">
             <a href={type + "/" + id}>
-                <img className="w-full max-h-32" src={image} alt="Sunset in the mountains" />
+                <img className="w-full max-h-32" src={"http://127.0.0.1:8000/storage" + image} alt="Sunset in the mountains" />
                 <div className="m-2">
                     <div className="font-bold text-gray-700 text-xl mb-2">
                         {nome}
