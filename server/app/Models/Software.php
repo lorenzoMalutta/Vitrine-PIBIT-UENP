@@ -7,34 +7,36 @@ use Illuminate\Database\Eloquent\Model;
 
 class Software extends Model
 {
-  use HasFactory;
+    use HasFactory;
 
-  protected $table = 'softwares';
+    protected $table = 'softwares';
 
-  protected $connection = 'mysql';
+    protected $connection = 'mysql';
 
-  protected $guarded = [];
+    protected $guarded = [];
 
-  protected $fillLabel = [
-    'nome',
-    'sinopse',
-    'tecnologia',
-    'resumo',
-    'problema',
-    'vantagem',
-    'telefone',
-    'email',
-    'colaborador',
-    'data_criacao',
-    'links',
-    'criadores',
-    'area_cientifica',
-    'area_economica',
-    'palavra_chave',
-  ];
+    protected $fillLabel = [
+        'nome',
+        'sinopse',
+        'tecnologia',
+        'resumo',
+        'problema',
+        'vantagem',
+        'telefone',
+        'email',
+        'colaborador',
+        'data_criacao',
+        'links',
+        'criadores',
+        'area_cientifica',
+        'area_economica',
+        'palavra_chave',
+        'image',
+        'video',
+    ];
 
-  // public function midia()
-  // {
-  //   return $this->hasMany(Midia::class);
-  // }
+    // public function midia()
+    // {
+    //   return $this->hasMany(Midia::class);
+    // }
 }
