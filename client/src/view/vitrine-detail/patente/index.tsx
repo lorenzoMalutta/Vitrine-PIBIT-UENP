@@ -41,7 +41,7 @@ export function PatenteDetail() {
         <section className="sm:p-10 sm:m-10 m-5 font-medium">
             <div className="grid grid-cols-1 bg-white rounded shadow-md">
                 <div>
-                    <video src={"http://127.0.0.1:8000/storage" + patente?.video} />
+                    <iframe className="w-full h-[600px]" src={"http://127.0.0.1:8000/storage" + patente?.video} />
                 </div>
                 <div className="pl-10 pr-10">
                     <h1>{patente?.nome}</h1>
