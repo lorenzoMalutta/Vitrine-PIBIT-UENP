@@ -7,31 +7,32 @@ use Illuminate\Database\Eloquent\Model;
 
 class Servico extends Model
 {
-  use HasFactory;
+    use HasFactory;
 
-  protected $table = 'servicos';
+    protected $table = 'servicos';
 
-  protected $connection = 'mysql';
+    protected $connection = 'mysql';
 
-  protected $guarded = [];
+    protected $guarded = [];
 
-  protected $fillLabel = [
-    'nome',
-    'sinopse',
-    'resumo',
-    'problema',
-    'aplicacao',
-    'telefone',
-    'email',
-    'links',
-    'criadores',
-    'palavra_chave',
-    'area_cientifica',
-    'area_economica',
-  ];
+    protected $fillLabel = [
+        'nome',
+        'sinopse',
+        'resumo',
+        'problema',
+        'aplicacao',
+        'telefone',
+        'email',
+        'links',
+        'criadores',
+        'palavra_chave',
+        'area_cientifica',
+        'area_economica',
+        'image',
+    ];
 
-  // public function midia()
-  // {
-  //   return $this->hasMany(Midia::class);
-  // }
+    // public function midia()
+    // {
+    //   return $this->hasMany(Midia::class);
+    // }
 }

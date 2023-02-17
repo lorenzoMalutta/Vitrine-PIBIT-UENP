@@ -5,13 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PatenteRequest;
 use App\Models\Patente;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-// use App\Models\Midia;
 use Ramsey\Uuid\Uuid;
-use Termwind\Components\Dd;
-
-use function GuzzleHttp\Promise\all;
 
 class PatenteController extends Controller
 {
@@ -23,17 +18,7 @@ class PatenteController extends Controller
     public function index()
     {
         try {
-            $patente = Patente::select('id', 'nome', 'area_economica', 'area_cientifica', 'sinopse', 'pct', 'solucao', 'inpi', 'resumo', 'problema', 'vantagem', 'aplicacao', 'trl', 'telefone', 'email', 'colaborador', 'data_criacao', 'links', 'criadores', 'palavra_chave', 'video', 'pdf', 'image')->get();
-            // dd($patente);
-            // $urlImage = Storage::url($patente->image);
-            // $urlPdf = Storage::url($patente->pdf);
-            // $urlVideo = Storage::url($patente->video);
-
-            // $patente->image = $urlImage;
-            // $patente->pdf = $urlPdf;
-            // $patente->video = $urlVideo;
-
-
+            $patente = Patente::all()->toArray();
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -135,63 +120,62 @@ class PatenteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  App\Http\Requests\PatenteRequest  $request
-     * @param  int  $id
+     * @param  App\Http\Requests\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
         try {
-            $patente = Patente::find($request->id);
-            $patente = $patente->update([
-                'nome' => $request->nome,
-                'area_economica' => $request->area_economica,
-                'area_cientifica' => $request->area_cientifica,
-                'sinopse' => $request->sinopse,
-                'pct' => $request->pct,
-                'solucao' => $request->solucao,
-                'inpi' => $request->inpi,
-                'resumo' => $request->resumo,
-                'problema' => $request->problema,
-                'vantagem' => $request->vantagem,
-                'aplicacao' => $request->aplicacao,
-                'trl' => $request->trl,
-                'telefone' => $request->telefone,
-                'email' => $request->email,
-                'colaborador' => $request->colaborador,
-                'data_criacao' => $request->data_criacao,
-                'links' => $request->links,
-                'criadores' => $request->criadores,
-                'palavra_chave' => $request->palavra_chave,
-                'image' => $request->image,
-                'pdf' => $request->pdf,
-                'video' => $request->video,
-            ]);
-            $patente->update();
+            $patente = Patente::findOrFail($request->id);
+
+            $patente->nome = $request->input('nome');
+            $patente->area_economica = $request->input('area_economica');
+            $patente->area_cientifica = $request->input('area_cientifica');
+            $patente->sinopse = $request->input('sinopse');
+            $patente->pct = $request->input('pct');
+            $patente->solucao = $request->input('solucao');
+            $patente->inpi = $request->input('inpi');
+            $patente->resumo = $request->input('resumo');
+            $patente->problema = $request->input('problema');
+            $patente->vantagem = $request->input('vantagem');
+            $patente->aplicacao = $request->input('aplicacao');
+            $patente->trl = $request->input('trl');
+            $patente->telefone = $request->input('telefone');
+            $patente->email = $request->input('email');
+            $patente->colaborador = $request->input('colaborador');
+            $patente->data_criacao = $request->input('data_criacao');
+            $patente->links = $request->input('links');
+            $patente->criadores = $request->input('criadores');
+            $patente->palavra_chave = $request->input('palavra_chave');
             if ($request->hasFile('image')) {
                 $destinationPath = "public/images/patente";
+                $namePath = "/images/patente/";
                 $extension = $request->image->getClientOriginalExtension();
                 $name = Uuid::uuid1();
-                $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-                $patente->image = $name . "." . $extension;
-                $patente->update();
+                if ($request->file('image')->storeAs($destinationPath, $name . ".{$extension}")) {
+                    $patente->image = $namePath . $name . "." . $extension;
+                }
             }
             if ($request->hasFile('pdf')) {
                 $destinationPath = "public/pdf/patente";
+                $namePath = "/pdf/patente/";
                 $extension = $request->pdf->getClientOriginalExtension();
                 $name = Uuid::uuid1();
-                $path['pdf'] = $request->file('pdf')->storeAs($destinationPath, $name . ".{$extension}");
-                $patente->pdf = $name . "." . $extension;
-                $patente->update();
+                if ($request->file('pdf')->storeAs($destinationPath, $name . ".{$extension}")) {
+                    $patente->pdf = $namePath . $name . "." . $extension;
+                }
             }
             if ($request->hasFile('video')) {
                 $destinationPath = "public/video/patente";
+                $namePath = "/video/patente/";
                 $extension = $request->video->getClientOriginalExtension();
                 $name = Uuid::uuid1();
-                $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
-                $patente->video = $name . "." . $extension;
-                $patente->update();
+                if ($request->file('video')->storeAs($destinationPath, $name . ".{$extension}")) {
+                    $patente->video = $namePath . $name . "." . $extension;
+                }
             }
+            $patente->save();
+            dd($request);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Erro ao atualizar patente',
