@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\SoftwareRequest;
 use App\Models\Midia;
 use App\Models\Software;
@@ -36,7 +37,7 @@ class SoftwareController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SoftwareRequest $request)
+    public function store(Request $request)
     {
         try {
             $software = Software::create([
@@ -114,7 +115,7 @@ class SoftwareController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SoftwareRequest $request, $id)
+    public function update(Request $request, $id)
     {
         try {
             $software = Software::findOrFail($id);

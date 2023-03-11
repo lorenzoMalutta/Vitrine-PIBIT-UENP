@@ -55,14 +55,14 @@ export function Patente() {
     }, [])
     if (busca == "todos") {
         return (
-            <section >
+            <section className="h-fit">
                 <div className="mx-auto text-center">
                     <Title
                         titulo="Vitrine de Patentes"
                         subtitulo="Tecnologias e Inovação "
                     />
                 </div>
-                <div className="flex">
+                <div className="flex h-screen">
                     <div className="m-10">
                         <Filter
                             nomeFiltro="Vitrine de Patentes"
@@ -71,8 +71,8 @@ export function Patente() {
                             setBusca={buscar}
                         />
                     </div>
-                    <div className="grid justify-center mb-20 mt-10">
-                        <div className="grid grid-cols-3 gap-5 max-h-56">
+                    <div className="grid justify-center mb-20 mt-10" >
+                        <div className="grid grid-cols-4 gap-5 max-h-56">
                             {patente.map((patente) => (
                                 <Cards
                                     type="patentes"

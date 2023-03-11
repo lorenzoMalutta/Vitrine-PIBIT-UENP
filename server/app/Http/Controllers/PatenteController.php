@@ -31,7 +31,7 @@ class PatenteController extends Controller
      * @param  App\Http\Requests\PatenteRequest;  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PatenteRequest $request)
     {
         try {
             $patente = Patente::create([
@@ -123,7 +123,7 @@ class PatenteController extends Controller
      * @param  App\Http\Requests\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(PatenteRequest $request)
     {
         try {
             $patente = Patente::findOrFail($request->id);
