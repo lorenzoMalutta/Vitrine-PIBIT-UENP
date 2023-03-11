@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../services/api";
-
+import { TrlModal } from "../../../Rooks/trlModal";
+import { GrCircleInformation } from "react-icons/gr";
+import imgtrl from "../../../assets/trl.png";
 interface Patente {
     id: string;
     nome: string;
@@ -30,6 +32,15 @@ interface Patente {
 export function PatenteDetail() {
     const { id } = useParams();
     const [patente, setPatente] = useState<Patente>()
+    const [showModal, setShowModal] = useState(false);
+
+    const handleShowModal = () => {
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
 
     useEffect(() => {
         api.get(`/patentes/${id}`).then((response) => {
@@ -38,8 +49,8 @@ export function PatenteDetail() {
     }, [id]);
 
     return (
-        <section className="sm:p-10 sm:m-10 m-5 font-medium">
-            <div className="grid grid-cols-1 bg-white rounded shadow-md">
+        <section className="font-medium grid xl:grid-cols-5 grid-cols-1">
+            <div className="grid col-span-4 bg-white rounded shadow-md ml-10 my-10">
                 <div>
                     <iframe className="w-full h-[600px]" src={"http://127.0.0.1:8000/storage" + patente?.video} />
                 </div>
@@ -73,12 +84,41 @@ export function PatenteDetail() {
                         <p>{patente?.aplicacao}</p>
                     </div>
                     <div>
-                        <h3>TRL:</h3>
+                        {showModal && (
+                            <TrlModal
+                                onClose={handleCloseModal}
+                                title="O que é TRL?"
+                                body={<img src={imgtrl} />}
+                            />
+                        )}
+                        <div className="flex row items-baseline gap-1">
+                            <h3>TRL</h3>
+                            <GrCircleInformation
+                                onMouseOver={() => {
+                                    handleShowModal();
+                                }}
+                                size={20}
+                            />
+                        </div>
                         <p>{patente?.trl}</p>
                     </div>
                     <div>
                         <h3>INPI:</h3>
                         <p>{patente?.inpi}</p>
+                    </div>
+                    <div>
+                        <h3>Imagem:</h3>
+                        <img src={"http://127.0.0.1:8000/storage" + patente?.image} alt="" />
+                    </div>
+                </div>
+            </div>
+            <div className="grid col-span-1 bg-white shadow-md rounded m-10">
+                <div className="m-2">
+                    <div>
+                        <h3>PDF:</h3>
+                        <a href={"http://127.0.0.1:8000/storage" + patente?.pdf}>
+                            <img className="w-36" src="https://img.icons8.com/ios/200/000000/pdf-2.png" alt="" />
+                        </a>
                     </div>
                     <div>
                         <h3>Criadores:</h3>
@@ -94,16 +134,8 @@ export function PatenteDetail() {
                     </div>
                     <div>
                         <h3>Contato:</h3>
-                        <p>{patente?.email}</p>
+                        <p className="text-[12px]">{patente?.email}</p>
                         <p>{patente?.telefone}</p>
-                    </div>
-                    <div>
-                        <h3>PDF:</h3>
-                        <a href={"http://127.0.0.1:8000/storage" + patente?.pdf}></a>
-                    </div>
-                    <div>
-                        <h3>Imagem:</h3>
-                        <img src={"http://127.0.0.1:8000/storage" + patente?.image} alt="" />
                     </div>
                 </div>
             </div>
