@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import api from "../../../../services/api";
+
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Title } from "../../../../components/title";
+import api from "../../../../services/api";
 
 interface Iareas {
     denominacao: string;
@@ -44,7 +45,7 @@ export function LaboratorioCadastro() {
         }
     };
 
-    const verificacao = () => { toast.success("Patente cadastrada com sucesso!") }
+    const verificacao = () => { toast.success("Laboratório cadastrada com sucesso!") }
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -60,16 +61,16 @@ export function LaboratorioCadastro() {
         form.append('supervisores', supervisores);
         form.append('area_cientifica', area_cientifica);
         form.append('area_economica', area_economica);
-        form.append('palavra_chave', palavra_chave);
+        form.append('palavras_chave', palavra_chave);
         form.append('image', image);
         form.append('pdf', pdf);
         form.append('conteudo', conteudo);
 
         try {
-            await api.post('/laboratorio/cadastrar', form, {
+            await api.post('/laboratorios/cadastrar', form, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    'Authorization': "Bearer " + localStorage.getItem('token'),
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
                 },
             });
         }
@@ -125,6 +126,16 @@ export function LaboratorioCadastro() {
                         <p>Aplicação:</p>
                         <textarea placeholder="Mínimo de 255 caracteres máximo de 500 caracteres" className="shadow-md bg-[#F8FAFC]" name="aplicacao" id="aplicacao" cols={55} rows={5} value={aplicacao} onChange={(e) => setAplicacao(e.target.value)} />
                         {aplicacao.length < 255 && <p className="text-red-500">Mínimo de 255 caracteres</p> || aplicacao.length > 500 && <p className="text-red-500">Máximo de 500 caracteres</p>}
+                    </div>
+                    <div className="mt-2">
+                        <p>Conteúdo:</p>
+                        <textarea placeholder="Mínimo de 255 caracteres máximo de 500 caracteres" className="shadow-md bg-[#F8FAFC]" name="conteudo" id="conteudo" cols={55} rows={5} value={conteudo} onChange={(e) => setConteudo(e.target.value)} />
+                        {conteudo.length < 255 && <p className="text-red-500">Mínimo de 255 caracteres</p> || conteudo.length > 500 && <p className="text-red-500">Máximo de 500 caracteres</p>}
+                    </div>
+                    <div className="mt-2">
+                        <p>Supervisores responsáveis:</p>
+                        <textarea placeholder="Máximo de 255 caracteres" className="shadow-md bg-[#F8FAFC]" cols={55} rows={5} name="supervisores" id="supervisores" value={supervisores} onChange={(e) => setSupervisores(e.target.value)} />
+                        {supervisores.length > 255 && <p className="text-red-500">Máximo de 255 caracteres</p>}
                     </div>
                     <div className="mt-2">
                         <p>Área Científica:</p>

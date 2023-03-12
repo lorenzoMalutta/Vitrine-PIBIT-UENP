@@ -19,7 +19,7 @@ interface Ifiltro {
 interface IHome {
     nome: string;
     sinopse: string;
-    palavra_chave: string;
+    palavras_chave: string;
     id: number;
     tipo: string;
     area_cientifica: string;
@@ -29,14 +29,14 @@ interface IHome {
 
 export function Laboratorio() {
     const [filter, setFilter] = useState<Ifiltro[]>([])
-    const [laboratorio, setServico] = useState<IHome[]>([]);
+    const [laboratorio, setLaboratorio] = useState<IHome[]>([]);
     const [busca, setBusca] = useState<string>("");
     const [optionPalavraChave, setOptionPalavraChave] = useState<Iareas[]>([]);
 
     const filtro = (childrenData: any) => {
         setFilter(childrenData)
     }
-    // console.log(filter)
+
 
     const buscar = (childrenData: any) => {
         setBusca(childrenData)
@@ -50,16 +50,17 @@ export function Laboratorio() {
     }, [])
     useEffect(() => {
         api.get('/laboratorios').then(response => {
-            setServico(response.data);
+            setLaboratorio(response.data);
         })
     }, [])
+
     if (busca == "todos") {
         return (
             <section className="h-fit">
                 <div className="mx-auto text-center">
                     <Title
-                        titulo="Vitrine de Serviços"
-                        subtitulo="Prestação de Serviços"
+                        titulo="Vitrine de Laboratórios"
+                        subtitulo="Prestação de Laboratórios"
                     />
                 </div>
                 <div className="flex h-screen">
@@ -79,7 +80,7 @@ export function Laboratorio() {
                                     image={laboratorio.image}
                                     nome={laboratorio.nome}
                                     sinopse={laboratorio.sinopse}
-                                    palavraChave={laboratorio.palavra_chave}
+                                    palavraChave={laboratorio.palavras_chave}
                                     id={laboratorio.id}
                                     areaCientifica={laboratorio.area_cientifica}
                                     areaEconomica={laboratorio.area_economica}
@@ -95,30 +96,30 @@ export function Laboratorio() {
             <section >
                 <div className="mx-auto text-center">
                     <Title
-                        titulo="Vitrine de Patentes"
+                        titulo="Vitrine de Laboratórios"
                         subtitulo="Tecnologias e Inovação "
                     />
                 </div>
                 <div className="flex">
                     <div className="m-10">
                         <Filter
-                            nomeFiltro="Vitrine de Patentes"
+                            nomeFiltro="Vitrine de Laboratórios"
                             setFilter={filtro}
-                            type="patentes"
+                            type="laboratorio"
                             setBusca={buscar}
                         />
                     </div>
                     <div className="grid justify-center mb-20 mt-10">
                         <div className="grid grid-cols-3 gap-5 max-h-56">
                             {laboratorio.map((laboratorio) => {
-                                if (busca == laboratorio.palavra_chave) {
+                                if (busca == laboratorio.palavras_chave) {
                                     return (
                                         <Cards
-                                            type="patentes"
+                                            type="laboratorios"
                                             image={laboratorio.image}
                                             nome={laboratorio.nome}
                                             sinopse={laboratorio.sinopse}
-                                            palavraChave={laboratorio.palavra_chave}
+                                            palavraChave={laboratorio.palavras_chave}
                                             id={laboratorio.id}
                                             areaCientifica={laboratorio.area_cientifica}
                                             areaEconomica={laboratorio.area_economica}

@@ -8,6 +8,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { IoLogInOutline } from "react-icons/io5";
 import { AiOutlineHome } from "react-icons/ai";
 import { AiOutlineMenu } from "react-icons/ai";
+import { ImLab } from "react-icons/im";
 import logo from "../../assets/logo-aitec.png";
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
@@ -19,7 +20,6 @@ export function Header() {
     const [expanded, setExpanded] = useState(false);
     const menuMobile = () => setExpanded(!expanded);
     const navigate = useNavigate();
-    // console.log(localStorage.getItem('token'))
     const logout = () => {
         api.post("/logout", null, {
             headers: {
@@ -35,8 +35,8 @@ export function Header() {
                 navigate('/')
             }, 100)
         } else {
-            console.log('não logado')
             navigate('/login')
+            window.location.reload()
         }
     }
 
@@ -47,7 +47,7 @@ export function Header() {
                 <img className="max-w-[200px] sm:max-w-sm " src={logo} alt="" />
                 <ul className="inline-flex items-center justify-end gap-2 text-2xl text-white ">
                     <li>
-                        <Link to="/"> <AiOutlineUser /> </Link>
+                        <a href="/dashboard"> <AiOutlineUser /> </a>
                     </li>
                     <li onClick={menuMobile} className="sm:hidden cursor-pointer">
                         <AiOutlineMenu />
@@ -78,6 +78,9 @@ export function Header() {
                     </li>
                     <li className="inline-flex items-center gap-1">
                         <AiOutlineFileSearch /><Link to="/pesquisas">Pesquisas</Link>
+                    </li>
+                    <li className="inline-flex items-center gap-1">
+                        <ImLab /><Link to="/laboratorio">Laboratórios</Link>
                     </li>
                 </ul>
             </div>

@@ -19,12 +19,24 @@ interface IHome {
     image: string;
 }
 
+interface ILab {
+    nome: string;
+    sinopse: string;
+    palavras_chave: string;
+    id: number;
+    tipo: string;
+    area_cientifica: string;
+    area_economica: string;
+    image: string;
+}
+
 export function Home() {
     const [servico, setservico] = useState<IHome[]>([]);
     const [pesquisa, setPesquisa] = useState<IHome[]>([]);
     const [software, setSoftware] = useState<IHome[]>([]);
     const [patente, setPatente] = useState<IHome[]>([]);
     const [startups, setStartups] = useState<IHome[]>([]);
+    const [laboratorio, setLaboratorio] = useState<ILab[]>([]);
 
     useEffect(() => {
         api.get('/patentes').then(response => {
@@ -50,6 +62,11 @@ export function Home() {
     useEffect(() => {
         api.get('/softwares').then((response) => {
             setSoftware(response.data);
+        })
+    }, [])
+    useEffect(() => {
+        api.get('/laboratorios').then((response) => {
+            setLaboratorio(response.data);
         })
     }, [])
 
@@ -210,6 +227,33 @@ export function Home() {
                             id={software.id}
                             areaCientifica={software.area_cientifica}
                             areaEconomica={software.area_economica}
+                        />
+                    ))}
+                </div>
+            </div>
+            <div className="grid items-center grid-cols-1 m-9 shadow-lg">
+                <div className="grid md:flex items-center justify-start rounded-md bg-white">
+                    <img className="h-52" src="src\assets\software.svg" alt="" />
+                    <div className="flex flex-col  justify-start m-4 text-left">
+                        <h2>Laboratórios</h2>
+                        <p>
+                            Laboratórios desenvolvidos pela Universidade, com o objetivo de facilitar o dia a dia de empresas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div className="grid m-10 justify-center">
+                <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 max-w-fit gap-14 ">
+                    {laboratorio.map((laboratorio) => (
+                        <Cards
+                            type="softwares"
+                            image={laboratorio.image}
+                            nome={laboratorio.nome}
+                            sinopse={laboratorio.sinopse}
+                            palavraChave={laboratorio.palavras_chave}
+                            id={laboratorio.id}
+                            areaCientifica={laboratorio.area_cientifica}
+                            areaEconomica={laboratorio.area_economica}
                         />
                     ))}
                 </div>

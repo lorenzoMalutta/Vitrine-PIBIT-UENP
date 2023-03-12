@@ -20,6 +20,13 @@ export function Filter({ setBusca, nomeFiltro, setFilter, type }: PropsFilter) {
     }, [valorBusca])
     setBusca(valorBusca)
 
+    useEffect(() => {
+        api.get(`/laboratorios/search/${valorBusca}`).then(response => {
+            setFilter(response.data);
+        })
+    }, [valorBusca])
+    setBusca(valorBusca)
+
     if (type === "patentes") {
         const [optionPalavraChave, setOptionPalavraChave] = useState<Iareas[]>([]);
         useEffect(() => {
@@ -108,6 +115,27 @@ export function Filter({ setBusca, nomeFiltro, setFilter, type }: PropsFilter) {
         )
     }
     if (type == "startups") {
+        const [optionPalavraChave, setOptionPalavraChave] = useState<Iareas[]>([]);
+        useEffect(() => {
+            api.get('/palavraChave').then(response => {
+                setOptionPalavraChave(response.data);
+            })
+        }, [])
+        return (
+            <div className="bg-white flex flex-col h-max p-4 shadow-xl rounded-md">
+                <h4 className="text-gray-700 font-medium">{nomeFiltro}</h4>
+                <input type="text" placeholder="Pesquise..." onChange={(e) => setFilter(e.target.value)} />
+                {optionPalavraChave.map((optionPalavraChave) => (
+                    <div className="flex gap-1 items-center p-1" key={optionPalavraChave.denominacao}>
+                        <input className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" type="radio" name="same" />
+                        <label>{optionPalavraChave.denominacao}</label>
+                    </div>
+                ))}
+                <button type="submit" className="flex justify-center">Filtrar</button>
+            </div>
+        )
+    }
+    if (type == "laboratorio") {
         const [optionPalavraChave, setOptionPalavraChave] = useState<Iareas[]>([]);
         useEffect(() => {
             api.get('/palavraChave').then(response => {

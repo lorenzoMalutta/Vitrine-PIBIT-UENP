@@ -93,7 +93,6 @@ class PatenteController extends Controller
         return response()->json([
             'message' => 'Patente cadastrada com sucesso',
             'patente' => $patente,
-            'dd' => dd($patente),
         ], 201);
     }
 
