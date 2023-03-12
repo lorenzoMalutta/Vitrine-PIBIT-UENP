@@ -22,6 +22,8 @@ import { SoftwareDetail } from './view/vitrine-detail/software'
 import { Software } from './view/vitrine/software'
 import { ServicoDetail } from './view/vitrine-detail/servico'
 import { Servico } from './view/vitrine/servico'
+import { Laboratorio } from './view/vitrine/laboratorio'
+import { LaboratorioCadastro } from './view/admin/laboratorio/create'
 
 export function Router() {
 
@@ -42,6 +44,7 @@ export function Router() {
                 <Route path="/admin/servicos/cadastrar" element={< ServicoCadastrar />} />
                 <Route path="/admin/servicos/editar-delete" element={< ServicoEditDelete />} />
                 <Route path="/admin/servicos/edit/:id" element={< ServicoUpdate />} />
+                <Route path="/laboratorio/cadastrar" element={<LaboratorioCadastro />} />
                 <Route path="/admin/permissoes" element={< PermissoesUsuarios />} />
                 {/* home */}
                 <Route path="/" element={<Home />} />
@@ -54,7 +57,8 @@ export function Router() {
                 {/* Softwares */}
                 <Route path="/softwares" element={<Software />} />
                 <Route path="/softwares/:id" element={<SoftwareDetail />} />
-
+                {/* Laboratório */}
+                <Route path="/laboratorio" element={<Laboratorio />} />
             </Routes>
         )
     } else {
