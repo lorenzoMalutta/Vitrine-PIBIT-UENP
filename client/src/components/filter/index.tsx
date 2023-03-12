@@ -6,7 +6,7 @@ interface Iareas {
 interface PropsFilter {
     nomeFiltro: string;
     setFilter: (filter: string) => void;
-    type: "patentes" | "softwares" | "pesquisas" | "servicos" | "startups";
+    type: "patentes" | "softwares" | "pesquisas" | "servicos" | "startups" | "laboratorio";
     setBusca: (busca: string) => void;
 }
 
