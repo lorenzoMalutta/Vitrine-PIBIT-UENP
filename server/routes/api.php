@@ -79,6 +79,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/laboratorios/edit/{id}', [LaboratorioController::class, 'update']);
     Route::delete('/laboratorios/{id}', [LaboratorioController::class, 'destroy']);
 });
+
 // Areas routes
 Route::get('/areaEconomica', [AreasController::class, 'areaEconomica']);
 Route::get('/areaCientifica', [AreasController::class, 'areaCientifica']);

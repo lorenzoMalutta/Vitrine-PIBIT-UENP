@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ServicoRequest;
-use App\Models\Midia;
 use App\Models\Servico;
 use Ramsey\Uuid\Uuid;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ServicoController extends Controller
 {
@@ -38,7 +37,20 @@ class ServicoController extends Controller
     public function store(Request $request)
     {
         try {
-            $servico = Servico::create($request->all());
+            $servico = Servico::create([
+                'nome' => $request->nome,
+                'area_economica' => $request->area_economica,
+                'area_cientifica' => $request->area_cientifica,
+                'sinopse' => $request->sinopse,
+                'resumo' => $request->resumo,
+                'problema' => $request->problema,
+                'aplicacao' => $request->aplicacao,
+                'telefone' => $request->telefone,
+                'email' => $request->email,
+                'links' => $request->links,
+                'criadores' => $request->criadores,
+                'palavra_chave' => $request->palavra_chave,
+            ]);
             if ($request->hasFile('image')) {
                 $destinationPath = "public/images/servicos";
                 $namePath = "/images/servicos/";
@@ -84,13 +96,24 @@ class ServicoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         try {
-            $servico = Servico::findOrFail($id);
+            $servico = Servico::findOrFail($request->id);
+            $servico->nome = $request->input('nome');
+            $servico->sinopse = $request->input('sinopse');
+            $servico->problema = $request->input('problema');
+            $servico->area_economica = $request->input('area_economica');
+            $servico->area_cientifica = $request->input('area_cientifica');
+            $servico->resumo = $request->input('resumo');
+            $servico->aplicacao = $request->input('aplicacao');
+            $servico->telefone = $request->input('telefone');
+            $servico->email = $request->input('email');
+            $servico->links = $request->input('links');
+            $servico->criadores = $request->input('criadores');
+            $servico->palavra_chave = $request->input('palavra_chave');
             $servico->update($request->all());
             if ($request->hasFile('image')) {
                 $destinationPath = "public/images/servicos";
@@ -124,6 +147,12 @@ class ServicoController extends Controller
         try {
             $servico = Servico::find($id);
             $servico->delete();
+            if ($servico->image) {
+                $image_path = "public/images/servicos/" . $servico->image;
+                if (Storage::exists($image_path)) {
+                    Storage::delete($image_path);
+                }
+            }
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Erro ao deletar serviço',

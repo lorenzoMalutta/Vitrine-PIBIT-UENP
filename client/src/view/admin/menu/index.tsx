@@ -24,7 +24,7 @@ export function MenuAdmin() {
                     <Link to="/admin/patentes">
                         <div className="grid grid-flow-col-dense hover:shadow-3xl      hover:bg-gray-100 items-center text-left  shadow-lg rounded-md ">
                             <li>
-                                <img className="max-w-xs rounded-tl-md rounded-bl-md" src="src\assets\pesquisas.svg" alt="" />
+                                <img className="max-w-xs rounded-tl-md rounded-bl-md" src="src\assets\search.svg" alt="" />
                             </li>
                             <li>
                                 <h1>Administrador de Pesquisas</h1>
@@ -46,7 +46,7 @@ export function MenuAdmin() {
                     <Link to="/admin/servicos">
                         <div className="grid grid-flow-col-dense hover:shadow-3xl     hover:bg-gray-100 items-center text-left  shadow-lg rounded-md ">
                             <li>
-                                <img className="max-w-xs rounded-tl-md rounded-bl-md" src="src\assets\servicos.svg" alt="" />
+                                <img className="max-w-xs rounded-tl-md rounded-bl-md" src="src\assets\service.svg" alt="" />
                             </li>
                             <li>
                                 <h1>Administrador de Serviços</h1>
@@ -79,7 +79,7 @@ export function MenuAdmin() {
                     <Link to="/admin/permissoes">
                         <div className="grid grid-flow-col-dense hover:shadow-3xl     hover:bg-gray-100 items-center text-left  shadow-lg rounded-md ">
                             <li>
-                                <img className="max-w-xs rounded-tl-md rounded-bl-md" src="src\assets\startups.svg" alt="" />
+                                <img className="max-w-xs rounded-tl-md rounded-bl-md" src="src\assets\permission.svg" alt="" />
                             </li>
                             <li>
                                 <h1>Administrador de Permissões</h1>

@@ -65,25 +65,25 @@ class LaboratorioController extends Controller
         return response()->json($laboratorio, 201);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         try {
-            $laboratorio = Laboratorio::find($id);
-            $laboratorio->nome = $request->nome;
-            $laboratorio->sinopse = $request->sinopse;
-            $laboratorio->resumo = $request->resumo;
-            $laboratorio->aplicacao = $request->aplicacao;
-            $laboratorio->colaborador = $request->colaborador;
-            $laboratorio->links = $request->links;
-            $laboratorio->area_cientifica = $request->area_cientifica;
-            $laboratorio->area_economica = $request->area_economica;
-            $laboratorio->palavras_chave = $request->palavras_chave;
-            $laboratorio->supervisores = $request->supervisores;
-            $laboratorio->conteudo = $request->conteudo;
-            $laboratorio->imagem = $request->imagem;
-            $laboratorio->pdf = $request->pdf;
-            $laboratorio->telefone = $request->telefone;
-            $laboratorio->email = $request->email;
+            $laboratorio = Laboratorio::find($request->id);
+            $laboratorio->nome = $request->input('nome');
+            $laboratorio->sinopse = $request->input('sinopse');
+            $laboratorio->resumo = $request->input('resumo');
+            $laboratorio->aplicacao = $request->input('aplicacao');
+            $laboratorio->colaborador = $request->input('colaborador');
+            $laboratorio->links = $request->input('links');
+            $laboratorio->area_cientifica = $request->input('area_cientifica');
+            $laboratorio->area_economica = $request->input('area_economica');
+            $laboratorio->palavras_chave = $request->input('palavras_chave');
+            $laboratorio->supervisores = $request->input('supervisores');
+            $laboratorio->conteudo = $request->input('conteudo');
+            $laboratorio->imagem = $request->input('imagem');
+            $laboratorio->pdf = $request->input('pdf');
+            $laboratorio->telefone = $request->input('telefone');
+            $laboratorio->email = $request->input('email');
             $laboratorio->save();
             if ($request->hasFile('image')) {
                 $destinationPath = "public/images/laboratorio";
