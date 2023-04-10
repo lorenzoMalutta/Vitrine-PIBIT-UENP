@@ -43,27 +43,30 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 // Patente routes
+Route::get('/patentes', [PatenteController::class, 'index']);
+Route::get('/patentes/{id}', [PatenteController::class, 'show']);
+Route::get('/patentes/search/{search}', [SearchController::class, 'searchPatente']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/patentes/{id}', [PatenteController::class, 'destroy']);
     Route::post('/patentes/cadastrar', [PatenteController::class, 'store']);
     Route::put('/patentes/edit/{id}', [PatenteController::class, 'update']);
 });
-Route::get('/patentes', [PatenteController::class, 'index']);
-Route::get('/patentes/{id}', [PatenteController::class, 'show']);
-Route::get('/patentes/search/{search}', [SearchController::class, 'searchPatente']);
 
 // Software routes
+Route::get('/softwares', [SoftwareController::class, 'index']);
+Route::get('/softwares/{id}', [SoftwareController::class, 'show']);
+Route::get('/softwares/search/{search}', [SearchController::class, 'searchSoftware']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/softwares/cadastrar', [SoftwareController::class, 'store']);
     Route::put('/softwares/edit/{id}', [SoftwareController::class, 'update']);
     Route::delete('/softwares/{id}', [SoftwareController::class, 'destroy']);
 });
-Route::get('/softwares', [SoftwareController::class, 'index']);
-Route::get('/softwares/{id}', [SoftwareController::class, 'show']);
+
 
 // Servicos routes
 Route::get('/servicos', [ServicoController::class, 'index']);
 Route::get('/servicos/{id}', [ServicoController::class, 'show']);
+Route::get('/servicos/search/{search}', [SearchController::class, 'searchServico']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/servicos/cadastrar', [ServicoController::class, 'store']);
     Route::put('/servicos/edit/{id}', [ServicoController::class, 'update']);

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\AreaCientifica;
 use App\Models\Laboratorio;
 use App\Models\Patente;
+use App\Models\Servico;
+use App\Models\Software;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -19,5 +21,17 @@ class SearchController extends Controller
     {
         $laboratorio = Laboratorio::Where('nome', 'like', '%' . $request->search . '%')->get();
         return response()->json($laboratorio, 201);
+    }
+
+    public function searchServico(Request $request)
+    {
+        $servico = Servico::Where('nome', 'like', '%' . $request->search . '%')->get();
+        return response()->json($servico, 201);
+    }
+
+    public function searchSoftware(Request $request)
+    {
+        $software = Software::Where('nome', 'like', '%' . $request->search . '%')->get();
+        return response()->json($software, 201);
     }
 }

@@ -27,6 +27,20 @@ export function Filter({ setBusca, nomeFiltro, setFilter, type }: PropsFilter) {
     }, [valorBusca])
     setBusca(valorBusca)
 
+    useEffect(() => {
+        api.get(`/softwares/search/${valorBusca}`).then(response => {
+            setFilter(response.data);
+        })
+    }, [valorBusca])
+    setBusca(valorBusca)
+
+    useEffect(() => {
+        api.get(`/servicos/search/${valorBusca}`).then(response => {
+            setFilter(response.data);
+        })
+    }, [valorBusca])
+    setBusca(valorBusca)
+
     if (type === "patentes") {
         const [optionPalavraChave, setOptionPalavraChave] = useState<Iareas[]>([]);
         useEffect(() => {
