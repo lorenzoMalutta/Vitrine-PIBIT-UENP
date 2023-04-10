@@ -149,7 +149,7 @@ export function Home() {
             </div>
             <div className="grid items-center grid-cols-1 m-9 shadow-lg">
                 <div className="grid md:flex items-center justify-center rounded-md bg-white">
-                    <img className="h-52" src="src\assets\servicos.svg" alt="" />
+                    <img className="h-52" src="src\assets\service.svg" alt="" />
                     <div className="flex flex-wrap items-center m-4 text-left">
                         <h2>Serviços</h2>
                         <p>
@@ -233,7 +233,7 @@ export function Home() {
             </div>
             <div className="grid items-center grid-cols-1 m-9 shadow-lg">
                 <div className="grid md:flex items-center justify-start rounded-md bg-white">
-                    <img className="h-52" src="src\assets\software.svg" alt="" />
+                    <img className="h-52" src="src\assets\servicos.svg" alt="" />
                     <div className="flex flex-col  justify-start m-4 text-left">
                         <h2>Laboratórios</h2>
                         <p>

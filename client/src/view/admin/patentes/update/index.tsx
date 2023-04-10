@@ -184,7 +184,7 @@ export function PatenteUpdate() {
                     </div>
                     <div>
                         <p>Área Científica:</p>
-                        <select name="area_cientifica" id="area_cientifica" onChange={(e) => setArea_cientifica(e.target.value)}>
+                        <select className="bg-slate-300" name="area_cientifica" id="area_cientifica" onChange={(e) => setArea_cientifica(e.target.value)}>
                             {optionCientifica.map((optionCientifica) => (
                                 <option value={optionCientifica.denominacao}>{optionCientifica.denominacao}</option>
                             ))}
@@ -192,7 +192,7 @@ export function PatenteUpdate() {
                     </div>
                     <div>
                         <p>Área Econômica:</p>
-                        <select name="area_economica" id="area_economica" onChange={(e) => setArea_economica(e.target.value)}>
+                        <select className="bg-slate-300" name="area_economica" id="area_economica" onChange={(e) => setArea_economica(e.target.value)}>
                             {optionEconomica.map((optionEconomica) => (
                                 <option value={optionEconomica.denominacao}>{optionEconomica.denominacao}</option>
                             ))}
@@ -200,7 +200,7 @@ export function PatenteUpdate() {
                     </div>
                     <div>
                         <p>Palavra Chave:</p>
-                        <select name="palavraChave" id="palavraChave" onChange={(e) => setPalavra_chave(e.target.value)}>
+                        <select className="bg-slate-300" name="palavraChave" id="palavraChave" onChange={(e) => setPalavra_chave(e.target.value)}>
                             {optionPalavraChave.map((optionPalavraChave) => (
                                 <option value={optionPalavraChave.denominacao} >{optionPalavraChave.denominacao}</option>
                             ))}
