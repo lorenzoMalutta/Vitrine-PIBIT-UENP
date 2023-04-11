@@ -7,29 +7,26 @@ interface Iareas {
     denominacao: string;
 }
 
-export function SoftwareUpdate() {
+export function LaboratorioUpdate() {
     const [image, setImage] = useState('');
-    const [video, setVideo] = useState('');
+    const [pdf, setPdf] = useState('');
     const [nome, setNome] = useState('');
     const [sinopse, setSinopse] = useState('');
     const [resumo, setResumo] = useState('');
-    const [problema, setProblema] = useState('');
-    const [vantagem, setVantagem] = useState('');
+    const [supervisores, setSupervisores] = useState('');
     const [aplicacao, setAplicacao] = useState('');
     const [telefone, setTelefone] = useState('');
     const [email, setEmail] = useState('');
     const [colaborador, setColaborador] = useState('');
-    const [data_criacao, setData_criacao] = useState('');
     const [links, setLinks] = useState('');
-    const [criadores, setCriadores] = useState('');
+    const [conteudo, setConteudo] = useState('');
     const [area_cientifica, setArea_cientifica] = useState('');
     const [optionCientifica, setOptionCientifica] = useState<Iareas[]>([]);
-    const [tecnologia, setTecnologia] = useState('');
 
     const [area_economica, setArea_economica] = useState('');
     const [optionEconomica, setOptionEconomica] = useState<Iareas[]>([]);
 
-    const [palavra_chave, setPalavra_chave] = useState('');
+    const [palavras_chave, setPalavra_chave] = useState('');
     const [optionPalavraChave, setOptionPalavraChave] = useState<Iareas[]>([]);
 
     const handleImage = (e: { target: { files: any; }; }) => {
@@ -39,35 +36,32 @@ export function SoftwareUpdate() {
         setImage(e.target.files[0]);
     }
 
-    const handleVideo = (e: { target: { files: any; }; }) => {
+    const handlePdf = (e: { target: { files: any; }; }) => {
         if (e.target.files[0]) {
-            setVideo(e.target.files[0]);
+            setPdf(e.target.files[0]);
         }
-        setVideo(e.target.files[0]);
+        setPdf(e.target.files[0]);
     }
 
     const { id } = useParams<{ id: string }>();
 
     useEffect(() => {
-        api.get(`softwares/${id}`).then((response) => {
+        api.get(`laboratorios/${id}`).then((response) => {
             setNome(response.data.nome);
             setSinopse(response.data.sinopse);
             setResumo(response.data.resumo);
-            setProblema(response.data.problema);
-            setVantagem(response.data.vantagem);
+            setSupervisores(response.data.supervisores);
             setAplicacao(response.data.aplicacao);
             setTelefone(response.data.telefone);
             setEmail(response.data.email);
             setColaborador(response.data.colaborador);
-            setData_criacao(response.data.data_criacao);
             setLinks(response.data.links);
-            setCriadores(response.data.criadores);
             setArea_cientifica(response.data.area_cientifica);
             setArea_economica(response.data.area_economica);
             setPalavra_chave(response.data.palavra_chave);
             setImage(response.data.image);
-            setVideo(response.data.video);
-            setTecnologia(response.data.tecnologia);
+            setPdf(response.data.pdf);
+            setConteudo(response.data.conteudo);
         });
     }, [id]);
 
@@ -79,31 +73,27 @@ export function SoftwareUpdate() {
         form.append('nome', nome);
         form.append('sinopse', sinopse);
         form.append('resumo', resumo);
-        form.append('problema', problema);
-        form.append('vantagem', vantagem);
+        form.append('supervisores', supervisores)
         form.append('aplicacao', aplicacao);
         form.append('telefone', telefone);
         form.append('email', email);
         form.append('colaborador', colaborador);
-        form.append('data_criacao', data_criacao);
         form.append('links', links);
-        form.append('criadores', criadores);
         form.append('area_cientifica', area_cientifica);
         form.append('area_economica', area_economica);
-        form.append('palavra_chave', palavra_chave);
+        form.append('palavras_chave', palavras_chave);
         form.append('image', image);
-        form.append('tecnologia', tecnologia);
-        form.append('video', video);
-
+        form.append('pdf', pdf);
+        form.append('conteudo', conteudo);
         try {
-            await api.put(`/softwares/edit/${id}`, form, {
+            await api.put(`/laboratorios/edit/${id}`, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data, application/json',
                     'Accept': 'application/json',
                     'Authorization': "Bearer " + localStorage.getItem('token')
                 }
             })
-            toast.success('Software atualizado com sucesso!');
+            toast.success('Laboratório atualizado com sucesso!');
         }
         catch (error) {
             console.log(error);
@@ -133,8 +123,8 @@ export function SoftwareUpdate() {
         <section className="grid m-10">
             <ToastContainer />
             <Title
-                titulo="Atualizar Software"
-                subtitulo="Faça a atualização do software"
+                titulo="Atualizar Laboratório"
+                subtitulo="Faça a atualização do Laboratório"
             />
             <div className="bg-white rounded-md shadow-md w-full">
                 <form className="grid grid-cols-2 m-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit} encType='multipart/form-data'>
@@ -151,21 +141,12 @@ export function SoftwareUpdate() {
                         <textarea className="shadow-md bg-[#F8FAFC]" name="resumo" id="resumo" cols={55} rows={5} value={resumo} onChange={(e) => setResumo(e.target.value)} />
                     </div>
                     <div>
-                        <p>Problema:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="problema" id="problema" cols={55} rows={5} value={problema} onChange={(e) => setProblema(e.target.value)} />
-                    </div>
-                    <div>
                         <p>Aplicação:</p>
                         <textarea className="shadow-md bg-[#F8FAFC]" name="aplicacao" id="aplicacao" cols={55} rows={5} value={aplicacao} onChange={(e) => setAplicacao(e.target.value)} />
                     </div>
                     <div>
-                        <p>Vantagem:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="vantagem" id="vantagem" cols={55} rows={5} value={vantagem} onChange={(e) => setVantagem(e.target.value)} />
-                    </div>
-                    <div className="mt-2">
-                        <p>Tecnologias utilizadas:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="Tecnologia" id="Tecnologia" cols={55} rows={5} value={tecnologia} onChange={(e) => setTecnologia(e.target.value)} />
-                        {tecnologia.length < 255 && <p className="text-red-500">Mínimo de 255 caracteres</p> || tecnologia.length > 500 && <p className="text-red-500">Máximo de 500 caracteres</p>}
+                        <p>Conteúdo dos laboratórios:</p>
+                        <textarea className="shadow-md bg-[#F8FAFC]" name="conteudo" id="conteudo" cols={55} rows={5} value={conteudo} onChange={(e) => setConteudo(e.target.value)} />
                     </div>
                     <div>
                         <p>Área Científica:</p>
@@ -185,23 +166,19 @@ export function SoftwareUpdate() {
                     </div>
                     <div>
                         <p>Palavra Chave:</p>
-                        <select className="bg-slate-300" name="palavraChave" id="palavraChave" onChange={(e) => setPalavra_chave(e.target.value)}>
+                        <select className="bg-slate-300" name="palavras_chave" id="palavras_chave" onChange={(e) => setPalavra_chave(e.target.value)}>
                             {optionPalavraChave.map((optionPalavraChave) => (
                                 <option value={optionPalavraChave.denominacao} >{optionPalavraChave.denominacao}</option>
                             ))}
                         </select>
                     </div>
                     <div>
-                        <p>Criadores:</p>
-                        <input type="text" name="criadores" id="criadores" value={criadores} onChange={(e) => setCriadores(e.target.value)} />
-                    </div>
-                    <div>
                         <p>Colaborador:</p>
                         <input type="text" name="colaborador" id="colaborador" value={colaborador} onChange={(e) => setColaborador(e.target.value)} />
                     </div>
                     <div>
-                        <p>Data de Criação:</p>
-                        <input type="date" name="data_criacao" id="data_criacao" value={data_criacao} onChange={(e) => setData_criacao(e.target.value)} />
+                        <p>Supervisores:</p>
+                        <input type="text" name="supervisores" id="supervisores" value={supervisores} onChange={(e) => setSupervisores(e.target.value)} />
                     </div>
                     <div>
                         <p>Email:</p>
@@ -220,8 +197,8 @@ export function SoftwareUpdate() {
                         <input type="file" name="image" id="image" onChange={handleImage} />
                     </div>
                     <div>
-                        <p>Video:</p>
-                        <input type="file" name="video" id="video" onChange={handleVideo} />
+                        <p>PDF:</p>
+                        <input type="file" name="video" id="video" onChange={handlePdf} />
                     </div>
                     <div className="flex mt-8">
                         <button className="w-fit h-fit" type="submit"> Update </button>

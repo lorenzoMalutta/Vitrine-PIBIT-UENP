@@ -246,7 +246,7 @@ export function Home() {
                 <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 max-w-fit gap-14 ">
                     {laboratorio.map((laboratorio) => (
                         <Cards
-                            type="softwares"
+                            type="laboratorio"
                             image={laboratorio.image}
                             nome={laboratorio.nome}
                             sinopse={laboratorio.sinopse}

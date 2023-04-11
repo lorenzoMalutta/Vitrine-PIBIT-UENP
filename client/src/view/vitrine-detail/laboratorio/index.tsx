@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../services/api";
-import { TrlModal } from "../../../Rooks/trlModal";
-import { GrCircleInformation } from "react-icons/gr";
-import imgtrl from "../../../assets/trl.png";
 interface laboratorio {
     id: string;
     nome: string;
@@ -60,7 +57,7 @@ export function LaboratorioDetail() {
                         <p>{laboratorio?.aplicacao}</p>
                     </div>
                     <div>
-                        <h3>Conteúdo:</h3>
+                        <h3>Equipamentos:</h3>
                         <p>{laboratorio?.conteudo}</p>
                     </div>
                 </div>

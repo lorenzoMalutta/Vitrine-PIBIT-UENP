@@ -21,6 +21,7 @@ interface software {
     data_criacao: string;
     colaborador: string;
     vantagem: string;
+    tecnologia: string;
 }
 export function SoftwareDetail() {
     const { id } = useParams();
@@ -62,6 +63,10 @@ export function SoftwareDetail() {
                     <div>
                         <h3>Aplicação:</h3>
                         <p>{software?.aplicacao}</p>
+                    </div>
+                    <div>
+                        <h3>Tecnologias:</h3>
+                        <p>{software?.tecnologia}</p>
                     </div>
                     <div>
                         <h3>Criadores:</h3>

@@ -53,7 +53,6 @@ export function Laboratorio() {
             setLaboratorio(response.data);
         })
     }, [])
-
     if (busca == "todos") {
         return (
             <section className="h-fit">

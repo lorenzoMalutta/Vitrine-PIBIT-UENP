@@ -22,6 +22,7 @@ export function SoftwareCadastrar() {
     const [criadores, setCriadores] = useState('');
     const [image, setImage] = useState('');
     const [video, setVideo] = useState('');
+    const [tecnologia, setTecnologia] = useState('');
 
     const [area_cientifica, setArea_cientifica] = useState('');
     const [optionCientifica, setOptionCientifica] = useState<Iareas[]>([]);
@@ -62,7 +63,8 @@ export function SoftwareCadastrar() {
         form.append('criadores', criadores);
         form.append('area_cientifica', area_cientifica);
         form.append('area_economica', area_economica);
-        form.append('palavra_chave', palavra_chave);
+        form.append('palavra_chave', palavra_chave); 7
+        form.append('tecnologia', tecnologia);
         form.append('image', image);
         form.append('video', video);
 
@@ -137,6 +139,11 @@ export function SoftwareCadastrar() {
                         <p>Vantagem:</p>
                         <textarea className="shadow-md bg-[#F8FAFC]" name="vantagem" id="vantagem" cols={55} rows={5} value={vantagem} onChange={(e) => setVantagem(e.target.value)} />
                         {vantagem.length < 255 && <p className="text-red-500">Mínimo de 255 caracteres</p> || vantagem.length > 500 && <p className="text-red-500">Máximo de 500 caracteres</p>}
+                    </div>
+                    <div className="mt-2">
+                        <p>Tecnologias utilizadas:</p>
+                        <textarea className="shadow-md bg-[#F8FAFC]" name="Tecnologia" id="Tecnologia" cols={55} rows={5} value={tecnologia} onChange={(e) => setTecnologia(e.target.value)} />
+                        {tecnologia.length < 255 && <p className="text-red-500">Mínimo de 255 caracteres</p> || tecnologia.length > 500 && <p className="text-red-500">Máximo de 500 caracteres</p>}
                     </div>
                     <div>
                         <p>Área Científica:</p>

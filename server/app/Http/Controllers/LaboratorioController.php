@@ -80,28 +80,28 @@ class LaboratorioController extends Controller
             $laboratorio->palavras_chave = $request->input('palavras_chave');
             $laboratorio->supervisores = $request->input('supervisores');
             $laboratorio->conteudo = $request->input('conteudo');
-            $laboratorio->imagem = $request->input('imagem');
+            $laboratorio->image = $request->input('image');
             $laboratorio->pdf = $request->input('pdf');
             $laboratorio->telefone = $request->input('telefone');
             $laboratorio->email = $request->input('email');
-            $laboratorio->save();
+            $laboratorio->update();
             if ($request->hasFile('image')) {
                 $destinationPath = "public/images/laboratorio";
-                $file = $request->file('image');
-                $extension = $file->getClientOriginalExtension();
-                $fileName = Uuid::uuid4() . '.' . $extension;
-                $file->storeAs($destinationPath, $fileName);
-                $laboratorio->imagem = $fileName;
-                $laboratorio->save();
+                $namePath = "/images/laboratorio/";
+                $extension = $request->image->getClientOriginalExtension();
+                $name = Uuid::uuid1();
+                $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
+                $laboratorio->image =  $namePath . $name . "." . $extension;
+                $laboratorio->update();
             }
             if ($request->hasFile('pdf')) {
                 $destinationPath = "public/pdf/laboratorio";
-                $file = $request->file('pdf');
-                $extension = $file->getClientOriginalExtension();
-                $fileName = Uuid::uuid4() . '.' . $extension;
-                $file->storeAs($destinationPath, $fileName);
-                $laboratorio->pdf = $fileName;
-                $laboratorio->save();
+                $namePath = "/pdf/laboratorio/";
+                $extension = $request->pdf->getClientOriginalExtension();
+                $name = Uuid::uuid1();
+                $path['pdf'] = $request->file('pdf')->storeAs($destinationPath, $name . ".{$extension}");
+                $laboratorio->pdf = $namePath . $name . "." . $extension;
+                $laboratorio->update();
             }
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

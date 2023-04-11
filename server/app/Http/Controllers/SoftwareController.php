@@ -56,7 +56,7 @@ class SoftwareController extends Controller
                 'links' => $request->links,
                 'palavra_chave' => $request->palavra_chave,
                 'criadores' => $request->criadores,
-
+                'tecnologia' => $request->tecnologia,
             ]);
             if ($request->hasFile('image')) {
                 $destinationPath = "public/images/software";

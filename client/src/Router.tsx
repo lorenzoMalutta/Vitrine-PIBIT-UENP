@@ -27,9 +27,10 @@ import { LaboratorioCadastro } from './view/admin/laboratorio/create'
 import { AdminLaboratorio } from './view/admin/laboratorio/menu'
 import { LaboratorioEditDelete } from './view/admin/laboratorio/edit-delete'
 import { LaboratorioDetail } from './view/vitrine-detail/laboratorio'
+import { useEffect } from 'react'
+import { LaboratorioUpdate } from './view/admin/laboratorio/update'
 
 export function Router() {
-
     if (localStorage.getItem('authenticating') === 'true') {
         return (
             <Routes>
@@ -65,6 +66,7 @@ export function Router() {
                 {/* Laboratório */}
                 <Route path="/laboratorio" element={<Laboratorio />} />
                 <Route path="/laboratorio/:id" element={<LaboratorioDetail />} />
+                <Route path="/admin/laboratorios/edit/:id" element={<LaboratorioUpdate />} />
             </Routes>
         )
     } else {
