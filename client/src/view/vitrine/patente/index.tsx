@@ -131,5 +131,47 @@ export function Patente() {
                 </div>
             </section>
         )
+    } else {
+        return (
+            <section >
+                <div className="mx-auto text-center">
+                    <Title
+                        titulo="Vitrine de Patentes"
+                        subtitulo="Tecnologias e Inovação "
+                    />
+                </div>
+                <div className="flex">
+                    <div className="m-10">
+                        <Filter
+                            nomeFiltro="Vitrine de Patentes"
+                            setFilter={filtro}
+                            type="patentes"
+                            setBusca={buscar}
+                        />
+                    </div>
+                    <div className="grid justify-center mb-20 mt-10">
+                        <div className="grid grid-cols-3 gap-5 max-h-56">
+                            {patente.map((patente) => {
+                                if (busca == patente.area_cientifica) {
+                                    return (
+                                        <Cards
+                                            type="patentes"
+                                            image={patente.image}
+                                            nome={patente.nome}
+                                            sinopse={patente.sinopse}
+                                            palavraChave={patente.palavra_chave}
+                                            id={patente.id}
+                                            areaCientifica={patente.area_cientifica}
+                                            areaEconomica={patente.area_economica}
+                                        />
+                                    )
+                                }
+                            }
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        )
     }
 }

@@ -131,5 +131,42 @@ export function Laboratorio() {
                 </div>
             </section>
         )
+    } else {
+        return (
+            <section className="h-fit">
+                <div className="mx-auto text-center">
+                    <Title
+                        titulo="Vitrine de Laboratórios"
+                        subtitulo="Prestação de Laboratórios"
+                    />
+                </div>
+                <div className="flex h-screen">
+                    <div className="m-10">
+                        <Filter
+                            nomeFiltro="Laboratorios"
+                            setFilter={filtro}
+                            type="laboratorio"
+                            setBusca={buscar}
+                        />
+                    </div>
+                    <div className="grid justify-center mb-20 mt-10" >
+                        <div className="grid grid-cols-4 gap-5 max-h-56">
+                            {laboratorio.map((laboratorio) => (
+                                <Cards
+                                    type="laboratorio"
+                                    image={laboratorio.image}
+                                    nome={laboratorio.nome}
+                                    sinopse={laboratorio.sinopse}
+                                    palavraChave={laboratorio.palavras_chave}
+                                    id={laboratorio.id}
+                                    areaCientifica={laboratorio.area_cientifica}
+                                    areaEconomica={laboratorio.area_economica}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        )
     }
 }

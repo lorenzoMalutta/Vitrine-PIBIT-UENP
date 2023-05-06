@@ -131,5 +131,47 @@ export function Servico() {
                 </div>
             </section>
         )
+    } else {
+        return (
+            <section >
+                <div className="mx-auto text-center">
+                    <Title
+                        titulo="Vitrine de Serviços"
+                        subtitulo="Prestação de Serviços"
+                    />
+                </div>
+                <div className="flex">
+                    <div className="m-10">
+                        <Filter
+                            nomeFiltro="Vitrine de Serviços"
+                            setFilter={filtro}
+                            type="servicos"
+                            setBusca={buscar}
+                        />
+                    </div>
+                    <div className="grid justify-center mb-20 mt-10">
+                        <div className="grid grid-cols-3 gap-5 max-h-56">
+                            {servico.map((servico) => {
+                                if (busca == servico.palavra_chave) {
+                                    return (
+                                        <Cards
+                                            type="patentes"
+                                            image={servico.image}
+                                            nome={servico.nome}
+                                            sinopse={servico.sinopse}
+                                            palavraChave={servico.palavra_chave}
+                                            id={servico.id}
+                                            areaCientifica={servico.area_cientifica}
+                                            areaEconomica={servico.area_economica}
+                                        />
+                                    )
+                                }
+                            }
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        )
     }
 }

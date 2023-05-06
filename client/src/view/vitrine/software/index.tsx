@@ -130,5 +130,47 @@ export function Software() {
                 </div>
             </section>
         )
+    } else {
+        return (
+            <section >
+                <div className="mx-auto text-center">
+                    <Title
+                        titulo="Vitrine de  software"
+                        subtitulo="Tecnologias e Inovação "
+                    />
+                </div>
+                <div className="flex">
+                    <div className="m-10">
+                        <Filter
+                            nomeFiltro="Vitrine de software"
+                            setFilter={filtro}
+                            type="softwares"
+                            setBusca={buscar}
+                        />
+                    </div>
+                    <div className="grid justify-center mb-20 mt-10">
+                        <div className="grid grid-cols-3 gap-5 max-h-56">
+                            {software.map((software) => {
+                                if (busca == software.area_cientifica) {
+                                    return (
+                                        <Cards
+                                            type="softwares"
+                                            image={software.image}
+                                            nome={software.nome}
+                                            sinopse={software.sinopse}
+                                            palavraChave={software.palavra_chave}
+                                            id={software.id}
+                                            areaCientifica={software.area_cientifica}
+                                            areaEconomica={software.area_economica}
+                                        />
+                                    )
+                                }
+                            }
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        )
     }
 }
