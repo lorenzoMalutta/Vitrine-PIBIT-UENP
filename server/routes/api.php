@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthAdminController;
 use App\Http\Controllers\LaboratorioController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PatenteController;
+use App\Http\Controllers\PesquisaController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SoftwareController;
@@ -71,6 +72,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/servicos/cadastrar', [ServicoController::class, 'store']);
     Route::put('/servicos/edit/{id}', [ServicoController::class, 'update']);
     Route::delete('/servicos/{id}', [ServicoController::class, 'destroy']);
+});
+
+// Pesquisas routes
+Route::get('/pesquisas', [PesquisaController::class, 'index']);
+Route::get('/pesquisas/{id}', [PesquisaController::class, 'show']);
+Route::get('/pesquisas/search/{search}', [SearchController::class, 'searchPesquisa']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/pesquisas/cadastrar', [PesquisaController::class, 'store']);
+    Route::put('/pesquisas/edit/{id}', [PesquisaController::class, 'update']);
+    Route::delete('/pesquisas/{id}', [PesquisaController::class, 'destroy']);
 });
 
 // Laboratorio routes

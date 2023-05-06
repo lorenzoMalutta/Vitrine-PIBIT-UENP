@@ -29,6 +29,12 @@ import { LaboratorioEditDelete } from './view/admin/laboratorio/edit-delete'
 import { LaboratorioDetail } from './view/vitrine-detail/laboratorio'
 import { useEffect } from 'react'
 import { LaboratorioUpdate } from './view/admin/laboratorio/update'
+import { Pesquisa } from './view/vitrine/pesquisa'
+import { PesquisaDetail } from './view/vitrine-detail/pesquisas'
+import { PesquisaCadastrar } from './view/admin/pesquisas/create'
+import { PesquisaEditDelete } from './view/admin/pesquisas/edit-delete'
+import { AdminPesquisa } from './view/admin/pesquisas/menu'
+import { PesquisaUpdate } from './view/admin/pesquisas/update'
 
 export function Router() {
     if (localStorage.getItem('authenticating') === 'true') {
@@ -36,6 +42,10 @@ export function Router() {
             <Routes>
                 {/* Admin */}
                 <Route path="/dashboard" element={<MenuAdmin />} />
+                <Route path="/admin/pesquisas" element={<AdminPesquisa />} />
+                <Route path="/admin/pesquisas/cadastrar" element={<PesquisaCadastrar />} />
+                <Route path="/admin/pesquisas/editar-delete" element={<PesquisaEditDelete />} />
+                <Route path="/admin/pesquisas/edit/:id" element={<PesquisaUpdate />} />
                 <Route path="/admin/patentes" element={<AdminPatente />} />
                 <Route path="/admin/patentes/cadastrar" element={<PatenteCadastrar />} />
                 <Route path="/admin/patentes/editar-delete" element={< PatenteEditDelete />} />
@@ -57,6 +67,9 @@ export function Router() {
                 {/* Patente */}
                 <Route path="/patentes" element={<Patente />} />
                 <Route path="/patentes/:id" element={<PatenteDetail />} />
+                {/* Pesquisas */}
+                <Route path="/pesquisas" element={<Pesquisa />} />
+                <Route path="/pesquisas/:id" element={<PesquisaDetail />} />
                 {/* Serviços*/}
                 <Route path="/servicos" element={<Servico />} />
                 <Route path="/servicos/:id" element={<ServicoDetail />} />

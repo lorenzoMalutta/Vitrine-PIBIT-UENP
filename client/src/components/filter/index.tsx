@@ -41,6 +41,12 @@ export function Filter({ setBusca, nomeFiltro, setFilter, type }: PropsFilter) {
     }, [valorBusca])
     setBusca(valorBusca)
 
+    useEffect(() => {
+        api.get('/pesquias/search/${valorBusca}').then(response => {
+            setFilter(response.data);
+        })
+    }, [valorBusca])
+
     if (type === "patentes") {
         const [optionPalavraChave, setOptionPalavraChave] = useState<Iareas[]>([]);
         useEffect(() => {

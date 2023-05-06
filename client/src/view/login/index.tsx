@@ -26,6 +26,7 @@ export function Login() {
                 localStorage.setItem('authenticating', 'true');
             }, 200)
         } catch (error) {
+            toast.error("Erro ao efetuar login!")
             console.log(error);
         }
     };
