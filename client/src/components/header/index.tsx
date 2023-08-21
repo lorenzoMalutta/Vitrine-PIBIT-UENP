@@ -21,13 +21,13 @@ export function Header() {
     const menuMobile = () => setExpanded(!expanded);
     const navigate = useNavigate();
     const logout = () => {
-        api.post("/logout", null, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': "Bearer " + localStorage.getItem('token')
-            }
-        })
-        if (localStorage.getItem('authenticating') == 'true') {
+      if (localStorage.getItem('authenticating') == 'true') {
+          api.post("/logout", null, {
+              headers: {
+                  'Content-Type': 'multipart/form-data',
+                  'Authorization': "Bearer " + localStorage.getItem('token')
+              }
+          })
             localStorage.removeItem('token')
             localStorage.setItem('authenticating', 'false')
             toast.success('Deslogado com sucesso!')
