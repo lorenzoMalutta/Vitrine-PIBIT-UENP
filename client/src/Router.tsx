@@ -90,6 +90,18 @@ export function Router() {
                 {/* Patente */}
                 <Route path="/patentes" element={<Patente />} />
                 <Route path="/patentes/:id" element={<PatenteDetail />} />
+                {/* Pesquisas */}
+                <Route path="/pesquisas" element={<Pesquisa />} />
+                <Route path="/pesquisas/:id" element={<PesquisaDetail />} />
+                {/* Serviços*/}
+                <Route path="/servicos" element={<Servico />} />
+                <Route path="/servicos/:id" element={<ServicoDetail />} />
+                {/* Softwares */}
+                <Route path="/softwares" element={<Software />} />
+                <Route path="/softwares/:id" element={<SoftwareDetail />} />
+                {/* Laboratório */}
+                <Route path="/laboratorio" element={<Laboratorio />} />
+                <Route path="/laboratorio/:id" element={<LaboratorioDetail />} />
                 {/* Login e Cadastro */}
                 <Route path="/cadastro" element={<Cadastro />} />
                 <Route path="/login" element={<Login />} />
