@@ -21,23 +21,23 @@ export function Header() {
     const menuMobile = () => setExpanded(!expanded);
     const navigate = useNavigate();
     const logout = () => {
-      // if (localStorage.getItem('authenticating') == 'true') {
-      //     api.post("/logout", null, {
-      //         headers: {
-      //             'Content-Type': 'multipart/form-data',
-      //             'Authorization': "Bearer " + localStorage.getItem('token')
-      //         }
-      //     })
-      //       localStorage.removeItem('token')
-      //       localStorage.setItem('authenticating', 'false')
-      //       toast.success('Deslogado com sucesso!')
-      //       setTimeout(() => {
-      //           navigate('/')
-      //       }, 100)
-      //   } else {
-      //       navigate('/login')
-      //       window.location.reload()
-      //   }
+      if (localStorage.getItem('authenticating') == 'true') {
+          api.post("/logout", null, {
+              headers: {
+                  'Content-Type': 'multipart/form-data',
+                  'Authorization': "Bearer " + localStorage.getItem('token')
+              }
+          })
+            localStorage.removeItem('token')
+            localStorage.setItem('authenticating', 'false')
+            toast.success('Deslogado com sucesso!')
+            setTimeout(() => {
+                navigate('/')
+            }, 100)
+        } else {
+            navigate('/login')
+            window.location.reload()
+        }
     }
 
     return (

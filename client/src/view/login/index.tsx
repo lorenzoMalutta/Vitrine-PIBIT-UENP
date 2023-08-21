@@ -13,27 +13,27 @@ export function Login() {
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        // const data = {
-        //     email,
-        //     password,
-        // };
-        // try {
-        //     const response = await api.post("/login", data)
-        //     localStorage.setItem('token', response.data.token)
-        //     toast.success("Login efetuado com sucesso!")
-        //     setTimeout(() => {
-        //         setAuthenticating(true)
-        //         localStorage.setItem('authenticating', 'true');
-        //     }, 200)
-        // } catch (error) {
-        //     toast.error("Erro ao efetuar login!")
-        // }
+        const data = {
+            email,
+            password,
+        };
+        try {
+            const response = await api.post("/login", data)
+            localStorage.setItem('token', response.data.token)
+            toast.success("Login efetuado com sucesso!")
+            setTimeout(() => {
+                setAuthenticating(true)
+                localStorage.setItem('authenticating', 'true');
+            }, 200)
+        } catch (error) {
+            toast.error("Erro ao efetuar login!")
+        }
     };
 
-    // if (authenticating) {
-    //     navigate('/dashboard')
-    //     window.location.reload()
-    // }
+    if (authenticating) {
+        navigate('/dashboard')
+        window.location.reload()
+    }
 
     return (
         <section className="h-screen">
