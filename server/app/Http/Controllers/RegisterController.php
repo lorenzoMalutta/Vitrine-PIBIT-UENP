@@ -21,7 +21,7 @@ class RegisterController extends Controller
 
         $userData = $request->only('name', 'email', 'password', 'cpf', 'password_confirmation');
         $userData['password'] = bcrypt($userData['password']);
-        $userData['passwprd_confirmation'] = bcrypt($userData['password_confirmation']);
+        $userData['password_confirmation'] = bcrypt($userData['password_confirmation']);
 
         if (!$user = $user->create($userData)) {
             abort(500, 'Erro ao criar usuário');
