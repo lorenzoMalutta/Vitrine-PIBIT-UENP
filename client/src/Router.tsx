@@ -37,7 +37,6 @@ import { AdminPesquisa } from './view/admin/pesquisas/menu'
 import { PesquisaUpdate } from './view/admin/pesquisas/update'
 
 export function Router() {
-    if (localStorage.getItem('authenticating') === 'true') {
         return (
             <Routes>
                 {/* Admin */}
@@ -79,33 +78,11 @@ export function Router() {
                 {/* Laboratório */}
                 <Route path="/laboratorio" element={<Laboratorio />} />
                 <Route path="/laboratorio/:id" element={<LaboratorioDetail />} />
-                <Route path="/admin/laboratorios/edit/:id" element={<LaboratorioUpdate />} />
+            <Route path="/admin/laboratorios/edit/:id" element={<LaboratorioUpdate />} />
+            {/* Login */}
+            <Route path="/login" element={<Login />} />
+            {/* Cadastro */}
+            <Route path="/cadastro" element={<Cadastro />} />
             </Routes>
         )
-    } else {
-        return (
-            <Routes>
-                {/* Views */}
-                <Route path="/" element={<Home />} />
-                {/* Patente */}
-                <Route path="/patentes" element={<Patente />} />
-                <Route path="/patentes/:id" element={<PatenteDetail />} />
-                {/* Pesquisas */}
-                <Route path="/pesquisas" element={<Pesquisa />} />
-                <Route path="/pesquisas/:id" element={<PesquisaDetail />} />
-                {/* Serviços*/}
-                <Route path="/servicos" element={<Servico />} />
-                <Route path="/servicos/:id" element={<ServicoDetail />} />
-                {/* Softwares */}
-                <Route path="/softwares" element={<Software />} />
-                <Route path="/softwares/:id" element={<SoftwareDetail />} />
-                {/* Laboratório */}
-                <Route path="/laboratorio" element={<Laboratorio />} />
-                <Route path="/laboratorio/:id" element={<LaboratorioDetail />} />
-                {/* Login e Cadastro */}
-                <Route path="/cadastro" element={<Cadastro />} />
-                <Route path="/login" element={<Login />} />
-            </Routes>
-        )
-    }
 }
