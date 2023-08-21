@@ -21,19 +21,18 @@ export function Login() {
             const response = await api.post("/login", data)
             localStorage.setItem('token', response.data.token)
             toast.success("Login efetuado com sucesso!")
-            // setTimeout(() => {
-            //     setAuthenticating(true)
-            //     localStorage.setItem('authenticating', 'true');
-            // }, 200)
+            setTimeout(() => {
+                setAuthenticating(true)
+                localStorage.setItem('authenticating', 'true');
+              }, 200)
+              if (authenticating) {
+                navigate('/dashboard')
+                window.location.reload()
+              }
         } catch (error) {
             toast.error("Erro ao efetuar login!")
         }
     };
-
-    if (authenticating) {
-        navigate('/dashboard')
-        window.location.reload()
-    }
 
     return (
         <section className="h-screen">
