@@ -13,25 +13,25 @@ export function Login() {
 
     const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
-        const data = {
-            email,
-            password,
-        };
-        try {
-            const response = await api.post("/login", data)
-            localStorage.setItem('token', response.data.token)
-            toast.success("Login efetuado com sucesso!")
-            setTimeout(() => {
-                setAuthenticating(true)
-                localStorage.setItem('authenticating', 'true');
-              }, 200)
-              if (authenticating) {
-                navigate('/dashboard')
-                window.location.reload()
-              }
-        } catch (error) {
-            toast.error("Erro ao efetuar login!")
-        }
+        // const data = {
+        //     email,
+        //     password,
+        // };
+        // try {
+        //     const response = await api.post("/login", data)
+        //     localStorage.setItem('token', response.data.token)
+        //     toast.success("Login efetuado com sucesso!")
+        //     setTimeout(() => {
+        //         setAuthenticating(true)
+        //         localStorage.setItem('authenticating', 'true');
+        //       }, 200)
+        //       if (authenticating) {
+        //         navigate('/dashboard')
+        //         window.location.reload()
+        //       }
+        // } catch (error) {
+        //     toast.error("Erro ao efetuar login!")
+        // }
     };
 
     return (
