@@ -44,12 +44,13 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 // Patente routes
+
 Route::get('/patentes', [PatenteController::class, 'index']);
 Route::get('/patentes/{id}', [PatenteController::class, 'show']);
 Route::get('/patentes/search/{search}', [SearchController::class, 'searchPatente']);
+Route::post('/patentes', [PatenteController::class, 'store']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/patentes/{id}', [PatenteController::class, 'destroy']);
-    Route::post('/patentes/cadastrar', [PatenteController::class, 'store']);
     Route::put('/patentes/edit/{id}', [PatenteController::class, 'update']);
 });
 

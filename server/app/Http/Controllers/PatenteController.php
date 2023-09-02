@@ -2,23 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\PatenteRequest;
 use App\Models\Patente;
+use App\Service\PatenteService\IPatenteService;
 use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 
 class PatenteController extends Controller
 {
+  private IPatenteService $_patenteService;
+
+  public function __construct(IPatenteService $_patenteService)
+  {
+    $this->_patenteService = $_patenteService;
+  }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(int $skip = 0, int $take = 10)
     {
         try {
-            $patente = Patente::all()->toArray();
+            $patente = $this->_patenteService->index($skip, $take);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -34,55 +41,7 @@ class PatenteController extends Controller
     public function store(PatenteRequest $request)
     {
         try {
-            $patente = Patente::create([
-                'nome' => $request->nome,
-                'area_economica' => $request->area_economica,
-                'area_cientifica' => $request->area_cientifica,
-                'sinopse' => $request->sinopse,
-                'pct' => $request->pct,
-                'solucao' => $request->solucao,
-                'inpi' => $request->inpi,
-                'resumo' => $request->resumo,
-                'problema' => $request->problema,
-                'vantagem' => $request->vantagem,
-                'aplicacao' => $request->aplicacao,
-                'trl' => $request->trl,
-                'telefone' => $request->telefone,
-                'email' => $request->email,
-                'colaborador' => $request->colaborador,
-                'data_criacao' => $request->data_criacao,
-                'links' => $request->links,
-                'criadores' => $request->criadores,
-                'palavra_chave' => $request->palavra_chave,
-            ]);
-            $patente->save();
-            if ($request->hasFile('image')) {
-                $destinationPath = "public/images/patente";
-                $namePath = "/images/patente/";
-                $extension = $request->image->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-                $patente->image =  $namePath . $name . "." . $extension;
-                $patente->save();
-            }
-            if ($request->hasFile('pdf')) {
-                $destinationPath = "public/pdf/patente";
-                $namePath = "/pdf/patente/";
-                $extension = $request->pdf->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['pdf'] = $request->file('pdf')->storeAs($destinationPath, $name . ".{$extension}");
-                $patente->pdf = $namePath . $name . "." . $extension;
-                $patente->save();
-            }
-            if ($request->hasFile('video')) {
-                $destinationPath = "public/video/patente";
-                $namePath = "/video/patente/";
-                $extension = $request->video->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
-                $patente->video = $namePath . $name . "." . $extension;
-                $patente->save();
-            }
+            $patente = $this->_patenteService->store($request);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Erro ao cadastrar patente',
