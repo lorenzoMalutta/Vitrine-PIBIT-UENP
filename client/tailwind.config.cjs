@@ -6,6 +6,9 @@ module.exports = {
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
       },
+      maxWidth: {
+        'fill-available': '-webkit-fill-available',
+      },
     },
     button: {
       primary: {
@@ -19,4 +22,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};
