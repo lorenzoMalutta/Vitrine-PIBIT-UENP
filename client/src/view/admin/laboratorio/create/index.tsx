@@ -109,32 +109,32 @@ export function LaboratorioCadastro() {
                 <form className="grid grid-cols-2 m-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit}>
                     <div className="mt-2">
                         <p>Nome:</p>
-                        <textarea placeholder="Máximo de 255 caracteres" className="shadow-md bg-[#F8FAFC]" cols={55} rows={5} name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+                        <textarea placeholder="Máximo de 255 caracteres" className="max-w-fill-available shadow-md bg-[#F8FAFC]" cols={55} rows={5} name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
                         {nome.length > 255 && <p className="text-red-500">Máximo de 255 caracteres</p>}
                     </div>
                     <div className="mt-2">
                         <p>Sinopse:</p>
-                        <textarea placeholder="Máximo de 125 caracteres e mínimo de 75" className="shadow-md bg-[#F8FAFC]" name="sinopse" id="sinopse" cols={55} rows={5} value={sinopse} onChange={(e) => setSinopse(e.target.value)} />
+                        <textarea placeholder="Máximo de 125 caracteres e mínimo de 75" className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="sinopse" id="sinopse" cols={55} rows={5} value={sinopse} onChange={(e) => setSinopse(e.target.value)} />
                         {sinopse.length < 75 && <p className="text-red-500">Mínimo de 75 caracteres</p> || sinopse.length > 125 && <p className="text-red-500">Máximo de 125 caracteres</p>}
                     </div>
                     <div className="mt-2">
                         <p>Resumo:</p>
-                        <textarea placeholder="Mínimo de 255 caracteres máximo de 500 caracteres" className="shadow-md bg-[#F8FAFC]" name="resumo" id="resumo" cols={55} rows={5} value={resumo} onChange={(e) => setResumo(e.target.value)} />
+                        <textarea placeholder="Mínimo de 255 caracteres máximo de 500 caracteres" className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="resumo" id="resumo" cols={55} rows={5} value={resumo} onChange={(e) => setResumo(e.target.value)} />
                         {resumo.length < 255 && <p className="text-red-500">Mínimo de 255 caracteres</p> || resumo.length > 500 && <p className="text-red-500">Máximo de 500 caracteres</p>}
                     </div>
                     <div className="mt-2">
                         <p>Aplicação:</p>
-                        <textarea placeholder="Mínimo de 255 caracteres máximo de 500 caracteres" className="shadow-md bg-[#F8FAFC]" name="aplicacao" id="aplicacao" cols={55} rows={5} value={aplicacao} onChange={(e) => setAplicacao(e.target.value)} />
+                        <textarea placeholder="Mínimo de 255 caracteres máximo de 500 caracteres" className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="aplicacao" id="aplicacao" cols={55} rows={5} value={aplicacao} onChange={(e) => setAplicacao(e.target.value)} />
                         {aplicacao.length < 255 && <p className="text-red-500">Mínimo de 255 caracteres</p> || aplicacao.length > 500 && <p className="text-red-500">Máximo de 500 caracteres</p>}
                     </div>
                     <div className="mt-2">
                         <p>Conteúdo:</p>
-                        <textarea placeholder="Mínimo de 255 caracteres máximo de 500 caracteres" className="shadow-md bg-[#F8FAFC]" name="conteudo" id="conteudo" cols={55} rows={5} value={conteudo} onChange={(e) => setConteudo(e.target.value)} />
+                        <textarea placeholder="Mínimo de 255 caracteres máximo de 500 caracteres" className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="conteudo" id="conteudo" cols={55} rows={5} value={conteudo} onChange={(e) => setConteudo(e.target.value)} />
                         {conteudo.length < 255 && <p className="text-red-500">Mínimo de 255 caracteres</p> || conteudo.length > 500 && <p className="text-red-500">Máximo de 500 caracteres</p>}
                     </div>
                     <div className="mt-2">
                         <p>Supervisores responsáveis:</p>
-                        <textarea placeholder="Máximo de 255 caracteres" className="shadow-md bg-[#F8FAFC]" cols={55} rows={5} name="supervisores" id="supervisores" value={supervisores} onChange={(e) => setSupervisores(e.target.value)} />
+                        <textarea placeholder="Máximo de 255 caracteres" className="max-w-fill-available shadow-md bg-[#F8FAFC]" cols={55} rows={5} name="supervisores" id="supervisores" value={supervisores} onChange={(e) => setSupervisores(e.target.value)} />
                         {supervisores.length > 255 && <p className="text-red-500">Máximo de 255 caracteres</p>}
                     </div>
                     <div className="mt-2">

@@ -110,100 +110,100 @@ export function SoftwareCadastrar() {
             />
             <div className="bg-white rounded-md shadow-md w-full">
                 <form className="grid grid-cols-2 m-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit}>
-                    <div className="mt-2">
+                    <div className="mt-2 max-w-fill-available">
                         <p>Nome:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" cols={55} rows={5} name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" cols={55} rows={5} name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
                         {nome.length > 255 && <p className="text-red-500">Máximo de 255 caracteres</p>}
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 max-w-fill-available">
                         <p>Sinopse:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="sinopse" id="sinopse" cols={55} rows={5} value={sinopse} onChange={(e) => setSinopse(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="sinopse" id="sinopse" cols={55} rows={5} value={sinopse} onChange={(e) => setSinopse(e.target.value)} />
                         {sinopse.length < 75 && <p className="text-red-500">Mínimo de 75 caracteres</p> || sinopse.length > 125 && <p className="text-red-500">Máximo de 125 caracteres</p>}
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 max-w-fill-available">
                         <p>Resumo:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="resumo" id="resumo" cols={55} rows={5} value={resumo} onChange={(e) => setResumo(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="resumo" id="resumo" cols={55} rows={5} value={resumo} onChange={(e) => setResumo(e.target.value)} />
                         {resumo.length < 255 && <p className="text-red-500">Mínimo de 255 caracteres</p> || resumo.length > 500 && <p className="text-red-500">Máximo de 500 caracteres</p>}
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 max-w-fill-available">
                         <p>Problema:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="problema" id="problema" cols={55} rows={5} value={problema} onChange={(e) => setProblema(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="problema" id="problema" cols={55} rows={5} value={problema} onChange={(e) => setProblema(e.target.value)} />
                         {problema.length < 255 && <p className="text-red-500">Mínimo de 255 caracteres</p> || problema.length > 500 && <p className="text-red-500">Máximo de 500 caracteres</p>}
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 max-w-fill-available">
                         <p>Aplicação:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="aplicacao" id="aplicacao" cols={55} rows={5} value={aplicacao} onChange={(e) => setAplicacao(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="aplicacao" id="aplicacao" cols={55} rows={5} value={aplicacao} onChange={(e) => setAplicacao(e.target.value)} />
                         {aplicacao.length < 255 && <p className="text-red-500">Mínimo de 255 caracteres</p> || aplicacao.length > 500 && <p className="text-red-500">Máximo de 500 caracteres</p>}
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 max-w-fill-available">
                         <p>Vantagem:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="vantagem" id="vantagem" cols={55} rows={5} value={vantagem} onChange={(e) => setVantagem(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="vantagem" id="vantagem" cols={55} rows={5} value={vantagem} onChange={(e) => setVantagem(e.target.value)} />
                         {vantagem.length < 255 && <p className="text-red-500">Mínimo de 255 caracteres</p> || vantagem.length > 500 && <p className="text-red-500">Máximo de 500 caracteres</p>}
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 max-w-fill-available">
                         <p>Tecnologias utilizadas:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="Tecnologia" id="Tecnologia" cols={55} rows={5} value={tecnologia} onChange={(e) => setTecnologia(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="Tecnologia" id="Tecnologia" cols={55} rows={5} value={tecnologia} onChange={(e) => setTecnologia(e.target.value)} />
                         {tecnologia.length < 255 && <p className="text-red-500">Mínimo de 255 caracteres</p> || tecnologia.length > 500 && <p className="text-red-500">Máximo de 500 caracteres</p>}
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Área Científica:</p>
-                        <select className="bg-slate-300" name="area_cientifica" id="area_cientifica" onChange={(e) => setArea_cientifica(e.target.value)}>
+                        <select className="max-w-fill-available bg-slate-300" name="area_cientifica" id="area_cientifica" onChange={(e) => setArea_cientifica(e.target.value)}>
                             {optionCientifica.map((optionCientifica) => (
                                 <option value={optionCientifica.denominacao}>{optionCientifica.denominacao}</option>
                             ))}
                         </select>
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Área Econômica:</p>
-                        <select className="bg-slate-300" name="area_economica" id="area_economica" onChange={(e) => setArea_economica(e.target.value)}>
+                        <select className="max-w-fill-available bg-slate-300" name="area_economica" id="area_economica" onChange={(e) => setArea_economica(e.target.value)}>
                             {optionEconomica.map((optionEconomica) => (
                                 <option value={optionEconomica.denominacao}>{optionEconomica.denominacao}</option>
                             ))}
                         </select>
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Palavra Chave:</p>
-                        <select className="bg-slate-300" name="palavraChave" id="palavraChave" onChange={(e) => setPalavra_chave(e.target.value)}>
+                        <select className="max-w-fill-available bg-slate-300" name="palavraChave" id="palavraChave" onChange={(e) => setPalavra_chave(e.target.value)}>
                             {optionPalavraChave.map((optionPalavraChave) => (
                                 <option value={optionPalavraChave.denominacao} >{optionPalavraChave.denominacao}</option>
                             ))}
                         </select>
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 max-w-fill-available">
                         <p>Criadores:</p>
                         <input placeholder="Máximo 255 caracteres e não obrigatório" type="text" name="criadores" id="criadores" value={criadores} onChange={(e) => setCriadores(e.target.value)} />
                         {criadores.length > 255 && <p className="text-red-500">Máximo de 255 caracteres</p>}
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 max-w-fill-available">
                         <p>Colaborador:</p>
                         <input placeholder="Máximo 255 caracteres e não obrigatório" type="text" name="colaborador" id="colaborador" value={colaborador} onChange={(e) => setColaborador(e.target.value)} />
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 max-w-fill-available">
                         <p>Data de Criação:</p>
                         <input type="date" name="data_criacao" id="data_criacao" value={data_criacao} onChange={(e) => setData_criacao(e.target.value)} />
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 max-w-fill-available">
                         <p>Email:</p>
                         <input placeholder="Máximo 255 caracteres e não obrigatório" type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                         {email.length > 255 && <p className="text-red-500">Máximo de 255 caracteres</p>}
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 max-w-fill-available">
                         <p>Telefone:</p>
                         <input placeholder="Máximo 255 caracteres e não obrigatório" type="number" name="telefone" id="telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
                         {telefone.length > 255 && <p className="text-red-500">Máximo de 255 caracteres</p>}
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 max-w-fill-available">
                         <p>Links:</p>
                         <input placeholder="Máximo 255 caracteres e não obrigatório" type="text" name="links" id="links" value={links} onChange={(e) => setLinks(e.target.value)} />
                         {links.length > 255 && <p className="text-red-500">Máximo de 255 caracteres</p>}
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 max-w-fill-available">
                         <p>Imagem:</p>
                         <input type="file" name="image" id="image" onChange={handleImage} />
                         <p>Tamanho máximo de 2Mb</p>
                         {image && <p className="text-green-500">Imagem selecionada</p>}
                     </div>
-                    <div className="mt-2">
+                    <div className="mt-2 max-w-fill-available">
                         <p>Video:</p>
                         <input type="file" name="video" id="video" onChange={handleVideo} />
                         <p>Tamanho máximo de 20Mb</p>

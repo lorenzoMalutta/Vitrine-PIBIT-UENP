@@ -16,22 +16,20 @@ class LoginController extends Controller
         'password' => 'required|string',
       ]
     );
-
+    
     $credentials = $request->only('email', 'password');
     
     if (!auth()->attempt($credentials)) {
       abort(401, 'Credenciais Inválidas');
     }
-
-    user = User::FindOrFail($request->email);
-    
-    if (user.admin == true) {
+    $user = User::where('email', $request->email)->first();
+    if($user->admin == true){
       $token = auth()->user()->createToken('auth_token');
       return response()->json([
         'token' => $token->plainTextToken
       ]);
     } else {
-      return abort(401, 'Credenciais Inválidas');
+      return null;
     }
   }
 }

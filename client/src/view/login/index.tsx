@@ -20,11 +20,16 @@ export function Login() {
         try {
             const response = await api.post("/login", data)
             localStorage.setItem('token', response.data.token)
-            toast.success("Login efetuado com sucesso!")
-            setTimeout(() => {
-                setAuthenticating(true)
-                localStorage.setItem('authenticating', 'true');
-            }, 200)
+            if(response.data.token == null) {
+                toast.success("Login efetuado com sucesso!")
+                navigate('/')
+            } else {
+                toast.success("Login efetuado com sucesso!")
+                setTimeout(() => {
+                    setAuthenticating(true)
+                    localStorage.setItem('authenticating', 'true')
+                }, 200)
+            }
         } catch (error) {
             toast.error("Erro ao efetuar login!")
         }

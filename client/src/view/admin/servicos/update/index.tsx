@@ -121,27 +121,27 @@ export function ServicoUpdate() {
             />
             <div className="bg-white rounded-md shadow-md w-full">
                 <form className="grid grid-cols-2 m-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit} encType='multipart/form-data'>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Nome:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" cols={55} rows={5} name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" cols={55} rows={5} name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Sinopse:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="sinopse" id="sinopse" cols={55} rows={5} value={sinopse} onChange={(e) => setSinopse(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="sinopse" id="sinopse" cols={55} rows={5} value={sinopse} onChange={(e) => setSinopse(e.target.value)} />
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Resumo:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="resumo" id="resumo" cols={55} rows={5} value={resumo} onChange={(e) => setResumo(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="resumo" id="resumo" cols={55} rows={5} value={resumo} onChange={(e) => setResumo(e.target.value)} />
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Problema:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="problema" id="problema" cols={55} rows={5} value={problema} onChange={(e) => setProblema(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="problema" id="problema" cols={55} rows={5} value={problema} onChange={(e) => setProblema(e.target.value)} />
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Aplicação:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="aplicacao" id="aplicacao" cols={55} rows={5} value={aplicacao} onChange={(e) => setAplicacao(e.target.value)} />
+                        <textarea className=" max-w-fill-available shadow-md bg-[#F8FAFC]" name="aplicacao" id="aplicacao" cols={55} rows={5} value={aplicacao} onChange={(e) => setAplicacao(e.target.value)} />
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Área Científica:</p>
                         <select className="bg-slate-300" name="area_cientifica" id="area_cientifica" onChange={(e) => setArea_cientifica(e.target.value)}>
                             {optionCientifica.map((optionCientifica) => (
@@ -149,7 +149,7 @@ export function ServicoUpdate() {
                             ))}
                         </select>
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Área Econômica:</p>
                         <select className="bg-slate-300" name="area_economica" id="area_economica" onChange={(e) => setArea_economica(e.target.value)}>
                             {optionEconomica.map((optionEconomica) => (
@@ -157,7 +157,7 @@ export function ServicoUpdate() {
                             ))}
                         </select>
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Palavra Chave:</p>
                         <select className="bg-slate-300" name="palavraChave" id="palavraChave" onChange={(e) => setPalavra_chave(e.target.value)}>
                             {optionPalavraChave.map((optionPalavraChave) => (
@@ -165,31 +165,31 @@ export function ServicoUpdate() {
                             ))}
                         </select>
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Criadores:</p>
                         <input type="text" name="criadores" id="criadores" value={criadores} onChange={(e) => setCriadores(e.target.value)} />
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Colaborador:</p>
                         <input type="text" name="colaborador" id="colaborador" value={colaborador} onChange={(e) => setColaborador(e.target.value)} />
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Data de Criação:</p>
                         <input type="date" name="data_criacao" id="data_criacao" value={data_criacao} onChange={(e) => setData_criacao(e.target.value)} />
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Email:</p>
                         <input type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Telefone:</p>
                         <input type="number" name="telefone" id="telefone" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Links:</p>
                         <input type="text" name="links" id="links" value={links} onChange={(e) => setLinks(e.target.value)} />
                     </div>
-                    <div>
+                    <div className="max-w-fill-available">
                         <p>Imagem:</p>
                         <input type="file" name="image" id="image" onChange={handleImage} />
                     </div>

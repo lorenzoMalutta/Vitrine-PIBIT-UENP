@@ -130,23 +130,23 @@ export function LaboratorioUpdate() {
                 <form className="grid grid-cols-2 m-5 text-[#374151] text-xl font-bold" onSubmit={handleSubmit} encType='multipart/form-data'>
                     <div>
                         <p>Nome:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" cols={55} rows={5} name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" cols={55} rows={5} name="nome" id="nome" value={nome} onChange={(e) => setNome(e.target.value)} />
                     </div>
                     <div>
                         <p>Sinopse:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="sinopse" id="sinopse" cols={55} rows={5} value={sinopse} onChange={(e) => setSinopse(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="sinopse" id="sinopse" cols={55} rows={5} value={sinopse} onChange={(e) => setSinopse(e.target.value)} />
                     </div>
                     <div>
                         <p>Resumo:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="resumo" id="resumo" cols={55} rows={5} value={resumo} onChange={(e) => setResumo(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="resumo" id="resumo" cols={55} rows={5} value={resumo} onChange={(e) => setResumo(e.target.value)} />
                     </div>
                     <div>
                         <p>Aplicação:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="aplicacao" id="aplicacao" cols={55} rows={5} value={aplicacao} onChange={(e) => setAplicacao(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="aplicacao" id="aplicacao" cols={55} rows={5} value={aplicacao} onChange={(e) => setAplicacao(e.target.value)} />
                     </div>
                     <div>
                         <p>Conteúdo dos laboratórios:</p>
-                        <textarea className="shadow-md bg-[#F8FAFC]" name="conteudo" id="conteudo" cols={55} rows={5} value={conteudo} onChange={(e) => setConteudo(e.target.value)} />
+                        <textarea className="max-w-fill-available shadow-md bg-[#F8FAFC]" name="conteudo" id="conteudo" cols={55} rows={5} value={conteudo} onChange={(e) => setConteudo(e.target.value)} />
                     </div>
                     <div>
                         <p>Área Científica:</p>
