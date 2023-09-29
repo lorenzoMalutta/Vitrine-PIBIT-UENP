@@ -35,6 +35,9 @@ export function Footer() {
             <li>
               <Link to="/pesquisas">Pesquisas</Link>
             </li>
+            <li>
+            <p className="text-xs"><a href="https://br.freepik.com/vetores-gratis/script-de-estilo-personalizado-otimizacao-de-sites-codificacao-desenvolvimento-de-software-personagem-de-desenho-animado-de-programador-feminino-trabalhando-adicionando-javascript-codigo-css_11669143.htm#query=software&position=29&from_view=search&track=sph">Imagem de vectorjuice</a> no Freepik</p>
+            </li>
           </ul>
         </div>
       </div>

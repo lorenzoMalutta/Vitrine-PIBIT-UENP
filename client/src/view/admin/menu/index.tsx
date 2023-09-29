@@ -13,7 +13,7 @@ export function MenuAdmin() {
                     <Link to="/admin/patentes">
                         <div className="grid grid-flow-col-dense hover:shadow-3xl     hover:bg-gray-100 items-center text-left  shadow-lg rounded-md ">
                             <li>
-                                <img className="w-64 rounded-tl-md rounded-bl-md" src="src\assets\pesquisas.svg" alt="" />
+                                <img className="w-64 rounded-tl-md rounded-bl-md" src="assets/pesquisas.svg" alt="" />
                             </li>
                             <li>
                                 <h1>Administrador de patentes</h1>
@@ -24,7 +24,7 @@ export function MenuAdmin() {
                     <Link to="/admin/pesquisas">
                         <div className="grid grid-flow-col-dense hover:shadow-3xl  hover:bg-gray-100 items-center text-left  shadow-lg rounded-md ">
                             <li>
-                                <img className="w-64 rounded-tl-md rounded-bl-md" src="src\assets\search.svg" alt="" />
+                                <img className="w-64 rounded-tl-md rounded-bl-md" src="assets/search.svg" alt="" />
                             </li>
                             <li>
                                 <h1>Administrador de Pesquisas</h1>
@@ -35,7 +35,7 @@ export function MenuAdmin() {
                     <Link to="/admin/softwares">
                         <div className="grid grid-flow-col-dense hover:shadow-3xl     hover:bg-gray-100 items-center text-left  shadow-lg rounded-md ">
                             <li>
-                                <img className="w-64 rounded-tl-md rounded-bl-md" src="src\assets\software.svg" alt="" />
+                                <img className="w-64 rounded-tl-md rounded-bl-md" src="assets/software.svg" alt="" />
                             </li>
                             <li>
                                 <h1>Administrador de Softwares</h1>
@@ -46,7 +46,7 @@ export function MenuAdmin() {
                     <Link to="/admin/servicos">
                         <div className="grid grid-flow-col-dense hover:shadow-3xl     hover:bg-gray-100 items-center text-left  shadow-lg rounded-md ">
                             <li>
-                                <img className="w-64 rounded-tl-md rounded-bl-md" src="src\assets\service.svg" alt="" />
+                                <img className="w-64 rounded-tl-md rounded-bl-md" src="assets/service.svg" alt="" />
                             </li>
                             <li>
                                 <h1>Administrador de Serviços</h1>
@@ -57,7 +57,7 @@ export function MenuAdmin() {
                     <Link to="/admin/laboratorio">
                         <div className="grid grid-flow-col-dense hover:shadow-3xl     hover:bg-gray-100 items-center text-left  shadow-lg rounded-md ">
                             <li>
-                                <img className="w-64 rounded-tl-md rounded-bl-md" src="src\assets\servicos.svg" alt="" />
+                                <img className="w-64 rounded-tl-md rounded-bl-md" src="assets/servicos.svg" alt="" />
                             </li>
                             <li>
                                 <h1>Administrador de Laboratório</h1>
@@ -68,7 +68,7 @@ export function MenuAdmin() {
                     <Link to="/admin/startups">
                         <div className="grid grid-flow-col-dense hover:shadow-3xl     hover:bg-gray-100 items-center text-left  shadow-lg rounded-md ">
                             <li>
-                                <img className="w-64 rounded-tl-md rounded-bl-md" src="src\assets\startups.svg" alt="" />
+                                <img className="w-64 rounded-tl-md rounded-bl-md" src="assets/startups.svg" alt="" />
                             </li>
                             <li>
                                 <h1>Administrador de Startups</h1>
@@ -79,7 +79,7 @@ export function MenuAdmin() {
                     <Link to="/admin/permissoes">
                         <div className="grid grid-flow-col-dense hover:shadow-3xl     hover:bg-gray-100 items-center text-left  shadow-lg rounded-md ">
                             <li>
-                                <img className="w-64 rounded-tl-md rounded-bl-md" src="src\assets\permission.svg" alt="" />
+                                <img className="w-64 rounded-tl-md rounded-bl-md" src="assets/permission.svg" alt="" />
                             </li>
                             <li>
                                 <h1>Administrador de Permissões</h1>

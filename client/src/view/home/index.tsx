@@ -72,7 +72,7 @@ export function Home() {
 
     return (
         <section className="grid">
-            <div className="grid xl:grid-cols-5 md:grid-cols-2  m-5 gap-5">
+            <div className="grid xl:grid-cols-4 md:grid-cols-2  m-5 gap-5">
                 <Link to="/patentes">
                     <div className="flex flex-col items-center pt-4  bg-white shadow-2xl hover:bg-[#ededed] duration-700 rounded-md">
                         <div className="flex justify-center items-center bg-slate-300 rounded-full w-14 h-14">
@@ -100,15 +100,6 @@ export function Home() {
                         <p>Inovação e Tecnologias</p>
                     </div>
                 </Link>
-                <Link to="/startups">
-                    <div className="flex flex-col items-center pt-4 bg-white shadow-2xl hover:bg-[#ededed] duration-700 rounded-md">
-                        <div className="flex justify-center items-center bg-[#84ffb9] rounded-full w-14 h-14">
-                            <BiRocket className="text-4xl text-[#28C76F]" />
-                        </div>
-                        <h2 className="font-normal text-gray-700">Startups</h2>
-                        <p>Inovação e Tecnologias</p>
-                    </div>
-                </Link>
                 <Link to="/pesquisas">
                     <div className="flex flex-col items-center pt-4 bg-white shadow-2xl hover:bg-[#ededed] duration-700 rounded-md">
                         <div className="flex justify-center items-center bg-[#E0F9FC] rounded-full w-14 h-14">
@@ -121,7 +112,7 @@ export function Home() {
             </div>
             <div className="grid items-center grid-cols-1 m-9 shadow-lg">
                 <div className="grid md:flex items-center justify-center rounded-md bg-white">
-                    <img className="sm:h-52" src="src\assets\pesquisas.svg" alt="" />
+                    <img className="sm:h-52" src="assets/pesquisas.svg" alt="" />
                     <div className="flex flex-wrap items-center m-4 text-left">
                         <h2>Patentes e Pesquisa</h2>
                         <p>
@@ -149,7 +140,7 @@ export function Home() {
             </div>
             <div className="grid items-center grid-cols-1 m-9 shadow-lg">
                 <div className="grid md:flex items-center justify-center rounded-md bg-white">
-                    <img className="h-52" src="src\assets\service.svg" alt="" />
+                    <img className="h-52" src="assets/service.svg" alt="" />
                     <div className="flex flex-wrap items-center m-4 text-left">
                         <h2>Serviços</h2>
                         <p>
@@ -177,35 +168,7 @@ export function Home() {
             </div>
             <div className="grid items-center grid-cols-1 m-9 shadow-lg">
                 <div className="grid md:flex items-center justify-start rounded-md bg-white">
-                    <img className="h-52" src="src\assets\startups.svg" alt="" />
-                    <div className="flex flex-col  justify-start m-4 text-left">
-                        <h2>Startups</h2>
-                        <p>
-                            Venha conhecer as startups que estão sendo desenvolvidas pelos alunos da Universidade.
-                            Busque por tecnologias que podem ser aplicadas em seu negócio.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className="grid m-10 justify-center">
-                <div className="grid xl:grid-cols-4 lg:grid-cols-3 grid-cols-1 max-w-fit gap-14 ">
-                    {startups.map((startups) => (
-                        <Cards
-                            type="startups"
-                            image={startups.image}
-                            nome={startups.nome}
-                            sinopse={startups.sinopse}
-                            palavraChave={startups.palavra_chave}
-                            id={startups.id}
-                            areaCientifica={startups.area_cientifica}
-                            areaEconomica={startups.area_economica}
-                        />
-                    ))}
-                </div>
-            </div>
-            <div className="grid items-center grid-cols-1 m-9 shadow-lg">
-                <div className="grid md:flex items-center justify-start rounded-md bg-white">
-                    <img className="h-52" src="src\assets\software.svg" alt="" />
+                    <img className="h-52" src="assets/software.svg" alt="" />
                     <div className="flex flex-col  justify-start m-4 text-left">
                         <h2>Software</h2>
                         <p>
@@ -233,7 +196,7 @@ export function Home() {
             </div>
             <div className="grid items-center grid-cols-1 m-9 shadow-lg">
                 <div className="grid md:flex items-center justify-start rounded-md bg-white">
-                    <img className="h-52" src="src\assets\servicos.svg" alt="" />
+                    <img className="h-52" src="assets/servicos.svg" alt="" />
                     <div className="flex flex-col  justify-start m-4 text-left">
                         <h2>Laboratórios</h2>
                         <p>

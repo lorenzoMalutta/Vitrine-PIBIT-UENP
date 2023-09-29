@@ -74,9 +74,6 @@ export function Header() {
                         <BsBox /><Link to="/servicos">Serviços</Link>
                     </li>
                     <li className="inline-flex items-center gap-1">
-                        <BiRocket /><Link to="/startups">Startups</Link>
-                    </li>
-                    <li className="inline-flex items-center gap-1">
                         <AiOutlineFileSearch /><Link to="/pesquisas">Pesquisas</Link>
                     </li>
                     <li className="inline-flex items-center gap-1">

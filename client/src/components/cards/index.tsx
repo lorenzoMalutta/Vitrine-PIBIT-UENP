@@ -1,3 +1,5 @@
+import api from "../../services/api";
+
 interface CardProps {
     nome: string;
     sinopse: string;
@@ -21,7 +23,7 @@ export function Cards({
 }: CardProps) {
     return (
         <div>
-            <img src={"http://127.0.0.1:8000/storage/" + image} className="max-h-32 w-full" />
+            <img src={ api + "storage/storage/" + image} className="max-h-32 w-full" />
             <a href={type + "/" + id} className="block max-w-sm p-6 bg-white border border-gray-200 shadow">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{nome}</h5>
                 <p className="font-normal text-gray-700 overflow-hidden">{sinopse}</p>
