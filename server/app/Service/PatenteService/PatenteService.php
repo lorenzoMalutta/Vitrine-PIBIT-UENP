@@ -11,10 +11,10 @@ class PatenteService implements IPatenteService
   private Patente $_patente;
   private IFileService $_fileService;
   
-  public function __construct(Patente $_patente, IFileService $_fileService)
+  public function __construct(Patente $patente, IFileService $fileService)
   {
-    $this->_patente = $_patente;
-    $this->_fileService = $_fileService;
+    $this->_patente = $patente;
+    $this->_fileService = $fileService;
   }
 
   public function index(int $skip = 0, int $take = 10)
@@ -24,7 +24,7 @@ class PatenteService implements IPatenteService
   
   public function store(PatenteRequest $_patente)
   {
-    return $this->_patente->create([
+    $this->_patente->create([
       'nome' => $_patente->nome,
       'area_economica' => $_patente->area_economica,
       'area_cientifica' => $_patente->area_cientifica,

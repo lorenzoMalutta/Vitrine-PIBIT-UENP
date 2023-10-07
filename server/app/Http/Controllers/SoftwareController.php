@@ -73,7 +73,7 @@ class SoftwareController extends Controller
                 $extension = $request->video->getClientOriginalExtension();
                 $name = Uuid::uuid1();
                 $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
-                $software->video = $namePath . $name . "." . $extension;
+                $software->video = $namePath . $name . ".mp4";
                 $software->save();
             }
         } catch (\Exception $e) {

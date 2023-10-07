@@ -43,9 +43,9 @@ class PatenteRequest extends FormRequest
             'area_economica' => 'required|string|max:255',
             'area_cientifica' => 'required|string|max:255',
             'palavra_chave' => 'required|string|max:255',
-            'image'       => 'required|mimes:png,jpg,svg|max:2048',
-            'video'       => 'required|mimes:mp4,mov,ogg|max: 20000',
-            'pdf'         => 'required|max:4096',
+            'image'       => 'mimes:png,jpg,svg|max:2048',
+            'video'       => 'mimes:mp4,mov,ogg|max: 20000',
+            'pdf'         => 'max:4096',
         ];
     }
 
