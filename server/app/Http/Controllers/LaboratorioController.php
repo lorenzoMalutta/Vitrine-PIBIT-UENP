@@ -32,25 +32,20 @@ class LaboratorioController extends Controller
             'telefone' => $request->telefone,
             'email' => $request->email,
         ]);
-        $laboratorio->save();
         if ($request->hasFile('image')) {
-            $destinationPath = "public/images/laboratorio";
-            $namePath = "/images/laboratorio/";
-            $extension = $request->image->getClientOriginalExtension();
-            $name = Uuid::uuid1();
-            $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-            $laboratorio->image =  $namePath . $name . "." . $extension;
-            $laboratorio->save();
+            $image = $request->file('image');
+            $name = Uuid::uuid4()->toString() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images/laboratorio', $name);
+            $laboratorio->image = "/images/laboratorio/" . $name;
         }
+        
         if ($request->hasFile('pdf')) {
-            $destinationPath = "public/pdf/laboratorio";
-            $namePath = "/pdf/laboratorio/";
-            $extension = $request->pdf->getClientOriginalExtension();
-            $name = Uuid::uuid1();
-            $path['pdf'] = $request->file('pdf')->storeAs($destinationPath, $name . ".{$extension}");
-            $laboratorio->pdf = $namePath . $name . "." . $extension;
-            $laboratorio->save();
+            $pdf = $request->file('pdf');
+            $name = Uuid::uuid4()->toString() . '.' . $pdf->getClientOriginalExtension();
+            $pdf->storeAs('public/pdf/laboratorio', $name);
+            $laboratorio->pdf = "/pdf/laboratorio/" . $name;
         }
+        $laboratorio->save();
         return response()->json($laboratorio, 201);
     }
 
@@ -68,41 +63,22 @@ class LaboratorioController extends Controller
     public function update(Request $request)
     {
         try {
-            $laboratorio = Laboratorio::find($request->id);
-            $laboratorio->nome = $request->input('nome');
-            $laboratorio->sinopse = $request->input('sinopse');
-            $laboratorio->resumo = $request->input('resumo');
-            $laboratorio->aplicacao = $request->input('aplicacao');
-            $laboratorio->colaborador = $request->input('colaborador');
-            $laboratorio->links = $request->input('links');
-            $laboratorio->area_cientifica = $request->input('area_cientifica');
-            $laboratorio->area_economica = $request->input('area_economica');
-            $laboratorio->palavras_chave = $request->input('palavras_chave');
-            $laboratorio->supervisores = $request->input('supervisores');
-            $laboratorio->conteudo = $request->input('conteudo');
-            $laboratorio->image = $request->input('image');
-            $laboratorio->pdf = $request->input('pdf');
-            $laboratorio->telefone = $request->input('telefone');
-            $laboratorio->email = $request->input('email');
-            $laboratorio->update();
+            $laboratorio = Laboratorio::findOrFail($request->id);
+            $laboratorio->update($request->all());
             if ($request->hasFile('image')) {
-                $destinationPath = "public/images/laboratorio";
-                $namePath = "/images/laboratorio/";
-                $extension = $request->image->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-                $laboratorio->image =  $namePath . $name . "." . $extension;
-                $laboratorio->update();
+                $image = $request->file('image');
+                $name = Uuid::uuid4()->toString() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('public/images/laboratorio', $name);
+                $laboratorio->image = "/images/laboratorio/" . $name;
             }
+            
             if ($request->hasFile('pdf')) {
-                $destinationPath = "public/pdf/laboratorio";
-                $namePath = "/pdf/laboratorio/";
-                $extension = $request->pdf->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['pdf'] = $request->file('pdf')->storeAs($destinationPath, $name . ".{$extension}");
-                $laboratorio->pdf = $namePath . $name . "." . $extension;
-                $laboratorio->update();
+                $pdf = $request->file('pdf');
+                $name = Uuid::uuid4()->toString() . '.' . $pdf->getClientOriginalExtension();
+                $pdf->storeAs('public/pdf/laboratorio', $name);
+                $laboratorio->pdf = "/pdf/laboratorio/" . $name;
             }
+            $laboratorio->update();
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

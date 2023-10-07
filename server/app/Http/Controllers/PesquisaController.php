@@ -8,8 +8,6 @@ use Ramsey\Uuid\Uuid;
 
 class PesquisaController extends Controller
 {
-    //make the method like server\app\Http\Controllers\PatenteController.php
-
     public function index()
     {
         try {
@@ -42,34 +40,27 @@ class PesquisaController extends Controller
                 'criadores' => $request->criadores,
                 'palavra_chave' => $request->palavra_chave,
             ]);
-            $pesquisa->save();
             if ($request->hasFile('image')) {
-                $destinationPath = "public/images/pesquisa";
-                $namePath = "/images/pesquisa/";
-                $extension = $request->image->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-                $pesquisa->image =  $namePath . $name . "." . $extension;
-                $pesquisa->save();
+                $image = $request->file('image');
+                $name = Uuid::uuid4()->toString() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('public/images/pesquisa', $name);
+                $pesquisa->image = "/images/pesquisa/" . $name;
             }
-            if ($request->hasFile('pdf')) {
-                $destinationPath = "public/pdf/pesquisa";
-                $namePath = "/pdf/pesquisa/";
-                $extension = $request->pdf->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['pdf'] = $request->file('pdf')->storeAs($destinationPath, $name . ".{$extension}");
-                $pesquisa->pdf = $namePath . $name . "." . $extension;
-                $pesquisa->save();
-            }
+            
             if ($request->hasFile('video')) {
-                $destinationPath = "public/video/pesquisa";
-                $namePath = "/video/pesquisa/";
-                $extension = $request->video->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
-                $pesquisa->video = $namePath . $name . "." . $extension;
-                $pesquisa->save();
+                $video = $request->file('video');
+                $name = Uuid::uuid4()->toString() . '.' . $video->getClientOriginalExtension();
+                $video->storeAs('public/video/pesquisa', $name);
+                $pesquisa->video = "/video/pesquisa/" . $name;
             }
+
+            if ($request->hasFile('pdf')) {
+                $pdf = $request->file('pdf');
+                $name = Uuid::uuid4()->toString() . '.' . $pdf->getClientOriginalExtension();
+                $pdf->storeAs('public/pdf/pesquisa', $name);
+                $pesquisa->pdf = "pdf/pesquisa/" . $name;
+            }
+            $pesquisa->save();
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -87,58 +78,32 @@ class PesquisaController extends Controller
         return response()->json($pesquisa, 201);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         try {
-            $pesquisa = Pesquisa::find($id);
-            if (!$pesquisa) throw new \Exception("Não foi possível encontrar a pesquisa com o id: {$id}");
-            $pesquisa->update([
-                'nome' => $request->nome,
-                'area_economica' => $request->area_economica,
-                'area_cientifica' => $request->area_cientifica,
-                'sinopse' => $request->sinopse,
-                'solucao' => $request->solucao,
-                'resumo' => $request->resumo,
-                'problema' => $request->problema,
-                'vantagem' => $request->vantagem,
-                'aplicacao' => $request->aplicacao,
-                'trl' => $request->trl,
-                'telefone' => $request->telefone,
-                'email' => $request->email,
-                'colaborador' => $request->colaborador,
-                'data_criacao' => $request->data_criacao,
-                'links' => $request->links,
-                'criadores' => $request->criadores,
-                'palavra_chave' => $request->palavra_chave,
-            ]);
-            $pesquisa->save();
+            $pesquisa = Pesquisa::findOrFail($request->id);
+            $pesquisa->update($request->all());
             if ($request->hasFile('image')) {
-                $destinationPath = "public/images/pesquisa";
-                $namePath = "/images/pesquisa/";
-                $extension = $request->image->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-                $pesquisa->image =  $namePath . $name . "." . $extension;
-                $pesquisa->save();
+                $image = $request->file('image');
+                $name = Uuid::uuid4()->toString() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('public/images/pesquisa', $name);
+                $pesquisa->image = "/images/pesquisa/" . $name;
             }
-            if ($request->hasFile('pdf')) {
-                $destinationPath = "public/pdf/pesquisa";
-                $namePath = "/pdf/pesquisa/";
-                $extension = $request->pdf->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['pdf'] = $request->file('pdf')->storeAs($destinationPath, $name . ".{$extension}");
-                $pesquisa->pdf = $namePath . $name . "." . $extension;
-                $pesquisa->save();
-            }
+            
             if ($request->hasFile('video')) {
-                $destinationPath = "public/video/pesquisa";
-                $namePath = "/video/pesquisa/";
-                $extension = $request->video->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
-                $pesquisa->video = $namePath . $name . "." . $extension;
-                $pesquisa->save();
+                $video = $request->file('video');
+                $name = Uuid::uuid4()->toString() . '.' . $video->getClientOriginalExtension();
+                $video->storeAs('public/video/pesquisa', $name);
+                $pesquisa->video = "/video/pesquisa/" . $name;
             }
+
+            if ($request->hasFile('pdf')) {
+                $pdf = $request->file('pdf');
+                $name = Uuid::uuid4()->toString() . '.' . $pdf->getClientOriginalExtension();
+                $pdf->storeAs('public/pdf/pesquisa', $name);
+                $pesquisa->pdf = "/pdf/pesquisa/" . $name;
+            }
+            $pesquisa->update();
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

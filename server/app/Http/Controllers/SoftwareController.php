@@ -59,23 +59,26 @@ class SoftwareController extends Controller
                 'tecnologia' => $request->tecnologia,
             ]);
             if ($request->hasFile('image')) {
-                $destinationPath = "public/images/software";
-                $namePath = "/images/software/";
-                $extension = $request->image->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-                $software->image = $namePath . $name . "." . $extension;
-                $software->save();
+                $image = $request->file('image');
+                $name = Uuid::uuid4()->toString() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('public/images/software', $name);
+                $software->image = "/images/software/" . $name;
             }
+
             if ($request->hasFile('video')) {
-                $destinationPath = "public/videos/software";
-                $namePath = "/videos/software/";
-                $extension = $request->video->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
-                $software->video = $namePath . $name . ".mp4";
-                $software->save();
+                $video = $request->file('video');
+                $name = Uuid::uuid4()->toString() . '.' . $video->getClientOriginalExtension();
+                $video->storeAs('public/video/software', $name);
+                $software->video = "/video/software" . $name;
             }
+
+            if ($request->hasFile('pdf')) {
+                $pdf = $request->file('pdf');
+                $name = Uuid::uuid4()->toString() . '.' . $pdf->getClientOriginalExtension();
+                $pdf->storeAs('public/pdf/software', $name);
+                $software->pdf = "/pdf/software/" . $name;
+            }
+            $software->save();
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Erro ao cadastrar software',
@@ -120,22 +123,27 @@ class SoftwareController extends Controller
         try {
             $software = Software::findOrFail($id);
             $software->update($request->all());
-            if ($software->image) {
-                $destinationPath = "public/images/software";
-                $extension = $request->image->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-                $software->image = $name . "." . $extension;
-                $software->update();
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $name = Uuid::uuid4()->toString() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('public/images/software', $name);
+                $software->image = "/images/software/" . $name;
             }
-            if ($software->video) {
-                $destinationPath = "public/videos/software";
-                $extension = $request->image->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['video'] = $request->file('video')->storeAs($destinationPath, $name . ".{$extension}");
-                $software->video = $name . "." . $extension;
-                $software->update();
+
+            if ($request->hasFile('video')) {
+                $video = $request->file('video');
+                $name = Uuid::uuid4()->toString() . '.' . $video->getClientOriginalExtension();
+                $video->storeAs('public/video/software', $name);
+                $software->video = "/video/software" . $name;
             }
+
+            if ($request->hasFile('pdf')) {
+                $pdf = $request->file('pdf');
+                $name = Uuid::uuid4()->toString() . '.' . $pdf->getClientOriginalExtension();
+                $pdf->storeAs('public/pdf/software', $name);
+                $software->pdf = "/pdf/software/" . $name;
+            }
+            $software->update();
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Erro ao atualizar software',

@@ -2,46 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PatenteRequest;
 use App\Models\Patente;
-use App\Service\PatenteService\IPatenteService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 
 class PatenteController extends Controller
 {
-  private IPatenteService $_patenteService;
-
-  public function __construct(IPatenteService $_patenteService)
-  {
-    $this->_patenteService = $_patenteService;
-  }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(int $skip = 0, int $take = 10)
     {
         try {
-            $patente = $this->_patenteService->index($skip, $take);
+            $patente = Patente::skip($skip)->take($take)->get();
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
         return response()->json($patente, 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  App\Http\Requests\PatenteRequest;  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(PatenteRequest $request)
+    public function store(Request $request)
     {
         try {
-            $patente = $this->_patenteService->store($request);
+                $patente = Patente::create([
+                'nome' => $request->nome,
+                'area_economica' => $request->area_economica,
+                'area_cientifica' => $request->area_cientifica,
+                'sinopse' => $request->sinopse,
+                'pct' => $request->pct,
+                'solucao' => $request->solucao,
+                'inpi' => $request->inpi,
+                'resumo' => $request->resumo,
+                'problema' => $request->problema,
+                'vantagem' => $request->vantagem,
+                'aplicacao' => $request->aplicacao,
+                'trl' => $request->trl,
+                'telefone' => $request->telefone,
+                'email' => $request->email,
+                'colaborador' => $request->colaborador,
+                'data_criacao' => $request->data_criacao,
+                'links' => $request->links,
+                'criadores' => $request->criadores,
+                'palavra_chave' => $request->palavra_chave,
+            ]);
+
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $name = Uuid::uuid4()->toString() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('public/images/patente', $name);
+                $patente->image = "/images/patente/" . $name;
+            }
+
+            if ($request->hasFile('video')) {
+                $video = $request->file('video');
+                $name = Uuid::uuid4()->toString() . '.' . $video->getClientOriginalExtension();
+                $video->storeAs('public/video/patente', $name);
+                $patente->video = "/video/patente/" . $name;
+            }
+
+            if ($request->hasFile('pdf')) {
+                $pdf = $request->file('pdf');
+                $name = Uuid::uuid4()->toString() . '.' . $pdf->getClientOriginalExtension();
+                $pdf->storeAs('public/pdf/patente', $name);
+                $patente->pdf = "/pdf/patente/" . $name;
+            }
+
+            $patente->save();
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Erro ao cadastrar patente',
@@ -55,12 +79,6 @@ class PatenteController extends Controller
         ], 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         try {
@@ -75,64 +93,34 @@ class PatenteController extends Controller
         return response()->json($patente, 201);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  App\Http\Requests\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function update(PatenteRequest $request)
+    public function update(Request $request)
     {
         try {
             $patente = Patente::findOrFail($request->id);
+            $patente->update($request->all());
 
-            $patente->nome = $request->input('nome');
-            $patente->area_economica = $request->input('area_economica');
-            $patente->area_cientifica = $request->input('area_cientifica');
-            $patente->sinopse = $request->input('sinopse');
-            $patente->pct = $request->input('pct');
-            $patente->solucao = $request->input('solucao');
-            $patente->inpi = $request->input('inpi');
-            $patente->resumo = $request->input('resumo');
-            $patente->problema = $request->input('problema');
-            $patente->vantagem = $request->input('vantagem');
-            $patente->aplicacao = $request->input('aplicacao');
-            $patente->trl = $request->input('trl');
-            $patente->telefone = $request->input('telefone');
-            $patente->email = $request->input('email');
-            $patente->colaborador = $request->input('colaborador');
-            $patente->data_criacao = $request->input('data_criacao');
-            $patente->links = $request->input('links');
-            $patente->criadores = $request->input('criadores');
-            $patente->palavra_chave = $request->input('palavra_chave');
             if ($request->hasFile('image')) {
-                $destinationPath = "public/images/patente";
-                $namePath = "/images/patente/";
-                $extension = $request->image->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                if ($request->file('image')->storeAs($destinationPath, $name . ".{$extension}")) {
-                    $patente->image = $namePath . $name . "." . $extension;
-                }
+                $image = $request->file('image');
+                $name = Uuid::uuid4()->toString() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('public/images/patente', $name);
+                $patente->image = "/images/patente/" . $name;
             }
-            if ($request->hasFile('pdf')) {
-                $destinationPath = "public/pdf/patente";
-                $namePath = "/pdf/patente/";
-                $extension = $request->pdf->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                if ($request->file('pdf')->storeAs($destinationPath, $name . ".{$extension}")) {
-                    $patente->pdf = $namePath . $name . "." . $extension;
-                }
-            }
+
             if ($request->hasFile('video')) {
-                $destinationPath = "public/video/patente";
-                $namePath = "/video/patente/";
-                $extension = $request->video->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                if ($request->file('video')->storeAs($destinationPath, $name . ".{$extension}")) {
-                    $patente->video = $namePath . $name . "." . $extension;
-                }
+                $video = $request->file('video');
+                $name = Uuid::uuid4()->toString() . '.' . $video->getClientOriginalExtension();
+                $video->storeAs('public/video/patente', $name);
+                $patente->video = "/video/patente/" . $name;
             }
-            $patente->save();
+
+            if ($request->hasFile('pdf')) {
+                $pdf = $request->file('pdf');
+                $name = Uuid::uuid4()->toString() . '.' . $pdf->getClientOriginalExtension();
+                $pdf->storeAs('public/pdf/patente', $name);
+                $patente->pdf = "/pdf/patente/" . $name;
+            }
+
+            $patente->update();
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Erro ao atualizar patente',
@@ -145,31 +133,23 @@ class PatenteController extends Controller
         ], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         try {
             $patente = Patente::find($id);
-            //delete image from storage folder if exists 
+            Patente::destroy($id);
             if ($patente->image) {
                 $image_path = "public/images/patente/" . $patente->image;
                 if (Storage::exists($image_path)) {
                     Storage::delete($image_path);
                 }
             }
-            //delete video from storage folder if exists
             if ($patente->video) {
                 $video_path = "public/video/patente/" . $patente->video;
                 if (Storage::exists($video_path)) {
                     Storage::delete($video_path);
                 }
             }
-            //delete pdf from storage folder if exists
             if ($patente->pdf) {
                 $pdf_path = "public/pdf/patente/" . $patente->pdf;
                 if (Storage::exists($pdf_path)) {

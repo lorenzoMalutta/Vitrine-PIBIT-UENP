@@ -52,14 +52,12 @@ class ServicoController extends Controller
                 'palavra_chave' => $request->palavra_chave,
             ]);
             if ($request->hasFile('image')) {
-                $destinationPath = "public/images/servicos";
-                $namePath = "/images/servicos/";
-                $extension = $request->image->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                $path['image'] = $request->file('image')->storeAs($destinationPath, $name . ".{$extension}");
-                $servico->image =  $namePath . $name . "." . $extension;
-                $servico->save();
+                $image = $request->file('image');
+                $name = Uuid::uuid4()->toString() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('public/images/servico', $name);
+                $servico->image = "/images/servico/" . $name;
             }
+            $servico->save();
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Erro ao cadastrar serviço',
@@ -102,27 +100,12 @@ class ServicoController extends Controller
     {
         try {
             $servico = Servico::findOrFail($request->id);
-            $servico->nome = $request->input('nome');
-            $servico->sinopse = $request->input('sinopse');
-            $servico->problema = $request->input('problema');
-            $servico->area_economica = $request->input('area_economica');
-            $servico->area_cientifica = $request->input('area_cientifica');
-            $servico->resumo = $request->input('resumo');
-            $servico->aplicacao = $request->input('aplicacao');
-            $servico->telefone = $request->input('telefone');
-            $servico->email = $request->input('email');
-            $servico->links = $request->input('links');
-            $servico->criadores = $request->input('criadores');
-            $servico->palavra_chave = $request->input('palavra_chave');
             $servico->update($request->all());
             if ($request->hasFile('image')) {
-                $destinationPath = "public/images/servicos";
-                $namePath = "/images/servicos/";
-                $extension = $request->image->getClientOriginalExtension();
-                $name = Uuid::uuid1();
-                if ($request->file('image')->storeAs($destinationPath, $name . ".{$extension}")) {
-                    $servico->image = $namePath . $name . "." . $extension;
-                }
+                $image = $request->file('image');
+                $name = Uuid::uuid4()->toString() . '.' . $image->getClientOriginalExtension();
+                $image->storeAs('public/images/servico', $name);
+                $servico->image = "/images/servico/" . $name;
             }
         } catch (\Exception $e) {
             return response()->json([
