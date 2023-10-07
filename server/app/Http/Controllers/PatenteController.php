@@ -133,7 +133,6 @@ class PatenteController extends Controller
                 }
             }
             $patente->save();
-            dd($request);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'Erro ao atualizar patente',
