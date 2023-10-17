@@ -49,9 +49,9 @@ Route::get('/patentes', [PatenteController::class, 'index']);
 Route::get('/patentes/{id}', [PatenteController::class, 'show']);
 Route::get('/patentes/search/{search}', [SearchController::class, 'searchPatente']);
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/patentes/edit/{id}', [PatenteController::class, 'update']);
     Route::post('/patentes/cadastrar', [PatenteController::class, 'store']);
     Route::delete('/patentes/{id}', [PatenteController::class, 'destroy']);
-    Route::put('/patentes/edit/{id}', [PatenteController::class, 'update']);
 });
 
 // Software routes
@@ -60,7 +60,7 @@ Route::get('/softwares/{id}', [SoftwareController::class, 'show']);
 Route::get('/softwares/search/{search}', [SearchController::class, 'searchSoftware']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/softwares/cadastrar', [SoftwareController::class, 'store']);
-    Route::put('/softwares/edit/{id}', [SoftwareController::class, 'update']);
+    Route::post('/softwares/edit/{id}', [SoftwareController::class, 'update']);
     Route::delete('/softwares/{id}', [SoftwareController::class, 'destroy']);
 });
 
@@ -71,7 +71,7 @@ Route::get('/servicos/{id}', [ServicoController::class, 'show']);
 Route::get('/servicos/search/{search}', [SearchController::class, 'searchServico']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/servicos/cadastrar', [ServicoController::class, 'store']);
-    Route::put('/servicos/edit/{id}', [ServicoController::class, 'update']);
+    Route::post('/servicos/edit/{id}', [ServicoController::class, 'update']);
     Route::delete('/servicos/{id}', [ServicoController::class, 'destroy']);
 });
 
@@ -81,7 +81,7 @@ Route::get('/pesquisas/{id}', [PesquisaController::class, 'show']);
 Route::get('/pesquisas/search/{search}', [SearchController::class, 'searchPesquisa']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/pesquisas/cadastrar', [PesquisaController::class, 'store']);
-    Route::put('/pesquisas/edit/{id}', [PesquisaController::class, 'update']);
+    Route::post('/pesquisas/edit/{id}', [PesquisaController::class, 'update']);
     Route::delete('/pesquisas/{id}', [PesquisaController::class, 'destroy']);
 });
 
@@ -91,7 +91,7 @@ Route::get('/laboratorios/{id}', [LaboratorioController::class, 'show']);
 Route::get('/laboratorios/search/{search}', [SearchController::class, 'searchLaboratorio']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/laboratorios/cadastrar', [LaboratorioController::class, 'store']);
-    Route::put('/laboratorios/edit/{id}', [LaboratorioController::class, 'update']);
+    Route::post('/laboratorios/edit/{id}', [LaboratorioController::class, 'update']);
     Route::delete('/laboratorios/{id}', [LaboratorioController::class, 'destroy']);
 });
 

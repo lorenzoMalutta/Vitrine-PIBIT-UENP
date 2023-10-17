@@ -79,12 +79,12 @@ export function ServicoUpdate() {
         form.append('image', image);
 
         try {
-            await api.put(`/servicos/edit/${id}`, form, {
+            await api.post(`/servicos/edit/${id}`, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data, application/json',
                     'Accept': 'application/json',
                     'Authorization': "Bearer " + localStorage.getItem('token')
-                }
+                },
             })
             toast.success('Serviço atualizado com sucesso!');
         }

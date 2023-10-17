@@ -59,7 +59,7 @@ export function PermissoesUsuarios() {
 
 
     return (
-        <section className="m-10">
+        <section className="m-10 inline-table">
             <Title
                 titulo="Permissões de usuários"
                 subtitulo="Aqui você pode conceder ou remover permissões de usuários"

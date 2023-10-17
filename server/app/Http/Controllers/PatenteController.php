@@ -49,6 +49,7 @@ class PatenteController extends Controller
                 $name = Uuid::uuid4()->toString() . '.' . $image->getClientOriginalExtension();
                 $image->storeAs('public/images/patente', $name);
                 $patente->image = "/images/patente/" . $name;
+               
             }
 
             if ($request->hasFile('video')) {
@@ -93,46 +94,48 @@ class PatenteController extends Controller
         return response()->json($patente, 201);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         try {
-            $patente = Patente::findOrFail($request->id);
+            $patente = Patente::findOrFail($id);
             $patente->update($request->all());
-
+    
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $name = Uuid::uuid4()->toString() . '.' . $image->getClientOriginalExtension();
                 $image->storeAs('public/images/patente', $name);
                 $patente->image = "/images/patente/" . $name;
             }
-
+    
             if ($request->hasFile('video')) {
                 $video = $request->file('video');
                 $name = Uuid::uuid4()->toString() . '.' . $video->getClientOriginalExtension();
                 $video->storeAs('public/video/patente', $name);
                 $patente->video = "/video/patente/" . $name;
             }
-
+    
             if ($request->hasFile('pdf')) {
                 $pdf = $request->file('pdf');
                 $name = Uuid::uuid4()->toString() . '.' . $pdf->getClientOriginalExtension();
                 $pdf->storeAs('public/pdf/patente', $name);
                 $patente->pdf = "/pdf/patente/" . $name;
             }
-
-            $patente->update();
+    
+            $patente->save();
+    
+            return response()->json([
+                'message' => 'Patente atualizado com sucesso',
+                'patente' => $patente,
+            ], 200);
         } catch (\Exception $e) {
+            // Log do erro aqui
             return response()->json([
                 'message' => 'Erro ao atualizar patente',
                 'error' => $e->getMessage()
             ], 500);
         }
-        return response()->json([
-            'message' => 'Patente atualizado com sucesso',
-            'patente' => $patente,
-        ], 200);
     }
-
+    
     public function destroy($id)
     {
         try {

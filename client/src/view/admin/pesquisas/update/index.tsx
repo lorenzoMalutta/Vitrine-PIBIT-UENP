@@ -106,12 +106,12 @@ export function PesquisaUpdate() {
         form.append('pdf', pdf);
         console.log(image);
         try {
-            await api.put(`/pesquisas/edit/${id}`, form, {
+            await api.post(`/pesquisas/edit/${id}`, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data, application/json',
                     'Accept': 'application/json',
                     'Authorization': "Bearer " + localStorage.getItem('token')
-                }
+                },
             })
             toast.success('Pesquisa atualizada com sucesso!');
         }

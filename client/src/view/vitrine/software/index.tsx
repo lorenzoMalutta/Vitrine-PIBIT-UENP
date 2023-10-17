@@ -70,21 +70,19 @@ export function Software() {
                             setBusca={buscar}
                         />
                     </div>
-                    <div className="grid justify-center mb-20 mt-10" >
-                        <div className="grid grid-cols-4 gap-5 max-h-56">
-                            {software.map((software) => (
-                                <Cards
-                                    type="softwares"
-                                    image={software.image}
-                                    nome={software.nome}
-                                    sinopse={software.sinopse}
-                                    palavraChave={software.palavra_chave}
-                                    id={software.id}
-                                    areaCientifica={software.area_cientifica}
-                                    areaEconomica={software.area_economica}
-                                />
-                            ))}
-                        </div>
+                    <div className="grid grid-cols-4 justify-center mb-20 mt-10 gap-4">
+                        {software.map((software) => (
+                            <Cards
+                                type="softwares"
+                                image={software.image}
+                                nome={software.nome}
+                                sinopse={software.sinopse}
+                                palavraChave={software.palavra_chave}
+                                id={software.id}
+                                areaCientifica={software.area_cientifica}
+                                areaEconomica={software.area_economica}
+                            />
+                        ))}
                     </div>
                 </div>
             </section>
@@ -107,25 +105,23 @@ export function Software() {
                             setBusca={buscar}
                         />
                     </div>
-                    <div className="grid justify-center mb-20 mt-10">
-                        <div className="grid grid-cols-3 gap-5 max-h-56">
-                            {software.map((software) => {
-                                if (busca == software.palavra_chave) {
-                                    return (
-                                        <Cards
-                                            type="softwares"
-                                            image={software.image}
-                                            nome={software.nome}
-                                            sinopse={software.sinopse}
-                                            palavraChave={software.palavra_chave}
-                                            id={software.id}
-                                            areaCientifica={software.area_cientifica}
-                                            areaEconomica={software.area_economica}
-                                        />
-                                    )
-                                }
-                            })}
-                        </div>
+                    <div className="grid grid-cols-4 justify-center mb-20 mt-10 gap-4">
+                        {software.map((software) => {
+                            if (busca == software.palavra_chave) {
+                                return (
+                                    <Cards
+                                        type="softwares"
+                                        image={software.image}
+                                        nome={software.nome}
+                                        sinopse={software.sinopse}
+                                        palavraChave={software.palavra_chave}
+                                        id={software.id}
+                                        areaCientifica={software.area_cientifica}
+                                        areaEconomica={software.area_economica}
+                                    />
+                                )
+                            }
+                        })}
                     </div>
                 </div>
             </section>
@@ -148,26 +144,24 @@ export function Software() {
                             setBusca={buscar}
                         />
                     </div>
-                    <div className="grid justify-center mb-20 mt-10">
-                        <div className="grid grid-cols-3 gap-5 max-h-56">
-                            {software.map((software) => {
-                                if (busca == software.area_cientifica) {
-                                    return (
-                                        <Cards
-                                            type="softwares"
-                                            image={software.image}
-                                            nome={software.nome}
-                                            sinopse={software.sinopse}
-                                            palavraChave={software.palavra_chave}
-                                            id={software.id}
-                                            areaCientifica={software.area_cientifica}
-                                            areaEconomica={software.area_economica}
-                                        />
-                                    )
-                                }
+                    <div className="grid grid-cols-4 justify-center mb-20 mt-10 gap-4">
+                        {software.map((software) => {
+                            if (busca == software.area_cientifica) {
+                                return (
+                                    <Cards
+                                        type="softwares"
+                                        image={software.image}
+                                        nome={software.nome}
+                                        sinopse={software.sinopse}
+                                        palavraChave={software.palavra_chave}
+                                        id={software.id}
+                                        areaCientifica={software.area_cientifica}
+                                        areaEconomica={software.area_economica}
+                                    />
+                                )
                             }
-                            )}
-                        </div>
+                        }
+                        )}
                     </div>
                 </div>
             </section>

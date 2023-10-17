@@ -49,10 +49,10 @@ export function PatenteDetail() {
   }, [id]);
 
   return (
-    <section className="font-medium grid xl:grid-cols-5 grid-cols-1">
+    <section className="font-medium grid xl:grid-cols-5 grid-cols-1 text-justify ">
       <div className="grid col-span-4 bg-white rounded shadow-md ml-10 my-10">
         <div>
-          <iframe className="w-full h-[600px]" src={"http://127.0.0.1:8000/storage" + patente?.video} />
+          <iframe className="w-full h-[600px]" src={"https://apivitrine.uenp.edu.br/storage" + patente?.video} />
         </div>
         <div className="pl-10 pr-10">
           <h1>{patente?.nome}</h1>
@@ -66,7 +66,7 @@ export function PatenteDetail() {
           <h3>Resumo:</h3>
           <p>{patente?.resumo}</p>
         </div>
-        <div className="grid sm:grid-cols-2 grid-cols-1 pl-10 pr-10 ">
+        <div className="grid sm:grid-cols-2 grid-cols-1 pl-10 pr-10 gap-4 ">
           <div>
             <h3>Problema:</h3>
             <p>{patente?.problema}</p>
@@ -102,42 +102,42 @@ export function PatenteDetail() {
             </div>
             <p>{patente?.trl}</p>
           </div>
-          <div>
-            <h3>INPI:</h3>
-            <p>{patente?.inpi}</p>
-          </div>
-          <div>
+          <div className="mb-4">
             <h3>Imagem:</h3>
-            <img src={"http://127.0.0.1:8000/storage" + patente?.image} alt="" />
+            <img src={"https://apivitrine.uenp.edu.br/storage" + patente?.image} alt="" />
           </div>
         </div>
       </div>
-      <div className="grid col-span-1 bg-white shadow-md rounded m-10">
-        <div className="m-2">
-          <div>
-            <h3>PDF:</h3>
-            <a href={"http://127.0.0.1:8000/storage" + patente?.pdf}>
-              <img className="w-36" src="https://img.icons8.com/ios/200/000000/pdf-2.png" alt="" />
-            </a>
+      <div className="grid col-span-1 bg-white shadow-md rounded mt-10 ml-2 mr-2 h-fit">
+          <div className="p-2">
+            <div>
+              <h3>PDF:</h3>
+              <a href={"https://apivitrine.uenp.edu.br/storage" + patente?.pdf}>
+                <img className="w-36" src="https://brandlogos.net/wp-content/uploads/2021/12/adobe_acrobat_reader-brandlogo.net_.png" alt="" />
+              </a>
+            </div>
+            <div>
+              <h3>Criadores:</h3>
+              <p>{patente?.criadores}</p>
+            </div>
+            <div>
+              <h3>Colaboradores:</h3>
+              <p>{patente?.colaborador}</p>
+            </div>
+            <div>
+              <h3>Links:</h3>
+              <a href={patente?.links}>{patente?.links}</a>
+            </div>
+            <div>
+              <h3>INPI:</h3>
+              <p>{patente?.inpi}</p>
+            </div>
+            <div>
+              <h3>Contato:</h3>
+              <p>{patente?.email}</p>
+              <p>{patente?.telefone}</p>
+            </div>
           </div>
-          <div>
-            <h3>Criadores:</h3>
-            <p>{patente?.criadores}</p>
-          </div>
-          <div>
-            <h3>Colaboradores:</h3>
-            <p>{patente?.colaborador}</p>
-          </div>
-          <div>
-            <h3>Links:</h3>
-            <p>{patente?.links}</p>
-          </div>
-          <div>
-            <h3>Contato:</h3>
-            <p className="text-[12px]">{patente?.email}</p>
-            <p>{patente?.telefone}</p>
-          </div>
-        </div>
       </div>
     </section>
   )

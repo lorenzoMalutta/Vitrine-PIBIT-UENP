@@ -47,10 +47,10 @@ export function PesquisaDetail() {
     }, [id]);
 
     return (
-        <section className="font-medium grid xl:grid-cols-5 grid-cols-1">
+        <section className="font-medium grid xl:grid-cols-5 grid-cols-1 text-justify">
             <div className="grid col-span-4 bg-white rounded shadow-md ml-10 my-10">
                 <div>
-                    <iframe className="w-full h-[600px]" src={"http://127.0.0.1:8000/storage" + patente?.video} />
+                    <iframe className="w-full h-[600px]" src={"https://apivitrine.uenp.edu.br/storage" + patente?.video} />
                 </div>
                 <div className="pl-10 pr-10">
                     <h1>{patente?.nome}</h1>
@@ -64,7 +64,7 @@ export function PesquisaDetail() {
                     <h3>Resumo:</h3>
                     <p>{patente?.resumo}</p>
                 </div>
-                <div className="grid sm:grid-cols-2 grid-cols-1 pl-10 pr-10 ">
+                <div className="grid sm:grid-cols-2 grid-cols-1 pl-10 pr-10 gap-4">
                     <div>
                         <h3>Problema:</h3>
                         <p>{patente?.problema}</p>
@@ -102,15 +102,15 @@ export function PesquisaDetail() {
                     </div>
                     <div>
                         <h3>Imagem:</h3>
-                        <img src={"http://127.0.0.1:8000/storage" + patente?.image} alt="" />
+                        <img src={"https://apivitrine.uenp.edu.br/storage" + patente?.image} alt="" />
                     </div>
                 </div>
             </div>
-            <div className="grid col-span-1 bg-white shadow-md rounded m-10">
+            <div className="grid col-span-1 bg-white shadow-md rounded m-10 h-fit">
                 <div className="m-2">
                     <div>
                         <h3>PDF:</h3>
-                        <a href={"http://127.0.0.1:8000/storage" + patente?.pdf}>
+                        <a href={"https://apivitrine.uenp.edu.br/storage" + patente?.pdf}>
                             <img className="w-36" src="https://img.icons8.com/ios/200/000000/pdf-2.png" alt="" />
                         </a>
                     </div>
@@ -128,7 +128,7 @@ export function PesquisaDetail() {
                     </div>
                     <div>
                         <h3>Contato:</h3>
-                        <p className="text-[12px]">{patente?.email}</p>
+                        <p>{patente?.email}</p>
                         <p>{patente?.telefone}</p>
                     </div>
                 </div>

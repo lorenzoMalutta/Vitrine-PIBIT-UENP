@@ -43,7 +43,7 @@ export function ServicoEditDelete() {
     }, [])
 
     return (
-        <div>
+        <div className="m-10 h-screen inline-table">
             <ToastContainer />
             <Title
                 titulo="Editar e Deletar Serviços"

@@ -96,12 +96,12 @@ export function SoftwareUpdate() {
         form.append('video', video);
 
         try {
-            await api.put(`/softwares/edit/${id}`, form, {
+            await api.post(`/softwares/edit/${id}`, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data, application/json',
                     'Accept': 'application/json',
                     'Authorization': "Bearer " + localStorage.getItem('token')
-                }
+                },
             })
             toast.success('Software atualizado com sucesso!');
         }

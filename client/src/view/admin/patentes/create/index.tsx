@@ -84,8 +84,6 @@ export function PatenteCadastrar() {
         form.append('image', image);
         form.append('video', video);
         form.append('pdf', pdf);
-        console.log('image', image);
-        console.log('video', video);
         try {
             await api.post('/patentes/cadastrar', form, {
                 headers: {

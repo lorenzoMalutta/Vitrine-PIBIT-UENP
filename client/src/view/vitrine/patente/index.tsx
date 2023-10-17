@@ -55,14 +55,14 @@ export function Patente() {
     }, [])
     if (busca == "todos") {
         return (
-            <section className="h-fit">
+            <section>
                 <div className="mx-auto text-center">
                     <Title
                         titulo="Vitrine de Patentes"
                         subtitulo="Tecnologias e Inovação "
                     />
                 </div>
-                <div className="flex h-screen">
+                <div className="flex">
                     <div className="m-10">
                         <Filter
                             nomeFiltro="Vitrine de Patentes"
@@ -71,8 +71,7 @@ export function Patente() {
                             setBusca={buscar}
                         />
                     </div>
-                    <div className="grid justify-center mb-20 mt-10" >
-                        <div className="grid grid-cols-4 gap-5 max-h-56">
+                    <div className="grid grid-cols-4 justify-center mb-20 mt-10 gap-4" >
                             {patente.map((patente) => (
                                 <Cards
                                     type="patentes"
@@ -85,7 +84,6 @@ export function Patente() {
                                     areaEconomica={patente.area_economica}
                                 />
                             ))}
-                        </div>
                     </div>
                 </div>
             </section>
@@ -108,8 +106,7 @@ export function Patente() {
                             setBusca={buscar}
                         />
                     </div>
-                    <div className="grid justify-center mb-20 mt-10">
-                        <div className="grid grid-cols-3 gap-5 max-h-56">
+                    <div className="grid grid-cols-4 justify-center mb-20 mt-10 gap-4">
                             {patente.map((patente) => {
                                 if (busca == patente.palavra_chave) {
                                     return (
@@ -126,14 +123,13 @@ export function Patente() {
                                     )
                                 }
                             })}
-                        </div>
                     </div>
                 </div>
             </section>
         )
     } else {
         return (
-            <section >
+            <section>
                 <div className="mx-auto text-center">
                     <Title
                         titulo="Vitrine de Patentes"
@@ -149,8 +145,7 @@ export function Patente() {
                             setBusca={buscar}
                         />
                     </div>
-                    <div className="grid justify-center mb-20 mt-10">
-                        <div className="grid grid-cols-3 gap-5 max-h-56">
+                    <div className="grid grid-cols-4 justify-center mb-20 mt-10 gap-4">
                             {patente.map((patente) => {
                                 if (busca == patente.area_cientifica) {
                                     return (
@@ -168,7 +163,6 @@ export function Patente() {
                                 }
                             }
                             )}
-                        </div>
                     </div>
                 </div>
             </section>

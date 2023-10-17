@@ -86,12 +86,12 @@ export function LaboratorioUpdate() {
         form.append('pdf', pdf);
         form.append('conteudo', conteudo);
         try {
-            await api.put(`/laboratorios/edit/${id}`, form, {
+            await api.post(`/laboratorios/edit/${id}`, form, {
                 headers: {
                     'Content-Type': 'multipart/form-data, application/json',
                     'Accept': 'application/json',
                     'Authorization': "Bearer " + localStorage.getItem('token')
-                }
+                },
             })
             toast.success('Laboratório atualizado com sucesso!');
         }

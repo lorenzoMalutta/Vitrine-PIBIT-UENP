@@ -32,7 +32,7 @@ export function ServicoDetail() {
         <section className="sm:p-10 sm:m-10 m-5 font-medium">
             <div className="grid grid-cols-1 bg-white rounded shadow-md">
                 <div>
-                    <iframe className="w-full h-[600px]" src={"http://127.0.0.1:8000/storage" + servico?.image} />
+                    <iframe className="w-full h-[600px]" src={"https://apivitrine.uenp.edu.br/storage" + servico?.image} />
                 </div>
                 <div className="pl-10 pr-10">
                     <h1>{servico?.nome}</h1>
@@ -70,7 +70,7 @@ export function ServicoDetail() {
                     </div>
                     <div>
                         <h3>Imagem:</h3>
-                        <img src={"http://127.0.0.1:8000/storage" + servico?.image} alt="" />
+                        <img src={"https://apivitrine.uenp.edu.br/storage" + servico?.image} alt="" />
                     </div>
                 </div>
             </div>

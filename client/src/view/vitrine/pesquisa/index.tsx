@@ -71,21 +71,19 @@ export function Pesquisa() {
                             setBusca={buscar}
                         />
                     </div>
-                    <div className="grid justify-center mb-20 mt-10" >
-                        <div className="grid grid-cols-4 gap-5 max-h-56">
-                            {patente.map((patente) => (
-                                <Cards
-                                    type="pesquisas"
-                                    image={patente.image}
-                                    nome={patente.nome}
-                                    sinopse={patente.sinopse}
-                                    palavraChave={patente.palavra_chave}
-                                    id={patente.id}
-                                    areaCientifica={patente.area_cientifica}
-                                    areaEconomica={patente.area_economica}
-                                />
-                            ))}
-                        </div>
+                    <div className="grid grid-cols-4 justify-center mb-20 mt-10 gap-4">
+                        {patente.map((patente) => (
+                            <Cards
+                                type="pesquisas"
+                                image={patente.image}
+                                nome={patente.nome}
+                                sinopse={patente.sinopse}
+                                palavraChave={patente.palavra_chave}
+                                id={patente.id}
+                                areaCientifica={patente.area_cientifica}
+                                areaEconomica={patente.area_economica}
+                            />
+                        ))}
                     </div>
                 </div>
             </section>
@@ -108,25 +106,23 @@ export function Pesquisa() {
                             setBusca={buscar}
                         />
                     </div>
-                    <div className="grid justify-center mb-20 mt-10">
-                        <div className="grid grid-cols-3 gap-5 max-h-56">
-                            {patente.map((patente) => {
-                                if (busca == patente.palavra_chave) {
-                                    return (
-                                        <Cards
-                                            type="pesquisas"
-                                            image={patente.image}
-                                            nome={patente.nome}
-                                            sinopse={patente.sinopse}
-                                            palavraChave={patente.palavra_chave}
-                                            id={patente.id}
-                                            areaCientifica={patente.area_cientifica}
-                                            areaEconomica={patente.area_economica}
-                                        />
-                                    )
-                                }
-                            })}
-                        </div>
+                    <div className="grid grid-cols-4 justify-center mb-20 mt-10 gap-4">
+                        {patente.map((patente) => {
+                            if (busca == patente.palavra_chave) {
+                                return (
+                                    <Cards
+                                        type="pesquisas"
+                                        image={patente.image}
+                                        nome={patente.nome}
+                                        sinopse={patente.sinopse}
+                                        palavraChave={patente.palavra_chave}
+                                        id={patente.id}
+                                        areaCientifica={patente.area_cientifica}
+                                        areaEconomica={patente.area_economica}
+                                    />
+                                )
+                            }
+                        })}
                     </div>
                 </div>
             </section>
@@ -149,26 +145,24 @@ export function Pesquisa() {
                             setBusca={buscar}
                         />
                     </div>
-                    <div className="grid justify-center mb-20 mt-10">
-                        <div className="grid grid-cols-3 gap-5 max-h-56">
-                            {patente.map((patente) => {
-                                if (busca == patente.area_cientifica) {
-                                    return (
-                                        <Cards
-                                            type="pesquisas"
-                                            image={patente.image}
-                                            nome={patente.nome}
-                                            sinopse={patente.sinopse}
-                                            palavraChave={patente.palavra_chave}
-                                            id={patente.id}
-                                            areaCientifica={patente.area_cientifica}
-                                            areaEconomica={patente.area_economica}
-                                        />
-                                    )
-                                }
+                    <div className="grid grid-cols-4 justify-center mb-20 mt-10 gap-4">
+                        {patente.map((patente) => {
+                            if (busca == patente.area_cientifica) {
+                                return (
+                                    <Cards
+                                        type="pesquisas"
+                                        image={patente.image}
+                                        nome={patente.nome}
+                                        sinopse={patente.sinopse}
+                                        palavraChave={patente.palavra_chave}
+                                        id={patente.id}
+                                        areaCientifica={patente.area_cientifica}
+                                        areaEconomica={patente.area_economica}
+                                    />
+                                )
                             }
-                            )}
-                        </div>
+                        }
+                        )}
                     </div>
                 </div>
             </section>

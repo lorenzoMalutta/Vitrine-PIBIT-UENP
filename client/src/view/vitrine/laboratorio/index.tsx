@@ -37,7 +37,6 @@ export function Laboratorio() {
         setFilter(childrenData)
     }
 
-
     const buscar = (childrenData: any) => {
         setBusca(childrenData)
     }
@@ -71,21 +70,19 @@ export function Laboratorio() {
                             setBusca={buscar}
                         />
                     </div>
-                    <div className="grid justify-center mb-20 mt-10" >
-                        <div className="grid grid-cols-4 gap-5 max-h-56">
-                            {laboratorio.map((laboratorio) => (
-                                <Cards
-                                    type="laboratorio"
-                                    image={laboratorio.image}
-                                    nome={laboratorio.nome}
-                                    sinopse={laboratorio.sinopse}
-                                    palavraChave={laboratorio.palavras_chave}
-                                    id={laboratorio.id}
-                                    areaCientifica={laboratorio.area_cientifica}
-                                    areaEconomica={laboratorio.area_economica}
-                                />
-                            ))}
-                        </div>
+                    <div className="grid grid-cols-4 justify-center mb-20 mt-10 gap-4">
+                        {laboratorio.map((laboratorio) => (
+                            <Cards
+                                type="laboratorio"
+                                image={laboratorio.image}
+                                nome={laboratorio.nome}
+                                sinopse={laboratorio.sinopse}
+                                palavraChave={laboratorio.palavras_chave}
+                                id={laboratorio.id}
+                                areaCientifica={laboratorio.area_cientifica}
+                                areaEconomica={laboratorio.area_economica}
+                            />
+                        ))}
                     </div>
                 </div>
             </section>
@@ -108,25 +105,23 @@ export function Laboratorio() {
                             setBusca={buscar}
                         />
                     </div>
-                    <div className="grid justify-center mb-20 mt-10">
-                        <div className="grid grid-cols-3 gap-5 max-h-56">
-                            {laboratorio.map((laboratorio) => {
-                                if (busca == laboratorio.palavras_chave) {
-                                    return (
-                                        <Cards
-                                            type="laboratorios"
-                                            image={laboratorio.image}
-                                            nome={laboratorio.nome}
-                                            sinopse={laboratorio.sinopse}
-                                            palavraChave={laboratorio.palavras_chave}
-                                            id={laboratorio.id}
-                                            areaCientifica={laboratorio.area_cientifica}
-                                            areaEconomica={laboratorio.area_economica}
-                                        />
-                                    )
-                                }
-                            })}
-                        </div>
+                    <div className="grid grid-cols-4 justify-center mb-20 mt-10 gap-4">
+                        {laboratorio.map((laboratorio) => {
+                            if (busca == laboratorio.palavras_chave) {
+                                return (
+                                    <Cards
+                                        type="laboratorios"
+                                        image={laboratorio.image}
+                                        nome={laboratorio.nome}
+                                        sinopse={laboratorio.sinopse}
+                                        palavraChave={laboratorio.palavras_chave}
+                                        id={laboratorio.id}
+                                        areaCientifica={laboratorio.area_cientifica}
+                                        areaEconomica={laboratorio.area_economica}
+                                    />
+                                )
+                            }
+                        })}
                     </div>
                 </div>
             </section>
@@ -149,21 +144,19 @@ export function Laboratorio() {
                             setBusca={buscar}
                         />
                     </div>
-                    <div className="grid justify-center mb-20 mt-10" >
-                        <div className="grid grid-cols-4 gap-5 max-h-56">
-                            {laboratorio.map((laboratorio) => (
-                                <Cards
-                                    type="laboratorio"
-                                    image={laboratorio.image}
-                                    nome={laboratorio.nome}
-                                    sinopse={laboratorio.sinopse}
-                                    palavraChave={laboratorio.palavras_chave}
-                                    id={laboratorio.id}
-                                    areaCientifica={laboratorio.area_cientifica}
-                                    areaEconomica={laboratorio.area_economica}
-                                />
-                            ))}
-                        </div>
+                    <div className="grid grid-cols-4 justify-center mb-20 mt-10 gap-4">
+                        {laboratorio.map((laboratorio) => (
+                            <Cards
+                                type="laboratorio"
+                                image={laboratorio.image}
+                                nome={laboratorio.nome}
+                                sinopse={laboratorio.sinopse}
+                                palavraChave={laboratorio.palavras_chave}
+                                id={laboratorio.id}
+                                areaCientifica={laboratorio.area_cientifica}
+                                areaEconomica={laboratorio.area_economica}
+                            />
+                        ))}
                     </div>
                 </div>
             </section>

@@ -72,7 +72,7 @@ export function Home() {
 
     return (
         <section className="grid">
-            <div className="grid xl:grid-cols-4 md:grid-cols-2  m-5 gap-5">
+            <div className="grid xl:grid-cols-5 md:grid-cols-2  m-5 gap-5">
                 <Link to="/patentes">
                     <div className="flex flex-col items-center pt-4  bg-white shadow-2xl hover:bg-[#ededed] duration-700 rounded-md">
                         <div className="flex justify-center items-center bg-slate-300 rounded-full w-14 h-14">
@@ -107,6 +107,15 @@ export function Home() {
                         </div>
                         <h2 className="font-normal text-gray-700">Pesquisas</h2>
                         <p>Inovação e Tecnologias</p>
+                    </div>
+                </Link>
+                <Link to="/laboratorio">
+                    <div className="flex flex-col items-center pt-4 bg-white shadow-2xl hover:bg-[#ededed] duration-700 rounded-md">
+                        <div className="flex justify-center items-center bg-[#E0F9FC] rounded-full w-14 h-14">
+                            <AiOutlineFileSearch className="text-4xl text-[#3BDAED]" />
+                        </div>
+                        <h2 className="font-normal text-gray-700">laboratórios</h2>
+                        <p>Pesquisa e equipamentos</p>
                     </div>
                 </Link>
             </div>

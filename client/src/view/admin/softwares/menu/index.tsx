@@ -19,7 +19,7 @@ export function AdminSoftware() {
       </div>
       <ul className="grid grid-cols-2 w-fit items-center gap-11">
         <li className="w-fit">
-          <div className="bg-white max-w-[230px] m-2 rounded shadow-md text-center">
+          <div className="bg-white max-w-[230px] m-2 p-2 rounded shadow-md text-center">
             <Link to="/admin/softwares/cadastrar">
               <img src="/assets/dashboard/img1.svg" alt="" />
               <h4>Cadastrar Softwares</h4>
@@ -27,7 +27,7 @@ export function AdminSoftware() {
           </div>
         </li>
         <li className="w-fit">
-          <div className="bg-white max-w-[230px] m-2 rounded shadow-md text-center">
+          <div className="bg-white max-w-[230px] m-2 p-2 rounded shadow-md text-center">
             <Link to="/admin/softwares/editar-delete">
               <img src="/assets/dashboard/img2.svg" alt="" />
               <h4>Deletar ou Editar Softwares</h4>

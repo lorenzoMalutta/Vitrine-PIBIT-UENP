@@ -110,18 +110,20 @@ export function PatenteUpdate() {
         form.append('image', image);
         form.append('video', video);
         form.append('pdf', pdf);
-        console.log(image);
+        console.log(form.get('video'));
+        console.log(form.get('pdf'));
+        console.log(form.get('image'));
+
         try {
-            await api.put(`/patentes/edit/${id}`, form, {
+            const a = await api.post(`/patentes/edit/${id}`, form, {
                 headers: {
-                    'Content-Type': 'multipart/form-data, application/json',
-                    'Accept': 'application/json',
-                    'Authorization': "Bearer " + localStorage.getItem('token')
-                }
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': "Bearer " + localStorage.getItem('token'),
+                },
             })
             toast.success('Patente atualizada com sucesso!');
-        }
-        catch (error) {
+        } catch (error) {
+            toast.error('Erro ao atualizar patente!');
             console.log(error);
         }
     };
